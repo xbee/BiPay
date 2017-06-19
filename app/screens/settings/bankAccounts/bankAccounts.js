@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, ListView, StyleSheet, TouchableHighlight, Text } from 'react-native'
-import Account from './../../../components/account'
+import Account from './../../../components/bankAccount'
 import SettingsService from './../../../services/settingsService'
 
 export default class BankAccounts extends Component {
