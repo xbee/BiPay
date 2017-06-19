@@ -9,21 +9,21 @@ var transectionService = {
     return BaseService.getWithFullUrl(url)
   },
 
-  sendMoney: (amount, reference, note) => {
+  sendMoney: (amount, recipient, note) => {
     var data = {
       amount,
-      reference,
+      recipient,
       note,
     }
     return BaseService.post('transactions/transfer/', data)
   },
 
-  withdraw: (token, amount, reference, successFunc, errorFunc) => {
+  withdraw: (amount, reference) => {
     var data = {
       amount,
       reference,
     }
-    return BaseService.post('transactions/withdraw/', data)
+    return BaseService.post('transactions/debit/', data)
   },
 }
 

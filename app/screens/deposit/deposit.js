@@ -56,22 +56,24 @@ export default class Deposit extends Component {
               No deposit instructions have been provided.
             </Text>
           </View>
-          <View style={styles.bankInfo} />
+          <View style={[styles.bankInfo, {flex: 6}]} />
         </View>
       )
     }
     else {
       return (
         <View style={styles.container}>
-          <View style={styles.comment}>
-            <Text style={styles.commentText}>
-              Fund your account by transferring {this.state.currencyCode} to the unique reference number below.
-            </Text>
-          </View>
-          <View style={styles.reference}>
-            <Text style={styles.referenceText}>
-              {this.state.bank.reference}
-            </Text>
+          <View style={{flex:1}}>
+            <View style={styles.comment}>
+              <Text style={styles.commentText}>
+                Fund your account by transferring {this.state.currencyCode} to the unique reference number below.
+              </Text>
+            </View>
+            <View style={styles.reference}>
+              <Text style={styles.referenceText}>
+                {this.state.bank.reference}
+              </Text>
+            </View>
           </View>
           <View style={styles.bankInfo}>
             <View style={styles.infoColumn}>
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   comment: {
-    height: 120,
+    flex: 2,
     backgroundColor: 'gainsboro',
     alignItems: 'center',
     justifyContent: 'center',
@@ -139,18 +141,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   reference: {
-    height: 90,
+    flex: 1,
     backgroundColor: '#38C87F',
     alignItems: 'center',
     justifyContent: 'center',
   },
   referenceText: {
-    fontSize: 32,
+    fontSize: 28,
     textAlign: 'center',
     color: 'white',
   },
   bankInfo: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     padding: 20,
   },

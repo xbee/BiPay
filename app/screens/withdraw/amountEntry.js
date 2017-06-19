@@ -57,7 +57,7 @@ export default class AmountEntry extends Component {
     let responseJson = await TransectionService.withdraw(amount, this.state.reference)
     if (responseJson.status === "success") {
       Alert.alert('Success',
-        "TX Code: " + responseJson.data.tx_code,
+        "Successfully Withdrawn.",
         [{ text: 'OK', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home") }])
     }
     else {

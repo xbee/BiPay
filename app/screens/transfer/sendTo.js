@@ -161,7 +161,7 @@ export default class AmountEntry extends Component {
     let responseJson = await TransectionService.sendMoney(amount, this.state.reference, this.state.note)
     if (responseJson.status === "success") {
       Alert.alert('Success',
-        "TX Code: " + responseJson.data.tx_code,
+        "Successfully Transfered.",
         [{ text: 'OK', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home") }])
     }
     else {
