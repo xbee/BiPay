@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Image, AsyncStorage, TouchableHighlight } from 'react-native'
+import { Modal, View, StyleSheet, Text, Image, AsyncStorage, TouchableHighlight } from 'react-native'
 import { ImagePicker } from 'expo'
 
 export default class ProfileImage extends Component {
@@ -11,6 +11,7 @@ export default class ProfileImage extends Component {
     super()
 
     this.state = {
+      modalVisible: false,
       imageURI: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgmT5tM-IGcFDpqZ87p9zKGaWQuzpvAcDKfOTPYfx5A9zOmbTh8RMMFg',
     }
   }
@@ -27,28 +28,81 @@ export default class ProfileImage extends Component {
     }
   }
 
-  pickImage = async () => {
+  openModal = async () => {
+    this.setState({modalVisible:true})
+  }
+
+  launchCamera = async() => {
+    this.setState({modalVisible:false})
+
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    })
+
+    if (!result.cancelled) {
+      this.props.navigation.navigate("UploadImage", { image: result })
+    }
+  }
+
+  launchImageLibrary = async() => {
+    this.setState({modalVisible:false})
+
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],
     })
 
-    console.log(result)
-
     if (!result.cancelled) {
       this.props.navigation.navigate("UploadImage", { image: result })
     }
-  };
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={() => this.pickImage()}>
+        <TouchableHighlight onPress={() => this.openModal()}>
           <Image
             style={styles.photo}
             source={{ uri: this.state.imageURI }}
           />
         </TouchableHighlight>
+        <Modal
+          animationType={"slide"}
+          transparent
+          visible={this.state.modalVisible}
+          onRequestClose={() => { console.log("Modal has been closed.") }} >
+          <View style={styles.modal}>
+            <View style={styles.bottomModal}>
+              <View style={[styles.button, {borderBottomColor: 'black'}]}>
+                <Text style={{fontSize: 22, fontWeight:'bold'}}>
+                  Change Image
+                </Text>
+              </View>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this.launchCamera()}>
+                <Text style={styles.buttonText}>
+                  Use Camera
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this.launchImageLibrary()}>
+                <Text style={styles.buttonText}>
+                  Choose From Gallery
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => { this.setState({modalVisible:false}) }}>
+                <Text style={styles.buttonText}>
+                  Cancel
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
       </View>
     )
   }
@@ -66,6 +120,32 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 100,
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomModal: {
+    width: '70%',
+    height: 220,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    borderColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    height: 50,
+    width: "100%",
+    borderWidth: 1,
+    borderColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
   },
 })
 

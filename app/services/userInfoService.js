@@ -21,6 +21,10 @@ var UserInfoService = {
     return BaseService.patch('user/address/', data)
   },
 
+  getUserDetails: () => {
+    return BaseService.get('user/')
+  },
+
   updateUserDetails: (data) => {
     return BaseService.patch('user/', data)
   },

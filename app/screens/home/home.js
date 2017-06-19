@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, TouchableHighlight, Text } from 'react-native'
+import { View, StyleSheet, AsyncStorage, TouchableHighlight, Text } from 'react-native'
+import UserInfoService from './../../services/userInfoService'
 import Transections from './transections'
 import CurrentBalance from './currentBalance'
 import Auth from './../../util/auth'
@@ -7,6 +8,17 @@ import Auth from './../../util/auth'
 export default class Home extends Component {
   static navigationOptions = {
     label: 'Home',
+  }
+
+  async componentDidMount() {
+    let responseJson = await UserInfoService.getUserDetails()
+    if (responseJson.status === "success") {
+      AsyncStorage.removeItem('user')
+      AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
+    }
+    else {
+      this.logout()
+    }
   }
 
   logout = () => {
