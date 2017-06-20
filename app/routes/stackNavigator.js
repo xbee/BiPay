@@ -19,7 +19,9 @@ import AddMobileNumber from './../screens/settings/mobileNumbers/addMobileNumber
 import VerifyMobileNumber from './../screens/settings/mobileNumbers/verifyMobile'
 import SettingsEmailAddresses from './../screens/settings/emailAddresses/emailAddresses'
 import AddEmailAddress from './../screens/settings/emailAddresses/addEmailAddress'
-import SettingsGetVerified from './../screens/settings/getVerified'
+import SettingsGetVerified from './../screens/settings/getVerified/getVerified'
+import Document from './../screens/settings/getVerified/document'
+import DocumentUpload from './../screens/settings/getVerified/documentUpload'
 import SettingsAddress from './../screens/settings/address'
 import SettingsBankAccounts from './../screens/settings/bankAccounts/bankAccounts'
 import SettingsBitcoinAddresses from './../screens/settings/bitcoinAddresses/bitcoinAddresses'
@@ -91,6 +93,12 @@ const RouteConfigs = {
   },
   SettingsGetVerified: {
     screen: SettingsGetVerified,
+  },
+  Document: {
+    screen: Document,
+  },
+  DocumentUpload: {
+    screen: DocumentUpload,
   },
   SettingsAddress: {
     screen: SettingsAddress,

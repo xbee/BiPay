@@ -1,39 +1,28 @@
 import React, { Component } from 'react'
-import { Modal, View, StyleSheet, Text, Image, AsyncStorage, TouchableHighlight } from 'react-native'
+import { Modal, View, StyleSheet, Text, TouchableHighlight } from 'react-native'
 import { ImagePicker } from 'expo'
 
-export default class ProfileImage extends Component {
+export default class Document extends Component {
+
   static navigationOptions = {
-    title: 'Profile Image',
+    title: "Document",
   }
 
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
+    const params = this.props.navigation.state.params
     this.state = {
+      title: params.name,
       modalVisible: false,
-      imageURI: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgmT5tM-IGcFDpqZ87p9zKGaWQuzpvAcDKfOTPYfx5A9zOmbTh8RMMFg',
-    }
-  }
-
-  componentDidMount() {
-    this.getData()
-  }
-
-  getData = async () => {
-    const value = await AsyncStorage.getItem('user');
-    const user = JSON.parse(value)
-    if (user.profile !== null) {
-      this.setState({ imageURI: user.profile })
     }
   }
 
   openModal = async () => {
-    this.setState({modalVisible:true})
+    this.setState({ modalVisible: true })
   }
 
-  launchCamera = async() => {
-    this.setState({modalVisible:false})
+  launchCamera = async () => {
+    this.setState({ modalVisible: false })
 
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
@@ -41,12 +30,12 @@ export default class ProfileImage extends Component {
     })
 
     if (!result.cancelled) {
-      this.props.navigation.navigate("UploadImage", { image: result })
+      this.props.navigation.navigate("DocumentUpload", { image: result })
     }
   }
 
-  launchImageLibrary = async() => {
-    this.setState({modalVisible:false})
+  launchImageLibrary = async () => {
+    this.setState({ modalVisible: false })
 
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -54,30 +43,38 @@ export default class ProfileImage extends Component {
     })
 
     if (!result.cancelled) {
-      this.props.navigation.navigate("UploadImage", { image: result })
+      this.props.navigation.navigate("DocumentUpload", { image: result })
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={() => this.openModal()}>
-          <Image
-            style={styles.photo}
-            source={{ uri: this.state.imageURI }}
-          />
-        </TouchableHighlight>
+        <View style={styles.topContainer}>
+          <Text style={{fontSize: 18, textAlign: 'center'}}>
+            Instructions of why and how to upload a picture of {this.state.title}.
+          </Text>
+        </View>
+        <View style={styles.bottomContainer}>
+          <View style={{flex: 1}} />
+          <TouchableHighlight
+            style={styles.upload}
+            onPress={() => this.openModal()}>
+            <Text style={{fontSize: 20, color: 'white'}}>
+              Upload
+            </Text>
+          </TouchableHighlight>
+        </View>
         <Modal
           animationType={"slide"}
           transparent
-          style={{backgroundColor: 'lightgray'}}
           visible={this.state.modalVisible}
           onRequestClose={() => { console.log("Modal has been closed.") }} >
           <View style={styles.modal}>
             <View style={styles.bottomModal}>
-              <View style={[styles.button, {borderBottomColor: 'black'}]}>
-                <Text style={{fontSize: 22, fontWeight:'bold'}}>
-                  Change Image
+              <View style={[styles.button, { borderBottomColor: 'black' }]}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
+                  Upload Image
                 </Text>
               </View>
               <TouchableHighlight
@@ -96,7 +93,7 @@ export default class ProfileImage extends Component {
               </TouchableHighlight>
               <TouchableHighlight
                 style={styles.button}
-                onPress={() => { this.setState({modalVisible:false}) }}>
+                onPress={() => { this.setState({ modalVisible: false }) }}>
                 <Text style={styles.buttonText}>
                   Cancel
                 </Text>
@@ -114,13 +111,28 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-    padding: 20,
     alignItems: 'center',
   },
-  photo: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
+  topContainer: {
+    flex: 1,
+    backgroundColor: 'lightgray',
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bottomContainer: {
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  upload: {
+    height: 70,
+    width: 1000,
+    backgroundColor: '#2070A0',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
   },
   modal: {
     flex: 1,

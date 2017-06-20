@@ -2,17 +2,13 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class Withdraw extends Component {
+export default class Settings extends Component {
   static navigationOptions = {
-    title: 'Withdraw',
+    title: 'Get Verified',
   }
 
-  goToBankAccounts = () => {
-    this.props.navigation.navigate("BankAccounts")
-  }
-
-  goToBitcoinAddresses = () => {
-    this.props.navigation.navigate("BitcoinAddresses")
+  goToDocument = (name) => {
+    this.props.navigation.navigate("Document", {name})
   }
 
   render() {
@@ -20,10 +16,10 @@ export default class Withdraw extends Component {
       <View style={styles.container}>
         <TouchableHighlight
           style={styles.options}
-          onPress={this.goToBankAccounts}>
+          onPress={() => this.goToDocument("ID Document")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              Bank Account
+              ID Document
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
@@ -35,10 +31,25 @@ export default class Withdraw extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.options}
-          onPress={this.goToBitcoinAddresses}>
+          onPress={() => this.goToDocument("ID Selfie")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              Bitcoin Address
+              ID Selfie
+            </Text>
+            <View style={styles.optionsIcon}>
+              <Icon
+                name="angle-double-right"
+                size={45}
+              />
+            </View>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.options}
+          onPress={() => this.goToDocument("Proof Of Address")}>
+          <View style={styles.optionsElement}>
+            <Text style={styles.optionsText}>
+              Proof Of Address
             </Text>
             <View style={styles.optionsIcon}>
               <Icon

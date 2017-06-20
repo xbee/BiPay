@@ -32,14 +32,14 @@ export default class Account extends Component {
           <View style={styles.icon}>
             <Icon
               name="arrow-right"
-              size={50}
+              size={45}
             />
           </View>
           <View style={styles.type}>
-            <Text style={{ fontSize: 22 }}>
+            <Text style={{ fontSize: 18 }}>
               {this.props.data.currency.code}
             </Text>
-            <Text style={{ fontSize: 15 }}>
+            <Text style={{ fontSize: 14 }}>
               {this.props.data.currency.symbol + ' ' + this.state.balance}
             </Text>
           </View>

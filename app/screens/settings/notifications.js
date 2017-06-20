@@ -26,6 +26,7 @@ export default class Settings extends Component {
   }
 
   getData = async () => {
+    this.setState({refreshing: true})
     let responseJson = await SettingsService.getAllNotifications()
     if (responseJson.status === "success") {
       const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => JSON.stringify(r1) !== JSON.stringify(r2) });
@@ -33,6 +34,7 @@ export default class Settings extends Component {
       //console.log(data)
       let ids = data.map((obj, index) => index);
       this.setState({
+        refreshing: false,
         dataSource: ds.cloneWithRows(data, ids),
       })
     }

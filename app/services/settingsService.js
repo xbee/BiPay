@@ -76,6 +76,14 @@ var settingsService = {
   changeStateOfNotification: (id, data) => {
     return BaseService.patch('user/notifications/' + id + '/', data)
   },
+
+  documentUpload: (file) => {
+    let formData = new FormData()
+    formData.append('file', file)
+    formData.append('document_category', "")
+    formData.append('document_type', "")
+    return BaseService.documentUpload('user/document/', formData)
+  },
 }
 
 export default settingsService

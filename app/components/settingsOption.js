@@ -16,7 +16,7 @@ export default class Options extends Component {
           <View style={styles.optionsIcon}>
             <Icon
               name="angle-double-right"
-              size={50}
+              size={45}
             />
           </View>
         </View>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   optionsText: {
     flex: 1,
-    fontSize: 20,
+    fontSize: 18,
   },
   optionsIcon: {
     flex: 1,

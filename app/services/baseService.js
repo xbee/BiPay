@@ -106,6 +106,10 @@ const baseService = {
   fileUpload: (endPoint, data) => {
     return _apiCallFileUpload(baseUrl + endPoint, "PATCH", data)
   },
+
+  documentUpload: (endPoint, data) => {
+    return _apiCallFileUpload(baseUrl + endPoint, "POST", data)
+  },
 }
 
 export default baseService

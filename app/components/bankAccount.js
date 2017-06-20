@@ -16,14 +16,14 @@ export default class Account extends Component {
               name="radio-button-unchecked"
               size={50}
             />
-            <Text style={{ fontSize: 22, paddingLeft: 10 }}>
+            <Text style={{ fontSize: 18, paddingLeft: 10 }}>
               {this.props.name}
             </Text>
           </View>
           <View style={styles.optionsIcon}>
             <IconFontAwesome
               name="angle-double-right"
-              size={50}
+              size={45}
             />
           </View>
         </View>

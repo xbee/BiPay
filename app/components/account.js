@@ -13,11 +13,11 @@ export default class Account extends Component {
           <View style={styles.icon}>
             <MaterialIcons
               name="radio-button-unchecked"
-              size={50}
+              size={45}
             />
           </View>
           <View style={styles.type}>
-            <Text style={{ fontSize: 25 }}>
+            <Text style={{ fontSize: 22 }}>
               {this.props.name}
             </Text>
             <Text style={{ fontSize: 13 }}>
