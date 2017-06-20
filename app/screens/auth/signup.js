@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Alert, StyleSheet, ScrollView, TouchableHighlight, Text, TextInput, KeyboardAvoidingView } from 'react-native'
 import AuthService from './../../services/authService'
-import Auth from './../../util/auth'
 
 export default class Signup extends Component {
   static navigationOptions = {
@@ -15,7 +14,7 @@ export default class Signup extends Component {
       last_name: '',
       email: '',
       mobile: '',
-      company_id: '',
+      company: '',
       password1: '',
       password2: '',
     }
@@ -25,7 +24,7 @@ export default class Signup extends Component {
     let responseJson = await AuthService.signup(this.state)
     if (responseJson.status === "success") {
       const loginInfo = responseJson.data
-      Auth.login(this.props.navigation, loginInfo)
+      this.props.navigation.navigate("AuthVerifyMobile", {loginInfo})
     }
     else {
       Alert.alert('Error',
@@ -69,7 +68,7 @@ export default class Signup extends Component {
               style={styles.input}
               placeholder="Company Name"
               autoCapitalize="none"
-              onChangeText={(company_id) => this.setState({ company_id })}
+              onChangeText={(company) => this.setState({ company })}
             />
             <TextInput
               style={styles.input}

@@ -13,7 +13,7 @@ export default class Account extends Component {
           <View style={styles.icon}>
             <MaterialIcons
               name="radio-button-unchecked"
-              size={45}
+              size={50}
             />
           </View>
           <View style={styles.type}>

@@ -3,6 +3,7 @@ import Expo from 'expo'
 import Home from './drawerNavigator'
 import Login from './../screens/auth/login'
 import Signup from './../screens/auth/signup'
+import AuthVerifyMobile from './../screens/auth/verifyMobile'
 import ForgetPassword from './../screens/auth/forgetPassword'
 import BankAccounts from './../screens/withdraw/bankAccounts'
 import BitcoinAddresses from './../screens/withdraw/bitcoinAddresses'
@@ -39,6 +40,9 @@ const RouteConfigs = {
   },
   Signup: {
     screen: Signup,
+  },
+  AuthVerifyMobile: {
+    screen: AuthVerifyMobile,
   },
   ForgetPassword: {
     screen: ForgetPassword,
