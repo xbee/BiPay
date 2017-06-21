@@ -17,7 +17,7 @@
 ### Run using command line
 
 * run `npm install -g exp` to install exp globally
-* run `exp android` to open this in Expo on a connected device/emulator
+* run `exp start --ios` or `exp start --android` to open the app in Expo on a connected device/emulator
 
 ### Run using Expo
 
