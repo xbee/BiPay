@@ -31,7 +31,9 @@ import EditBankAccount from './../screens/settings/bankAccounts/editBankAccount'
 import AddBitcoinAddress from './../screens/settings/bitcoinAddresses/addBitcoinAddress'
 import EditBitcoinAddress from './../screens/settings/bitcoinAddresses/editBitcoinAddress'
 import SettingsCards from './../screens/settings/cards'
-import SettingsSecurity from './../screens/settings/security'
+import SettingsSecurity from './../screens/settings/security/security'
+import ChangePassword from './../screens/settings/security/changePassword'
+import TwoFactor from './../screens/settings/security/twoFactor'
 import SettingsNotifications from './../screens/settings/notifications'
 
 const RouteConfigs = {
@@ -130,6 +132,12 @@ const RouteConfigs = {
   },
   SettingsSecurity: {
     screen: SettingsSecurity,
+  },
+  ChangePassword: {
+    screen: ChangePassword,
+  },
+  TwoFactor: {
+    screen: TwoFactor,
   },
   SettingsNotifications: {
     screen: SettingsNotifications,

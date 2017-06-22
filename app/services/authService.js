@@ -16,6 +16,10 @@ var authService = {
   forgetPassword: (data) => {
     return BaseService.post('auth/password/reset/', data)
   },
+
+  changePassword: (data) => {
+    return BaseService.post('auth/password/change/', data)
+  },
 }
 
 export default authService

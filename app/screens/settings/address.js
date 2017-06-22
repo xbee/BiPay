@@ -185,8 +185,6 @@ const styles = StyleSheet.create({
   pickerContainer: {
     flexDirection: 'row',
     width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -29,30 +29,27 @@ export default class ProfileImage extends Component {
   }
 
   openModal = async () => {
-    this.setState({modalVisible:true})
+    this.setState({ modalVisible: true })
   }
 
-  launchCamera = async() => {
-    this.setState({modalVisible:false})
+  launchCamera = async () => {
 
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [4, 3],
     })
-
+    this.setState({ modalVisible: false })
     if (!result.cancelled) {
       this.props.navigation.navigate("UploadImage", { image: result })
     }
   }
 
-  launchImageLibrary = async() => {
-    this.setState({modalVisible:false})
-
+  launchImageLibrary = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],
     })
-
+    this.setState({ modalVisible: false })
     if (!result.cancelled) {
       this.props.navigation.navigate("UploadImage", { image: result })
     }
@@ -70,13 +67,13 @@ export default class ProfileImage extends Component {
         <Modal
           animationType={"slide"}
           transparent
-          style={{backgroundColor: 'lightgray'}}
+          style={{ backgroundColor: 'lightgray' }}
           visible={this.state.modalVisible}
           onRequestClose={() => { console.log("Modal has been closed.") }} >
           <View style={styles.modal}>
             <View style={styles.bottomModal}>
-              <View style={[styles.button, {borderBottomColor: 'black'}]}>
-                <Text style={{fontSize: 22, fontWeight:'bold'}}>
+              <View style={[styles.button, { borderBottomColor: 'black' }]}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
                   Change Image
                 </Text>
               </View>
@@ -96,7 +93,7 @@ export default class ProfileImage extends Component {
               </TouchableHighlight>
               <TouchableHighlight
                 style={styles.button}
-                onPress={() => { this.setState({modalVisible:false}) }}>
+                onPress={() => { this.setState({ modalVisible: false }) }}>
                 <Text style={styles.buttonText}>
                   Cancel
                 </Text>

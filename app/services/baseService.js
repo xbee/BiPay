@@ -26,6 +26,7 @@ let _apiCallWithData = async (url, method, data) => {
       body: JSON.stringify(data),
     })
     let responseJson = await response.json()
+    console.log(responseJson)
     return responseJson
   } catch (error) {
     Alert.alert(

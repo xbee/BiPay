@@ -22,26 +22,23 @@ export default class Document extends Component {
   }
 
   launchCamera = async () => {
-    this.setState({ modalVisible: false })
 
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [4, 3],
     })
-
+    this.setState({ modalVisible: false })
     if (!result.cancelled) {
       this.props.navigation.navigate("DocumentUpload", { image: result })
     }
   }
 
   launchImageLibrary = async () => {
-    this.setState({ modalVisible: false })
-
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],
     })
-
+    this.setState({ modalVisible: false })
     if (!result.cancelled) {
       this.props.navigation.navigate("DocumentUpload", { image: result })
     }
