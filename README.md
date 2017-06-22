@@ -14,6 +14,9 @@
 * run `npm install` to install the dependencies
 * follow one of the following steps
 
+
+** *before this make sure port 19000 and 19001 is open in your operating system*
+
 ### Run using command line
 
 * run `npm install -g exp` to install exp globally
