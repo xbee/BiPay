@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native'
 export default class Account extends Component {
   constructor(props) {
     super(props);
-    const color = this.props.data.active === true ? 'greenyellow' : '#38C87F'
+    const color = this.props.data.active === true ? '#EBEBEB' : '#38C87F'
     this.state = {
       balance: 0,
       color,
@@ -60,7 +60,6 @@ export default class Account extends Component {
 const styles = StyleSheet.create({
   options: {
     height: 80,
-    padding: 10,
     width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "lightgray",
@@ -77,12 +76,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   type: {
-    flex: 3,
+    flex: 4,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
   buttonView: {
     flex: 1,
+    padding:10,
+    paddingLeft:0,
     justifyContent: 'center',
     alignItems: 'center',
   },

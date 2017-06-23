@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const DrawerButton = ({ navigation }) => (
-  <TouchableOpacity>
+  <TouchableOpacity style={{padding: 10}}>
     <Icon
       name="menu"
       size={40}

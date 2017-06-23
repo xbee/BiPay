@@ -129,7 +129,7 @@ export default class Settings extends Component {
           <TouchableHighlight
             style={styles.submit}
             onPress={() => this.save()}>
-            <Text style={{ color: 'white' }}>
+            <Text style={{ color: 'white', fontSize:18 }}>
               Save
             </Text>
           </TouchableHighlight>
