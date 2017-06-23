@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import Date from './../util/date.js'
 
 export default class Withdraw extends Component {
@@ -18,13 +17,13 @@ export default class Withdraw extends Component {
       <View style={styles.container}>
         <View style={styles.left}>
           <View style={styles.icon}>
-            <Icon
-              name={'ios-arrow-dropright-outline'}
-              size={50}
+            <Image
+              source={require('./../../assets/icons/profile.png')}
+              style={{height:40, width:40}}
             />
           </View>
           <View style={styles.type}>
-            <Text style={{ fontSize: 20 }}>
+            <Text style={{ fontSize: 18, fontWeight: 'normal', color: '#4D4D4D' }}>
               {this.props.data.label}
             </Text>
             <Text style={{ fontSize: 13 }}>
@@ -33,10 +32,10 @@ export default class Withdraw extends Component {
           </View>
         </View>
         <View style={styles.right}>
-          <Text style={{ fontSize: 18, color: 'black' }}>
+          <Text style={{ fontSize: 20, fontWeight: 'normal', color: '#4D4D4D' }}>
             {this.props.data.currency.symbol + " " + this.getAmount(this.props.data.amount, this.props.data.currency.divisibility)}
           </Text>
-          <Text style={{ fontSize: 13, color: 'darkgray' }}>
+          <Text style={{ fontSize: 14, color: '#4D4D4D' }}>
             {Date.getDateFromMiliseconds(this.props.data.updated)} | {this.props.data.status}
           </Text>
         </View>
@@ -52,24 +51,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'lightgray',
     height: 70,
-    backgroundColor: 'white',
+    backgroundColor: '#F7F7F7',
   },
   left: {
-    flex: 3,
+    flex: 220,
     flexDirection: 'row',
   },
   icon: {
-    flex: 1,
+    flex: 70,
     justifyContent: 'center',
     alignItems: 'center',
   },
   type: {
-    flex: 3,
+    flex: 150,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
   right: {
-    flex: 2,
+    flex: 150,
     justifyContent: 'center',
     alignItems: 'flex-end',
   },

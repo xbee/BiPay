@@ -4,7 +4,7 @@ import { ImagePicker } from 'expo'
 
 export default class ProfileImage extends Component {
   static navigationOptions = {
-    title: 'Profile Image',
+    title: 'Profile image',
   }
 
   constructor() {

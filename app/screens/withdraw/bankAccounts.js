@@ -5,7 +5,7 @@ import SettingsService from './../../services/settingsService'
 
 export default class BankAccounts extends Component {
   static navigationOptions = {
-    title: 'Select Bank Account',
+    title: 'Select bank account',
   }
 
   constructor(props) {
@@ -64,7 +64,7 @@ export default class BankAccounts extends Component {
           style={styles.submit}
           onPress={() => this.props.navigation.navigate("AddBankAccount", { parentRoute: 'Withdraw', nextRoute: 'BankAccounts' })}>
           <Text style={{ color: 'white', fontSize: 20 }}>
-            Add Bank Account
+            Add bank account
           </Text>
         </TouchableHighlight>
       </View>
@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

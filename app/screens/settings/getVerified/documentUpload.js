@@ -6,7 +6,7 @@ import ResetNavigation from './../../../util/resetNavigation'
 
 export default class DocumentUpload extends Component {
   static navigationOptions = {
-    title: 'Document Upload',
+    title: 'Document upload',
   }
 
   constructor(props) {
@@ -36,8 +36,8 @@ export default class DocumentUpload extends Component {
     let responseJson = await SettingsService.documentUpload(file)
     if (responseJson.status === "success") {
       Alert.alert(
-        "Success",
-        "Document Uploaded Successfully.",
+        "Upload successful",
+        "Your information will shortly be reviewed by our team.",
         [{ text: 'OK', onPress: () => this.goBackAndReload() }]
       )
     }
@@ -66,7 +66,7 @@ export default class DocumentUpload extends Component {
         </TouchableHighlight>
         <View style={styles.buttonsContainer}>
           <TouchableHighlight
-            style={[styles.button, {backgroundColor: 'red'}]}
+            style={[styles.button, {backgroundColor: '#ED675A'}]}
             onPress={() => this.props.navigation.goBack()}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Cancel
@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonsContainer: {
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     flexDirection: 'row',
     alignSelf: 'stretch',
   },

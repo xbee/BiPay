@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 export default class Account extends Component {
 
@@ -12,9 +11,9 @@ export default class Account extends Component {
         onPress={() => this.props.onPress(this.props.reference)}>
         <View style={styles.optionsElement}>
           <View style={styles.optionsText}>
-            <MaterialIcons
-              name="radio-button-unchecked"
-              size={50}
+            <Image
+              source={require('./../../assets/icons/placeholder.png')}
+              style={{height:40, width:40}}
             />
             <Text style={{ fontSize: 18, paddingLeft: 10 }}>
               {this.props.name}
@@ -22,8 +21,9 @@ export default class Account extends Component {
           </View>
           <View style={styles.optionsIcon}>
             <IconFontAwesome
-              name="angle-double-right"
+              name="angle-right"
               size={45}
+              color="#4D4D4D"
             />
           </View>
         </View>

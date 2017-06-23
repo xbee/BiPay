@@ -74,7 +74,7 @@ export default class Settings extends Component {
     const body = {
       sms_enabled: !previous,
     }
-    let responseJson = await SettingsService.changeStateOfMobileNotification(id, body)
+    let responseJson = await SettingsService.changeStateOfNotification(id, body)
 
     if (responseJson.status === "success") {
       this.reload()
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     height: 70,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

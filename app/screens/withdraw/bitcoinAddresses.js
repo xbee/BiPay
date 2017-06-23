@@ -5,7 +5,7 @@ import SettingsService from './../../services/settingsService'
 
 export default class BitcoinAddresses extends Component {
   static navigationOptions = {
-    title: 'Select Bitcoin Addresses',
+    title: 'Select bitcoin address',
   }
 
   constructor(props) {
@@ -63,7 +63,7 @@ export default class BitcoinAddresses extends Component {
           style={styles.submit}
           onPress={() => this.props.navigation.navigate("AddBitcoinAddress", { parentRoute: 'Withdraw', nextRoute: 'BitcoinAddresses' })}>
           <Text style={{ color: 'white', fontSize: 20 }}>
-            Add Bitcoin Address
+            Add bitcoin address
           </Text>
         </TouchableHighlight>
       </View>
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

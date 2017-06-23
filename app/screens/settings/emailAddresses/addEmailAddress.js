@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
-
+import TextInput from './../../../components/textInput'
 export default class AmountEntry extends Component {
   static navigationOptions = {
-    title: 'Add Email Address',
+    title: 'Add email address',
   }
 
   constructor(props) {
@@ -38,8 +38,8 @@ export default class AmountEntry extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
         <View style={{ flex: 1 }}>
           <TextInput
-            style={styles.input}
-            placeholder="Enter Email Address"
+            title="Enter email address"
+            placeholder="e.g. "
             autoCapitalize="none"
             onChangeText={(email) => this.setState({ email })}
           />
@@ -47,7 +47,7 @@ export default class AmountEntry extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={this.add}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
+          <Text style={{ color: 'white', fontSize: 18 }}>
             Save
           </Text>
         </TouchableHighlight>
@@ -64,19 +64,11 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input: {
-    height: 60,
-    width: "100%",
-    padding: 10,
-    marginTop: 10,
-    borderColor: 'white',
-    borderWidth: 1,
   },
 })

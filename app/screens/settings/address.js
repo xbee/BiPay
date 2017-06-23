@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, TouchableHighlight } from 'react-native'
+import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TouchableHighlight } from 'react-native'
 import CountryPicker from 'react-native-country-picker-modal'
 import UserInfoService from './../../services/userInfoService'
+import TextInput from './../../components/textInput'
 
 export default class Address extends Component {
   static navigationOptions = {
@@ -62,54 +63,35 @@ export default class Address extends Component {
       <View style={{ flex: 1 }}>
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
           <ScrollView keyboardDismissMode={'interactive'}>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                Line 1
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                value={this.state.line_1}
-                onChangeText={(line_1) => this.setState({ line_1 })}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                Line 2
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                value={this.state.line_2}
-                onChangeText={(line_2) => this.setState({ line_2 })}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                City
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                value={this.state.city}
-                onChangeText={(city) => this.setState({ city })}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                State Province
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                value={this.state.state_province}
-                onChangeText={(state_province) => this.setState({ state_province })}
-              />
-            </View>
+
+            <TextInput
+              title="Line 1"
+              autoCapitalize="none"
+              value={this.state.line_1}
+              onChangeText={(line_1) => this.setState({ line_1 })}
+            />
+
+            <TextInput
+              title="Line 2"
+              autoCapitalize="none"
+              value={this.state.line_2}
+              onChangeText={(line_2) => this.setState({ line_2 })}
+            />
+
+            <TextInput
+              title="City"
+              autoCapitalize="none"
+              value={this.state.city}
+              onChangeText={(city) => this.setState({ city })}
+            />
+
+            <TextInput
+              title="State province"
+              autoCapitalize="none"
+              value={this.state.state_province}
+              onChangeText={(state_province) => this.setState({ state_province })}
+            />
+
             <View style={styles.pickerContainer}>
               <Text style={[styles.text, { flex: 1 }]}>
                 Country
@@ -123,23 +105,18 @@ export default class Address extends Component {
                 styles={{ flex: 1, justifyContent: 'center' }}
               />
             </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                Postal Code
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                value={this.state.postal_code}
-                onChangeText={(postal_code) => this.setState({ postal_code })}
-              />
-            </View>
+
+            <TextInput
+              title="Postal code"
+              autoCapitalize="none"
+              value={this.state.postal_code}
+              onChangeText={(postal_code) => this.setState({ postal_code })}
+            />
           </ScrollView>
           <TouchableHighlight
             style={styles.submit}
             onPress={() => this.save()}>
-            <Text style={{ color: 'white' }}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
               Save
             </Text>
           </TouchableHighlight>
@@ -155,38 +132,28 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
-  input: {
-    height: 60,
-    width: "100%",
-    padding: 10,
-    fontSize: 16,
-    borderColor: 'white',
-    borderWidth: 1,
-  },
   submit: {
     padding: 10,
     marginTop: 10,
     height: 60,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    fontSize: 20,
-    paddingLeft: 10,
-  },
-  inputContainer: {
-    flexDirection: 'column',
-    width: '100%',
-    paddingTop: 10,
+    fontSize: 18,
+    color: '#4D4D4D',
   },
   pickerContainer: {
     flexDirection: 'row',
+    padding: 15,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
   },
 })
 

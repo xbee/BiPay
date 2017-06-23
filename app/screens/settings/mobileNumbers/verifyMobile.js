@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
+import TextInput from './../../../components/textInput'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
-    title: 'Verify Mobile Number',
+    title: 'Verify mobile number',
   }
 
   constructor(props) {
@@ -37,8 +38,7 @@ export default class AmountEntry extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
         <View style={{ flex: 1 }}>
           <TextInput
-            style={styles.input}
-            placeholder="Enter OTP"
+            title="Enter OTP"
             autoCapitalize="none"
             keyboardType="numeric"
             onChangeText={(otp) => this.setState({ otp })}
@@ -46,7 +46,7 @@ export default class AmountEntry extends Component {
         </View>
         <View style={styles.buttons}>
           <TouchableHighlight
-            style={[styles.submit, { backgroundColor: 'red' }]}
+            style={[styles.submit, { backgroundColor: '#ED675A' }]}
             onPress={() => this.reload()}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Skip
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',

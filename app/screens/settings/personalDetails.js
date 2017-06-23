@@ -6,7 +6,7 @@ import UserInfoService from './../../services/userInfoService'
 
 export default class Settings extends Component {
   static navigationOptions = {
-    title: 'Personal Details',
+    title: 'Personal details',
   }
 
   constructor() {
@@ -39,8 +39,6 @@ export default class Settings extends Component {
       last_name: user.last_name,
       id_number: user.id_number,
       nationality: user.nationality,
-      skype_name: user.skype_name,
-      mobile_number: user.mobile_number,
       language: user.language,
     })
   }
@@ -48,8 +46,8 @@ export default class Settings extends Component {
   save = async () => {
     let responseJson = await UserInfoService.updateUserDetails()
     if (responseJson.status === "success") {
-      AsyncStorage.removeItem('user')
-      AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
+      await AsyncStorage.removeItem('user')
+      await AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
       this.props.navigation.goBack()
     }
     else {
@@ -66,7 +64,7 @@ export default class Settings extends Component {
           <ScrollView keyboardDismissMode={'interactive'}>
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
-                First Name
+                First name
               </Text>
               <TextInput
                 style={styles.input}
@@ -78,7 +76,7 @@ export default class Settings extends Component {
             </View>
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
-                Last Name
+                Last name
               </Text>
               <TextInput
                 style={styles.input}
@@ -90,7 +88,7 @@ export default class Settings extends Component {
             </View>
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
-                Identity Number
+                Identity number
               </Text>
               <TextInput
                 style={styles.input}
@@ -127,30 +125,6 @@ export default class Settings extends Component {
                 <Picker.Item label="Africans" value="af" />
               </Picker>
             </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                Skype Name
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                value={this.state.skype_name}
-                onChangeText={(text) => this.setState({ skype_name: text })}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                Mobile Number
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                value={this.state.mobile_number}
-                onChangeText={(text) => this.setState({ mobile_number: text })}
-              />
-            </View>
           </ScrollView>
           <TouchableHighlight
             style={styles.submit}
@@ -172,37 +146,44 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   input: {
-    height: 60,
+    height: 50,
     width: "100%",
-    padding: 10,
+    padding: 15,
     fontSize: 16,
+    fontWeight: 'normal',
     borderColor: 'white',
     borderWidth: 1,
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 18,
+    color: '#4D4D4D',
+  },
+  inputContainer: {
+    flexDirection: 'column',
+    width: '100%',
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
   },
   submit: {
     padding: 10,
     marginTop: 10,
     height: 60,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    fontSize: 20,
-    paddingLeft: 10,
-  },
-  inputContainer: {
-    flexDirection: 'column',
-    width: '100%',
-    paddingTop: 10,
-  },
   pickerContainer: {
     flexDirection: 'row',
     width: '100%',
+    padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
   },
 })
 

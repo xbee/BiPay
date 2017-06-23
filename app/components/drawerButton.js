@@ -3,10 +3,10 @@ import { TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const DrawerButton = ({ navigation }) => (
-  <TouchableOpacity style={{ padding: 10 }}>
+  <TouchableOpacity>
     <Icon
       name="menu"
-      size={35}
+      size={40}
       color="white"
       onPress={() => navigation.navigate('DrawerOpen')}
     />

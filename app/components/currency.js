@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native'
 
 export default class Account extends Component {
   constructor(props) {
@@ -30,9 +29,9 @@ export default class Account extends Component {
         style={styles.options} >
         <View style={styles.optionsElement}>
           <View style={styles.icon}>
-            <Icon
-              name="arrow-right"
-              size={45}
+            <Image
+              source={require('./../../assets/icons/placeholder.png')}
+              style={{height:40, width:40}}
             />
           </View>
           <View style={styles.type}>

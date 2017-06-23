@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Alert, StyleSheet, KeyboardAvoidingView, TouchableHighlight, Text, TextInput } from 'react-native'
+import { View, Alert, StyleSheet, KeyboardAvoidingView, TouchableHighlight, Text } from 'react-native'
 import AuthService from './../../services/authService'
+import TextInput from './../../components/textInput'
 
 export default class ForgetPassword extends Component {
   static navigationOptions = {
-    title: 'Forget Password',
+    title: 'Forget password',
   }
 
   constructor(props) {
@@ -42,15 +43,15 @@ export default class ForgetPassword extends Component {
       <View style={styles.mainContainer}>
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
           <TextInput
-            style={styles.input}
-            placeholder="Email"
+            title="Email"
+            placeholder="e.g john@gmail.com"
             autoCapitalize="none"
             keyboardType="email-address"
             onChangeText={(email) => this.setState({ email })}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Company Name"
+            title="Company name"
+            placeholder="e.g regive"
             autoCapitalize="none"
             onChangeText={(company) => this.setState({ company })}
           />
@@ -58,7 +59,7 @@ export default class ForgetPassword extends Component {
             style={styles.submit}
             onPress={() => this.sendEmail()}>
             <Text style={{ color: 'white' }}>
-              Send Reset Email
+              Send reset email
             </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 50,
     borderRadius: 8,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',

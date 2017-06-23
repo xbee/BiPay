@@ -7,7 +7,7 @@ import SettingsService from './../../../services/settingsService'
 
 export default class Settings extends Component {
   static navigationOptions = {
-    title: 'Email Addresses',
+    title: 'Email addresses',
   }
 
   constructor(props) {
@@ -83,7 +83,7 @@ export default class Settings extends Component {
   verify = async (number) => {
     this.setState({
       loading: true,
-      loadingMessage: 'Sending Verification Code...',
+      loadingMessage: 'Sending verification code...',
     })
     const userData = await AsyncStorage.getItem('user')
 
@@ -143,8 +143,8 @@ export default class Settings extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={() => this.props.navigation.navigate("AddEmailAddress")}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
-            Add Email Address
+          <Text style={{ color: 'white', fontSize: 18 }}>
+            Add email address
           </Text>
         </TouchableHighlight>
       </View>
@@ -160,8 +160,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

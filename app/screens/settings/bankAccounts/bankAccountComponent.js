@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet, TouchableHighlight, Text, TextInput, KeyboardAvoidingView } from 'react-native'
+import { ScrollView, StyleSheet, TouchableHighlight, Text, KeyboardAvoidingView } from 'react-native'
+import TextInput from './../../../components/textInput'
 
 export default class BankAccountComponent extends Component {
 
@@ -8,57 +9,49 @@ export default class BankAccountComponent extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
         <ScrollView keyboardDismissMode={'interactive'}>
           <TextInput
-            style={styles.input}
-            placeholder="Account Holder"
+            title="Account Holder"
             autoCapitalize="none"
             value={this.props.values.name}
             onChangeText={(text) => this.props.updateName(text)}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Account Number"
+            title="Account Number"
             autoCapitalize="none"
             value={this.props.values.number}
             onChangeText={(text) => this.props.updateNumber(text)}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Account Type"
+            title="Account Type"
             autoCapitalize="none"
             value={this.props.values.type}
             onChangeText={(text) => this.props.updateType(text)}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Bank Name"
+            title="Bank Name"
             autoCapitalize="none"
             value={this.props.values.bank_name}
             onChangeText={(text) => this.props.updateBank(text)}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Branch Code"
+            title="Branch Code"
             autoCapitalize="none"
             value={this.props.values.branch_code}
             onChangeText={(text) => this.props.updateBranch(text)}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Swift Code"
+            title="Swift Code"
             autoCapitalize="none"
             value={this.props.values.swift}
             onChangeText={(text) => this.props.updateSwift(text)}
           />
           <TextInput
-            style={styles.input}
-            placeholder="IBAN Number"
+            title="IBAN Number"
             autoCapitalize="none"
             value={this.props.values.iban}
             onChangeText={(text) => this.props.updateIBAN(text)}
           />
           <TextInput
-            style={styles.input}
-            placeholder="BIC Number"
+            title="BIC Number"
             autoCapitalize="none"
             value={this.props.values.bic}
             onChangeText={(text) => this.props.updateBIC(text)}
@@ -67,7 +60,7 @@ export default class BankAccountComponent extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={this.props.save}>
-          <Text style={{ color: 'white' }}>
+          <Text style={{ color: 'white', fontSize: 18 }}>
             Save
           </Text>
         </TouchableHighlight>
@@ -81,20 +74,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  input: {
-    height: 60,
-    width: "100%",
-    padding: 10,
-    marginTop: 10,
-    borderColor: 'white',
-    borderWidth: 1,
-  },
   submit: {
-    padding: 10,
     marginTop: 10,
-    height: 50,
-    borderRadius: 8,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

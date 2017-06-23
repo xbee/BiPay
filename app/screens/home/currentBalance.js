@@ -3,11 +3,9 @@ import { View, StyleSheet, Text, AsyncStorage } from 'react-native'
 import UserInfoService from './../../services/userInfoService'
 
 export default class CurrentBalance extends Component {
-  static navigationOptions = {
-    title: 'Home',
-  }
-  constructor() {
-    super()
+
+  constructor(props) {
+    super(props)
     this.state = {
       balance: 0,
       symbol: '',
@@ -43,7 +41,7 @@ export default class CurrentBalance extends Component {
     return (
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 30, color: 'white' }}>
+          <Text style={{ fontSize: 25, color: 'white' }}>
             {this.state.symbol}
           </Text>
           <Text style={{ paddingLeft: 5, fontSize: 40, color: 'white' }}>
@@ -58,7 +56,7 @@ export default class CurrentBalance extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 20,

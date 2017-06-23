@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Alert, AsyncStorage, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, TextInput } from 'react-native'
+import { View, Alert, AsyncStorage, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text } from 'react-native'
 import AuthService from './../../services/authService'
 import Auth from './../../util/auth'
 import ResetNavigation from './../../util/resetNavigation'
+import TextInput from './../../components/textInput'
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -53,23 +54,21 @@ export default class Login extends Component {
       <View style={styles.mainContainer}>
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
           <TextInput
-            style={styles.input}
-            placeholder="Email"
-            autoCapitalize="none"
+            title="Email"
+            placeholder="e.g john@gmail.com"
             keyboardType="email-address"
             value={this.state.email}
             onChangeText={(email) => this.setState({ email })}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Company Name"
+            title="Company"
+            placeholder="e.g rehive"
             value={this.state.company}
             onChangeText={(company) => this.setState({ company })}
           />
           <TextInput
-            style={styles.input}
+            title="Password"
             placeholder="Password"
-            autoCapitalize="none"
             secureTextEntry
             value={this.state.password}
             onChangeText={(password) => this.setState({ password })}
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     height: 50,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     borderRadius: 8,
     alignItems: 'center',

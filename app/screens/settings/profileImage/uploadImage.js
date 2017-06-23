@@ -6,7 +6,7 @@ import ResetNavigation from './../../../util/resetNavigation'
 
 export default class UploadImage extends Component {
   static navigationOptions = {
-    title: 'Upload Image',
+    title: 'Upload image',
   }
 
   constructor(props) {
@@ -35,8 +35,8 @@ export default class UploadImage extends Component {
 
     let responseJson = await UserInfoService.uploadProfileImage(file)
     if (responseJson.status === "success") {
-      AsyncStorage.removeItem('user')
-      AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
+      await AsyncStorage.removeItem('user')
+      await AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
       this.goBackAndReload()
     }
     else {
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     marginTop: 10,
-    height: 60,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

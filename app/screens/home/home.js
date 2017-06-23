@@ -54,13 +54,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   transection: {
-    flex: 4,
-    backgroundColor: 'white',
+    flex: 5,
+    backgroundColor: '#F7F7F7',
   },
   submit: {
-    padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

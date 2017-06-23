@@ -15,12 +15,13 @@ export default class Security extends Component {
           onPress={() => this.props.navigation.navigate("ChangePassword")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              Change Password
+              Change password
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
+                name="angle-right"
                 size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>
@@ -30,12 +31,13 @@ export default class Security extends Component {
           onPress={() => this.props.navigation.navigate("TwoFactor")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              Two Factor
+              Two factor
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
-                size={45}
+                name="angle-right"
+                size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>
@@ -49,8 +51,9 @@ export default class Security extends Component {
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
+                name="angle-right"
                 size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>

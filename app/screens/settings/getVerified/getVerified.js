@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Settings extends Component {
   static navigationOptions = {
-    title: 'Get Verified',
+    title: 'Get verified',
   }
 
   goToDocument = (name) => {
@@ -19,12 +19,13 @@ export default class Settings extends Component {
           onPress={() => this.goToDocument("ID Document")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              ID Document
+              ID document
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
+                name="angle-right"
                 size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>
@@ -34,12 +35,13 @@ export default class Settings extends Component {
           onPress={() => this.goToDocument("ID Selfie")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              ID Selfie
+              ID selfie
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
-                size={45}
+                name="angle-right"
+                size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>
@@ -49,12 +51,13 @@ export default class Settings extends Component {
           onPress={() => this.goToDocument("Proof Of Address")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              Proof Of Address
+              Proof of address
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
+                name="angle-right"
                 size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>

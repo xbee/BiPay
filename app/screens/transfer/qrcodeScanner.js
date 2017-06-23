@@ -4,7 +4,7 @@ import Expo, { Permissions } from 'expo'
 
 export default class QRcodeScanner extends Component {
   static navigationOptions = {
-    title: 'QR Code Scanner',
+    title: 'QR code scanner',
   }
 
   constructor(props) {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, TouchableHighlight } from 'react-native'
+import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TouchableHighlight } from 'react-native'
 import AuthService from './../../../services/authService'
+import TextInput from './../../../components/textInput'
 
 export default class ChangePassword extends Component {
   static navigationOptions = {
-    title: 'Change Password',
+    title: 'Change password',
   }
 
   constructor() {
@@ -39,50 +40,34 @@ export default class ChangePassword extends Component {
       <View style={{ flex: 1 }}>
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
           <ScrollView keyboardDismissMode={'interactive'}>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                Old Password
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                secureTextEntry
-                value={this.state.old_password}
-                onChangeText={(old_password) => this.setState({ old_password })}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                New Password
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                secureTextEntry
-                value={this.state.line_2}
-                onChangeText={(new_password1) => this.setState({ new_password1 })}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.text}>
-                Confirm New Password
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder=""
-                autoCapitalize="none"
-                secureTextEntry
-                value={this.state.new_password2}
-                onChangeText={(new_password2) => this.setState({ new_password2 })}
-              />
-            </View>
+
+            <TextInput
+              title="Old password"
+              autoCapitalize="none"
+              secureTextEntry
+              value={this.state.old_password}
+              onChangeText={(old_password) => this.setState({ old_password })}
+            />
+            <TextInput
+              title="New password"
+              autoCapitalize="none"
+              secureTextEntry
+              value={this.state.line_2}
+              onChangeText={(new_password1) => this.setState({ new_password1 })}
+            />
+
+            <TextInput
+              title="Confirm new password"
+              autoCapitalize="none"
+              secureTextEntry
+              value={this.state.new_password2}
+              onChangeText={(new_password2) => this.setState({ new_password2 })}
+            />
           </ScrollView>
           <TouchableHighlight
             style={styles.submit}
             onPress={() => this.save()}>
-            <Text style={{ color: 'white' }}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
               Confirm
             </Text>
           </TouchableHighlight>
@@ -109,8 +94,8 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     marginTop: 10,
-    height: 60,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

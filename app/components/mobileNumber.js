@@ -21,7 +21,7 @@ export default class Account extends Component {
           <View style={styles.buttons}>
             {this.props.mobile.verified !== true ?
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: '#2070A0' }]}
+                style={[styles.button, { backgroundColor: '#3C8DBC' }]}
                 onPress={() => this.props.verify(this.props.mobile.number)} >
                 <Text style={styles.buttonText}>
                   Verify
@@ -38,7 +38,7 @@ export default class Account extends Component {
                 </Text>
               </TouchableHighlight> :
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: '#2070A0' }]}
+                style={[styles.button, { backgroundColor: '#3C8DBC' }]}
                 onPress={() => this.props.makePrimary(this.props.mobile.id)} >
                 <Text style={styles.buttonText}>
                   Make Primary

@@ -23,12 +23,13 @@ export default class Withdraw extends Component {
           onPress={this.goToBankAccounts}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              Bank Account
+              Bank account
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
+                name="angle-right"
                 size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>
@@ -38,12 +39,13 @@ export default class Withdraw extends Component {
           onPress={this.goToBitcoinAddresses}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              Bitcoin Address
+              Bitcoin address
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
-                name="angle-double-right"
+                name="angle-right"
                 size={50}
+                color="#4D4D4D"
               />
             </View>
           </View>
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
   },
   options: {
     padding: 20,
-    height: 80,
+    height: 70,
     width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "lightgray",

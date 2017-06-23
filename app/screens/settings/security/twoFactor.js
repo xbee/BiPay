@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 export default class TwoFactor extends Component {
   static navigationOptions = {
-    title: 'Two Factor',
+    title: 'Two factor',
   }
 
   render() {

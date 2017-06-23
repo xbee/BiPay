@@ -147,10 +147,11 @@ const RouteConfigs = {
 export default StackNavigator(RouteConfigs, {
   navigationOptions: {
     headerStyle: {
-      backgroundColor: '#2070A0',
+      backgroundColor: '#3C8DBC',
+      paddingLeft: 20,
       paddingTop: Expo.Constants.statusBarHeight,
-      height: 50 + Expo.Constants.statusBarHeight,
-      borderColor: '#2070A0',
+      height: 65 + Expo.Constants.statusBarHeight,
+      borderColor: '#3C8DBC',
       shadowOpacity: 0,
       shadowOffset: {
         height: 0,

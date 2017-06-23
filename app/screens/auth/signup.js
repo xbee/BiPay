@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Alert, StyleSheet, ScrollView, TouchableHighlight, Text, TextInput, KeyboardAvoidingView } from 'react-native'
+import { View, Alert, StyleSheet, ScrollView, TouchableHighlight, Text, KeyboardAvoidingView } from 'react-native'
 import AuthService from './../../services/authService'
+import TextInput from './../../components/textInput'
 
 export default class Signup extends Component {
   static navigationOptions = {
-    title: 'Create New Account',
+    title: 'Create new account',
   }
 
   constructor(props) {
@@ -39,47 +40,50 @@ export default class Signup extends Component {
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
           <ScrollView keyboardDismissMode={'interactive'}>
             <TextInput
-              style={styles.input}
-              placeholder="First Name"
+              title="First name"
+              placeholder="John"
               autoCapitalize="none"
               onChangeText={(first_name) => this.setState({ first_name })}
             />
             <TextInput
-              style={styles.input}
-              placeholder="Last Name"
+              title="Last name"
+              placeholder="Last name"
               autoCapitalize="none"
               onChangeText={(last_name) => this.setState({ last_name })}
             />
             <TextInput
               style={styles.input}
-              placeholder="Email"
+              title="Email"
+              placeholder="e.g john@gmail.com"
               autoCapitalize="none"
               keyboardType="email-address"
               onChangeText={(email) => this.setState({ email })}
             />
             <TextInput
               style={styles.input}
-              placeholder="Mobile Number"
+              title="Mobile number"
               autoCapitalize="none"
               keyboardType="numeric"
               onChangeText={(mobile) => this.setState({ mobile })}
             />
             <TextInput
               style={styles.input}
-              placeholder="Company Name"
+              title="Company name"
+              placeholder="e.g rehive"
               autoCapitalize="none"
               onChangeText={(company) => this.setState({ company })}
             />
             <TextInput
               style={styles.input}
-              placeholder="Password"
+              title="Password"
+              placeholder="password"
               autoCapitalize="none"
               secureTextEntry
               onChangeText={(password1) => this.setState({ password1 })}
             />
             <TextInput
               style={styles.input}
-              placeholder="Confirm Password"
+              title="Confirm password"
               autoCapitalize="none"
               secureTextEntry
               onChangeText={(password2) => this.setState({ password2 })}
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 50,
     borderRadius: 8,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

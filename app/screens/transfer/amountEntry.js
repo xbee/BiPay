@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
+import TextInput from './../../components/textInput'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
-    title: 'Amount',
+    title: 'Send money',
   }
 
   constructor(props) {
@@ -55,15 +56,15 @@ export default class AmountEntry extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
         <View style={{ flex: 1 }}>
           <TextInput
-            style={styles.input}
-            placeholder="Amount"
+            title="Amount"
+            placeholder="Enter amount here"
             autoCapitalize="none"
             keyboardType="numeric"
             onChangeText={this.amountChanged}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Note"
+            title="Note"
+            placeholder="Enter note here"
             autoCapitalize="none"
             onChangeText={(note) => this.setState({ note })}
           />
@@ -95,8 +96,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

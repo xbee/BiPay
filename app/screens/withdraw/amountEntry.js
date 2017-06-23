@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableHighlight, AsyncStorage, Text, Alert } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, AsyncStorage, Text, Alert } from 'react-native'
 import TransectionService from './../../services/transectionService'
 import ResetNavigation from './../../util/resetNavigation'
+import TextInput from './../../components/textInput'
+
 export default class AmountEntry extends Component {
   static navigationOptions = {
     title: 'Withdraw',
@@ -16,7 +18,7 @@ export default class AmountEntry extends Component {
     }
   }
 
-  withdraw = () => {
+  withdraw = async () => {
     if (this.state.amount <= 0) {
       Alert.alert(
         'Invalid',
@@ -25,9 +27,11 @@ export default class AmountEntry extends Component {
       )
     }
     else {
+      const data = await AsyncStorage.getItem('currency')
+      const currency = JSON.parse(data)
       Alert.alert(
         'Are you sure?',
-        'Withdrawal Amount: ' + this.state.amount,
+        ' you want to withdraw ' + currency.symbol + this.state.amount,
         [
           { text: 'Yes', onPress: this.withdrawConfirmed },
           { text: 'No', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home"), style: 'cancel' },
@@ -57,7 +61,7 @@ export default class AmountEntry extends Component {
     let responseJson = await TransectionService.withdraw(amount, this.state.reference)
     if (responseJson.status === "success") {
       Alert.alert('Success',
-        "Successfully Withdrawn.",
+        "Transaction successful",
         [{ text: 'OK', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home") }])
     }
     else {
@@ -72,8 +76,8 @@ export default class AmountEntry extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
         <View style={{ flex: 1 }}>
           <TextInput
-            style={styles.input}
-            placeholder="Amount"
+            title="Amount"
+            placeholder="Enter amount here"
             autoCapitalize="none"
             keyboardType="numeric"
             onChangeText={this.changeAmount}
@@ -82,7 +86,7 @@ export default class AmountEntry extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={this.withdraw}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
+          <Text style={{ color: 'white', fontSize: 18 }}>
             Withdraw
           </Text>
         </TouchableHighlight>
@@ -99,8 +103,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

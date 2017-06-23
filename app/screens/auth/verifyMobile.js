@@ -5,7 +5,7 @@ import Auth from './../../util/auth'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
-    title: 'Verify Mobile Number',
+    title: 'Verify mobile number',
   }
 
   constructor(props) {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',

@@ -6,7 +6,7 @@ import ResetNavigation from './../../../util/resetNavigation'
 
 export default class EditBankAccount extends Component {
   static navigationOptions = {
-    title: 'Edit Bank Account',
+    title: 'Edit bank account',
   }
 
   constructor(props) {
@@ -90,6 +90,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    padding: 15,
   },
 })

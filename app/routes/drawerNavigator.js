@@ -46,10 +46,10 @@ const CustomDrawerContentComponent = (props) => (
       <DrawerItems
         {...props}
         activeTintColor="white"
-        activeBackgroundColor="#207080"
+        activeBackgroundColor="#3C8DBC"
         inactiveTintColor="white"
         inactiveBackgroundColor="transparent"
-        labelStyle={{ fontSize: 18, margin: 10, paddingLeft: 5 }}
+        labelStyle={{ margin: 15, alignItems: 'center', fontSize: 18, fontWeight: 'normal' }}
       />
     </ScrollView>
   </View>
@@ -60,9 +60,6 @@ export default DrawerNavigator(RouteConfigs, {
   initialRouteName: 'Home',
   navigationOptions: ({ navigation }) => ({
     headerLeft: <DrawerButton navigation={navigation} />,
-    headerStyle: {
-      backgroundColor: '#2070A0',
-    },
     headerTintColor: 'white',
   }),
   contentComponent: CustomDrawerContentComponent,

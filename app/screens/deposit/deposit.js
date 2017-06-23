@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   reference: {
     flex: 1,
-    backgroundColor: '#38C87F',
+    backgroundColor: '#03DBBB',
     alignItems: 'center',
     justifyContent: 'center',
   },

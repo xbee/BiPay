@@ -7,7 +7,7 @@ import SettingsService from './../../../services/settingsService'
 
 export default class Settings extends Component {
   static navigationOptions = {
-    title: 'Mobile Numbers',
+    title: 'Mobile numbers',
   }
 
   constructor(props) {
@@ -141,7 +141,7 @@ export default class Settings extends Component {
           style={styles.submit}
           onPress={() => this.props.navigation.navigate("AddMobileNumber")}>
           <Text style={{ color: 'white', fontSize: 20 }}>
-            Add Mobile Number
+            Add mobile number
           </Text>
         </TouchableHighlight>
       </View>
@@ -157,8 +157,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

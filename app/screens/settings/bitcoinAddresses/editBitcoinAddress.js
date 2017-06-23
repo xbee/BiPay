@@ -6,7 +6,7 @@ import ResetNavigation from './../../../util/resetNavigation'
 
 export default class AddBankAccount extends Component {
   static navigationOptions = {
-    title: 'Edit Bitcoin Address',
+    title: 'Edit bitcoin address',
   }
 
   constructor(props) {
@@ -54,6 +54,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    padding: 15,
   },
 })

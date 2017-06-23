@@ -25,14 +25,12 @@ export default class DrawerHeader extends Component {
           style={styles.stretch}
           source={{ uri: this.state.userInfo.profile !== null ? this.state.userInfo.profile : this.state.altImage }}
         />
-        <View style={styles.outerContainer}>
-          <Text style={{ color: 'white', fontSize: 18 }}>
-            {this.state.userInfo.first_name + ' ' + this.state.userInfo.last_name}
-          </Text>
-          <Text style={{ color: 'white', fontSize: 12 }}>
-            {this.state.userInfo.email}
-          </Text>
-        </View>
+        <Text style={styles.nameText}>
+          {this.state.userInfo.first_name + ' ' + this.state.userInfo.last_name}
+        </Text>
+        <Text style={styles.emailText}>
+          {this.state.userInfo.email}
+        </Text>
       </View>
     )
   }
@@ -41,20 +39,24 @@ export default class DrawerHeader extends Component {
 const styles = StyleSheet.create({
   container: {
     height: 100,
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: -10,
-    marginBottom: 10,
+    flexDirection: "column",
+    marginTop: 20,
+    marginBottom: 15,
     marginLeft: 15,
   },
   stretch: {
-    flex: 1,
-    height: 70,
-    borderRadius: 35,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
   },
-  outerContainer: {
-    flex: 3,
-    padding: 10,
+  nameText: {
+    color: 'white',
+    fontSize: 18,
+    marginTop: 10,
+  },
+  emailText: {
+    color: 'white',
+    fontSize: 11,
+    marginTop: 10,
   },
 });

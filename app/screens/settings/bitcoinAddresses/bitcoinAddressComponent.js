@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet, TouchableHighlight, Text, TextInput, KeyboardAvoidingView } from 'react-native'
+import { ScrollView, StyleSheet, TouchableHighlight, Text, KeyboardAvoidingView } from 'react-native'
+import TextInput from './../../../components/textInput'
 
 export default class BitcoinAddressComponent extends Component {
 
@@ -8,8 +9,8 @@ export default class BitcoinAddressComponent extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
         <ScrollView keyboardDismissMode={'interactive'}>
           <TextInput
-            style={styles.input}
-            placeholder="Bitcoin Address"
+            title="Bitcoin Address"
+            placeholder="e.g akjsfndj2432askfn"
             autoCapitalize="none"
             value={this.props.values.address}
             onChangeText={this.props.updateAddress}
@@ -18,7 +19,7 @@ export default class BitcoinAddressComponent extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={this.props.onPress}>
-          <Text style={{ color: 'white' }}>
+          <Text style={{ color: 'white', fontSize: 18 }}>
             Save
           </Text>
         </TouchableHighlight>
@@ -32,20 +33,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  input: {
-    height: 60,
-    width: "100%",
-    padding: 10,
-    marginTop: 10,
-    borderColor: 'white',
-    borderWidth: 1,
-  },
   submit: {
     padding: 10,
     marginTop: 10,
-    height: 50,
+    height: 65,
     borderRadius: 8,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

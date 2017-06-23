@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 export default class Settings extends Component {
   static navigationOptions = {
-    title: 'Social Networks',
+    title: 'Social networks',
   }
 
   render() {

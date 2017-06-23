@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import Expo from 'expo'
-import { View, KeyboardAvoidingView, StyleSheet, TextInput, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
 import TransectionService from './../../services/transectionService'
 import Contact from './../../components/contact'
 import ResetNavigation from './../../util/resetNavigation'
+import TextInput from './../../components/textInput'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
-    title: 'Send To',
+    title: 'To',
   }
 
   constructor(props) {
@@ -42,19 +43,23 @@ export default class AmountEntry extends Component {
       fields: [
         Expo.Contacts.PHONE_NUMBERS,
         Expo.Contacts.EMAILS,
+        Expo.Contacts.THUMBNAIL,
       ],
       pageSize: 1,
       pageOffset: 0,
-    });
+    })
 
     const contacts = await Expo.Contacts.getContactsAsync({
       fields: [
         Expo.Contacts.PHONE_NUMBERS,
         Expo.Contacts.EMAILS,
+        Expo.Contacts.THUMBNAIL,
       ],
       pageSize: getTotal.total,
       pageOffset: 0,
-    });
+    })
+
+    console.log(contacts)
 
     var data = []
     contacts.data.forEach((node) => {
@@ -161,7 +166,7 @@ export default class AmountEntry extends Component {
     let responseJson = await TransectionService.sendMoney(amount, this.state.reference, this.state.note)
     if (responseJson.status === "success") {
       Alert.alert('Success',
-        "Successfully Transfered.",
+        "Transaction successful",
         [{ text: 'OK', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home") }])
     }
     else {
@@ -177,8 +182,7 @@ export default class AmountEntry extends Component {
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
           <View style={{ flex: 1 }}>
             <TextInput
-              style={styles.input}
-              placeholder="Enter name/email/mobile"
+              title="Enter name/email/mobile"
               autoCapitalize="none"
               value={this.state.searchText}
               onChange={this.searchTextChanged.bind(this)}
@@ -208,7 +212,7 @@ export default class AmountEntry extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70} >
         <View style={{ flex: 1 }}>
           <TextInput
-            style={styles.input}
+            title="Recepient"
             placeholder="Enter name/email/mobile"
             autoCapitalize="none"
             value={this.state.searchText}
@@ -247,8 +251,8 @@ const styles = StyleSheet.create({
   },
   submit: {
     padding: 10,
-    height: 70,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

@@ -57,7 +57,7 @@ export default class Document extends Component {
           <TouchableHighlight
             style={styles.upload}
             onPress={() => this.openModal()}>
-            <Text style={{fontSize: 20, color: 'white'}}>
+            <Text style={{fontSize: 18, color: 'white'}}>
               Upload
             </Text>
           </TouchableHighlight>
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-    alignItems: 'center',
   },
   topContainer: {
     flex: 1,
@@ -124,9 +123,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   upload: {
-    height: 70,
-    width: 1000,
-    backgroundColor: '#2070A0',
+    height: 65,
+    backgroundColor: '#3C8DBC',
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',

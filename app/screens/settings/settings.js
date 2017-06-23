@@ -15,15 +15,15 @@ export default class Settings extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Option name="Profile Image" gotoAddress="SettingsProfileImage" goTo={this.goTo} />
-          <Option name="Personal Details" gotoAddress="SettingsPersonalDetails" goTo={this.goTo} />
-          <Option name="Mobile Numbers" gotoAddress="SettingsMobileNumbers" goTo={this.goTo} />
-          <Option name="Email Addresses" gotoAddress="SettingsEmailAddresses" goTo={this.goTo} />
-          <Option name="Get Verified" gotoAddress="SettingsGetVerified" goTo={this.goTo} />
+          <Option name="Profile image" gotoAddress="SettingsProfileImage" goTo={this.goTo} />
+          <Option name="Personal details" gotoAddress="SettingsPersonalDetails" goTo={this.goTo} />
+          <Option name="Mobile numbers" gotoAddress="SettingsMobileNumbers" goTo={this.goTo} />
+          <Option name="Email addresses" gotoAddress="SettingsEmailAddresses" goTo={this.goTo} />
+          <Option name="Get verified" gotoAddress="SettingsGetVerified" goTo={this.goTo} />
           <Option name="Address" gotoAddress="SettingsAddress" goTo={this.goTo} />
-          <Option name="Bank Accounts" gotoAddress="SettingsBankAccounts" goTo={this.goTo} />
-          <Option name="Bitcoin Addresses" gotoAddress="SettingsBitcoinAddresses" goTo={this.goTo} />
-          <Option name="Cards" gotoAddress="SettingsCards" goTo={this.goTo} />
+          <Option name="Bank accounts" gotoAddress="SettingsBankAccounts" goTo={this.goTo} />
+          <Option name="Bitcoin addresses" gotoAddress="SettingsBitcoinAddresses" goTo={this.goTo} />
+          <Option name="Cards" gotoAddress="null" goTo={this.goTo} />
           <Option name="Security" gotoAddress="SettingsSecurity" goTo={this.goTo} />
           <Option name="Notifications" gotoAddress="SettingsNotifications" goTo={this.goTo} />
         </ScrollView>
