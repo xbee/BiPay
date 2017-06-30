@@ -26,7 +26,7 @@ export default class Withdraw extends Component {
             <Text style={{ fontSize: 18, fontWeight: 'normal', color: '#4D4D4D' }}>
               {this.props.data.label}
             </Text>
-            <Text style={{ fontSize: 13 }}>
+            <Text style={{ fontSize: 13, color: '#4D4D4D' }}>
               {this.props.data.note}
             </Text>
           </View>

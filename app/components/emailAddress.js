@@ -8,7 +8,7 @@ export default class Account extends Component {
       <TouchableHighlight
         style={styles.options} >
         <View style={styles.optionsElement}>
-          <Text style={{ fontSize: 20 }}>
+          <Text style={{ fontSize: 20, color: '#4D4D4D' }}>
             {this.props.email.email}
           </Text>
           {this.props.email.verified === true ?
@@ -31,7 +31,7 @@ export default class Account extends Component {
             }
             {this.props.email.primary === true ?
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: 'greenyellow' }]}
+                style={[styles.button, { backgroundColor: '#03DBBB' }]}
                 onPress={null} >
                 <Text style={styles.buttonText}>
                   Primary
@@ -47,7 +47,7 @@ export default class Account extends Component {
             }
             {this.props.email.primary !== true ?
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: 'red' }]}
+                style={[styles.button, { backgroundColor: '#ED675A' }]}
                 onPress={() => this.props.delete(this.props.email.id)} >
                 <Text style={styles.buttonText}>
                   Delete

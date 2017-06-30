@@ -9,11 +9,8 @@ export default class QRcodeScanner extends Component {
 
   constructor(props) {
     super(props)
-    const params = this.props.navigation.state.params
     this.state = {
       camera: true,
-      amount: params.amount,
-      note: params.note,
       reference: "",
     }
   }
@@ -24,7 +21,7 @@ export default class QRcodeScanner extends Component {
   }
 
   goToSendTo = () => {
-    this.props.navigation.navigate("SendTo", { reference: this.state.reference })
+    this.props.navigation.navigate("SendMoney", { reference: this.state.reference })
   }
 
   render() {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, AsyncStorage, Image, Text } from 'react-native';
+import { View, StyleSheet, AsyncStorage, TouchableHighlight, Image, Text } from 'react-native';
 
 export default class DrawerHeader extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    console.log(props)
     this.state = {
       userInfo: {},
     }
@@ -14,22 +15,28 @@ export default class DrawerHeader extends Component {
   getUserInfo = () => {
     AsyncStorage.getItem('user').then((value) => {
       this.setState({ 'userInfo': JSON.parse(value) });
-    });
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {this.state.userInfo.profile !== null ?
-          <Image
-            style={styles.stretch}
-            source={{ uri: this.state.userInfo.profile }}
-          /> :
-          <Image
-            source={require('./../../assets/icons/profile_1.png')}
-            style={styles.stretch}
-          />
-        }
+        <TouchableHighlight
+          style={styles.button}
+        //onPress={() => this.props.navigation.navigate("SettingsProfileImage")}
+        >
+          {this.state.userInfo.profile !== null ?
+            <Image
+              style={styles.stretch}
+              source={{ uri: this.state.userInfo.profile }}
+            /> :
+            <Image
+              source={require('./../../assets/icons/profile_1.png')}
+              style={styles.stretch}
+            />
+          }
+        </TouchableHighlight>
+
         <Text style={styles.nameText}>
           {this.state.userInfo.first_name + ' ' + this.state.userInfo.last_name}
         </Text>

@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: "100%",
     padding: 15,
+    paddingLeft: 0,
     fontSize: 16,
     fontWeight: 'normal',
     borderColor: 'white',

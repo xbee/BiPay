@@ -31,7 +31,7 @@ export default class AmountEntry extends Component {
       const currency = JSON.parse(data)
       Alert.alert(
         'Are you sure?',
-        ' you want to withdraw ' + currency.symbol + this.state.amount,
+        'You are about to withdraw ' + currency.symbol + this.state.amount,
         [
           { text: 'Yes', onPress: this.withdrawConfirmed },
           { text: 'No', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home"), style: 'cancel' },
