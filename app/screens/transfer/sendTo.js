@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, KeyboardAvoidingView, TouchableOpacity, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/Ionicons'
 import Contact from './../../components/contact'
 import TextInput from './../../components/textInput'
 import ContactService from './../../services/contactService'
@@ -13,8 +13,8 @@ export default class SendTo extends Component {
     headerRight: (
       <TouchableOpacity style={{ padding: 10 }}>
         <Icon
-          name="qrcode-scan"
-          size={40}
+          name="ios-qr-scanner-outline"
+          size={30}
           color="white"
           style={{paddingRight: 10}}
           onPress={() => navigation.navigate('QRcodeScanner')}
