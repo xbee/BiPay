@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 
 export default class Contact extends Component {
 
@@ -9,12 +9,20 @@ export default class Contact extends Component {
         style={styles.contact}
         onPress={() => this.props.selected(this.props.rowData.contact)} >
         <View style={styles.container}>
-          <Text>
-            {this.props.rowData.name}
-          </Text>
-          <Text>
-            {this.props.rowData.contact}
-          </Text>
+          <View style={styles.profile}>
+            <Image
+              source={require('./../../assets/icons/profile.png')}
+              style={{height:40, width:40}}
+            />
+          </View>
+          <View style={styles.contactInfo}>
+            <Text style={{fontSize: 20, color: '#4D4D4D', fontWeight: 'bold'}}>
+              {this.props.rowData.name}
+            </Text>
+            <Text style={{fontSize: 14, color: 'darkgray'}}>
+              {this.props.rowData.contact}
+            </Text>
+          </View>
         </View>
       </TouchableHighlight>
     )
@@ -24,16 +32,22 @@ export default class Contact extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
+  },
+  profile: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  contactInfo: {
+    flex: 4,
+    flexDirection: 'column',
     justifyContent: 'center',
   },
   contact: {
     height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'gray',
+    borderBottomColor: '#EBEBEB',
   },
 })
 

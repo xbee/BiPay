@@ -81,7 +81,7 @@ export default class SendTo extends Component {
       this.setState({ reference: this.state.searchText })
     }
 
-    this.props.navigation.navigate("SendMoney", {reference: this.state.searchText})
+    this.props.navigation.navigate("SendMoney", { reference: this.state.searchText })
   }
 
   goToBarcodeScanner = () => {
@@ -120,10 +120,10 @@ export default class SendTo extends Component {
             </View>
           </View>
           <TouchableHighlight
-            style={styles.submit}
-            onPress={this.send}>
+            style={[styles.submit, { marginTop: 5 }]}
+            onPress={this.goToBarcodeScanner}>
             <Text style={{ color: 'white', fontSize: 18 }}>
-              Next
+              Scan QR code
             </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>
@@ -139,7 +139,7 @@ export default class SendTo extends Component {
             value={this.state.searchText}
             onChange={this.searchTextChanged.bind(this)}
           />
-          <View style={{ flex: 1, padding: 10 }}>
+          <View style={{ flex: 1 }}>
             <ListView
               dataSource={this.state.contacts}
               enableEmptySections

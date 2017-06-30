@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native'
 export default class Account extends Component {
   constructor(props) {
     super(props);
-    const color = this.props.data.active === true ? '#EBEBEB' : '#38C87F'
+    const color = this.props.data.active === true ? '#EBEBEB' : '#03DBBB'
     this.state = {
       balance: 0,
       color,
