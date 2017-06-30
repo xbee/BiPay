@@ -38,7 +38,7 @@ export default class ChangePassword extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
           <ScrollView keyboardDismissMode={'interactive'}>
 
             <TextInput

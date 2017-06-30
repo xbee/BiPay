@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
+import { ScrollView, KeyboardAvoidingView, AsyncStorage, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
+import TransectionService from './../../services/transectionService'
+import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
 
 export default class AmountEntry extends Component {
@@ -8,14 +10,17 @@ export default class AmountEntry extends Component {
   }
 
   constructor(props) {
-    super(props);
+    super(props)
+    const params = this.props.navigation.state.params
+    console.log(params)
     this.state = {
+      reference: params.reference,
       amount: 0,
       note: '',
     }
   }
 
-  goToSendTo = () => {
+  send = async() => {
     if (this.state.amount <= 0) {
       Alert.alert(
         'Invalid',
@@ -24,20 +29,34 @@ export default class AmountEntry extends Component {
       )
     }
     else {
-      this.props.navigation.navigate("SendTo", { amount: this.state.amount, note: this.state.note, reference: '' })
+      const data = await AsyncStorage.getItem('currency')
+      const currency = JSON.parse(data)
+      let amount = this.state.amount
+      for (let i = 0; i < currency.divisibility; i++) {
+        amount = amount * 10
+      }
+      Alert.alert(
+        'Are you sure?',
+        'Send ' + currency.symbol + this.state.amount + ' to ' + this.state.reference,
+        [
+          { text: 'Yes', onPress: () => this.transferConfirmed(amount) },
+          { text: 'No', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home"), style: 'cancel' },
+        ]
+      )
     }
   }
 
-  goToBarcodeScanner = () => {
-    if (this.state.amount <= 0) {
-      Alert.alert(
-        'Invalid',
-        'Enter valid amount',
-        [[{ text: 'OK' }]]
-      )
+  transferConfirmed = async (amount) => {
+    let responseJson = await TransectionService.sendMoney(amount, this.state.reference, this.state.note)
+    if (responseJson.status === "success") {
+      Alert.alert('Success',
+        "Transaction successful",
+        [{ text: 'OK', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home") }])
     }
     else {
-      this.props.navigation.navigate("QRcodeScanner", { amount: this.state.amount, note: this.state.note })
+      Alert.alert('Error',
+        responseJson.message,
+        [{ text: 'OK' }])
     }
   }
 
@@ -53,8 +72,8 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
-        <View style={{ flex: 1 }}>
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <ScrollView keyboardDismissMode={'interactive'}>
           <TextInput
             title="Amount"
             placeholder="Enter amount here"
@@ -68,19 +87,12 @@ export default class AmountEntry extends Component {
             autoCapitalize="none"
             onChangeText={(note) => this.setState({ note })}
           />
-        </View>
+        </ScrollView>
         <TouchableHighlight
           style={styles.submit}
-          onPress={this.goToSendTo}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
-            Next
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={[styles.submit, { marginTop: 5 }]}
-          onPress={this.goToBarcodeScanner}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
-            Scan QR code
+          onPress={this.send}>
+          <Text style={{ color: 'white', fontSize: 18 }}>
+            Send
           </Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>
@@ -102,13 +114,5 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input: {
-    height: 60,
-    width: "100%",
-    padding: 10,
-    marginTop: 20,
-    borderColor: 'white',
-    borderWidth: 1,
   },
 })

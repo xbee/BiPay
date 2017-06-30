@@ -6,7 +6,7 @@ var UserInfoService = {
   },
 
   getDepositInfo: () => {
-    return BaseService.get('company/bank/')
+    return BaseService.get('company/bank-account/')
   },
 
   getActiveAccount: () => {

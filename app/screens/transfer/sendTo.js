@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
-import Expo from 'expo'
-import { View, KeyboardAvoidingView, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
-import TransectionService from './../../services/transectionService'
+import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
 import Contact from './../../components/contact'
-import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
+import ContactService from './../../services/contactService'
 
-export default class AmountEntry extends Component {
+export default class SendTo extends Component {
   static navigationOptions = {
     title: 'To',
   }
 
   constructor(props) {
-    super(props);
+    super(props)
     const params = this.props.navigation.state.params
     this.state = {
       ready: false,
-      amount: params.amount,
-      note: params.note,
       reference: params.reference,
       searchText: params.reference,
       data: [],
@@ -31,69 +27,8 @@ export default class AmountEntry extends Component {
 
   showContactsAsync = async () => {
     // Ask for permission to query contacts.
-    const permission = await Expo.Permissions.askAsync(Expo.Permissions.CONTACTS)
-    if (permission.status !== 'granted') {
-      Alert.alert(
-        'Error',
-        'Permission denied'
-      )
-      return
-    }
-    const getTotal = await Expo.Contacts.getContactsAsync({
-      fields: [
-        Expo.Contacts.PHONE_NUMBERS,
-        Expo.Contacts.EMAILS,
-        Expo.Contacts.THUMBNAIL,
-      ],
-      pageSize: 1,
-      pageOffset: 0,
-    })
+    let data = await ContactService.getAllContacts()
 
-    const contacts = await Expo.Contacts.getContactsAsync({
-      fields: [
-        Expo.Contacts.PHONE_NUMBERS,
-        Expo.Contacts.EMAILS,
-        Expo.Contacts.THUMBNAIL,
-      ],
-      pageSize: getTotal.total,
-      pageOffset: 0,
-    })
-
-    console.log(contacts)
-
-    var data = []
-    contacts.data.forEach((node) => {
-      if (typeof (node.phoneNumbers) !== "undefined") {
-        node.phoneNumbers.forEach((number) => {
-          var newData = {
-            name: node.name,
-            contact: number.number,
-          }
-          data.push(newData)
-        })
-      }
-      if (typeof (node.emails) !== "undefined") {
-        node.emails.forEach((email) => {
-          var newData = {
-            name: node.name,
-            contact: email.email,
-          }
-          data.push(newData)
-        })
-      }
-    })
-
-    data = data.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1
-      }
-      else if (a.name > b.name) {
-        return 1
-      }
-      else {
-        return 0
-      }
-    })
     this.setState({
       ready: true,
       data,
@@ -146,33 +81,19 @@ export default class AmountEntry extends Component {
       this.setState({ reference: this.state.searchText })
     }
 
-    const data = await AsyncStorage.getItem('currency')
-    const currency = JSON.parse(data)
-    let amount = this.state.amount
-    for (let i = 0; i < currency.divisibility; i++) {
-      amount = amount * 10
-    }
-    Alert.alert(
-      'Are you sure?',
-      'Send ' + currency.symbol + this.state.amount + ' to ' + this.state.reference,
-      [
-        { text: 'Yes', onPress: () => this.transferConfirmed(amount) },
-        { text: 'No', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home"), style: 'cancel' },
-      ]
-    )
+    this.props.navigation.navigate("SendMoney", {reference: this.state.searchText})
   }
 
-  transferConfirmed = async (amount) => {
-    let responseJson = await TransectionService.sendMoney(amount, this.state.reference, this.state.note)
-    if (responseJson.status === "success") {
-      Alert.alert('Success',
-        "Transaction successful",
-        [{ text: 'OK', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home") }])
+  goToBarcodeScanner = () => {
+    if (this.state.amount <= 0) {
+      Alert.alert(
+        'Invalid',
+        'Enter valid amount',
+        [[{ text: 'OK' }]]
+      )
     }
     else {
-      Alert.alert('Error',
-        responseJson.message,
-        [{ text: 'OK' }])
+      this.props.navigation.navigate("QRcodeScanner", { amount: this.state.amount, note: this.state.note })
     }
   }
 
@@ -201,15 +122,15 @@ export default class AmountEntry extends Component {
           <TouchableHighlight
             style={styles.submit}
             onPress={this.send}>
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              Send
+            <Text style={{ color: 'white', fontSize: 18 }}>
+              Next
             </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>
       )
     }
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70} >
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85} >
         <View style={{ flex: 1 }}>
           <TextInput
             title="Recepient"
@@ -229,8 +150,15 @@ export default class AmountEntry extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={this.send}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
-            Send
+          <Text style={{ color: 'white', fontSize: 18 }}>
+            Next
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={[styles.submit, { marginTop: 5 }]}
+          onPress={this.goToBarcodeScanner}>
+          <Text style={{ color: 'white', fontSize: 18 }}>
+            or Scan QR code
           </Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>

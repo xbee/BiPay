@@ -35,7 +35,7 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
         <View style={{ flex: 1 }}>
           <TextInput
             title="Enter OTP"
@@ -48,14 +48,14 @@ export default class AmountEntry extends Component {
           <TouchableHighlight
             style={[styles.submit, { backgroundColor: '#ED675A' }]}
             onPress={() => this.reload()}>
-            <Text style={{ color: 'white', fontSize: 20 }}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
               Skip
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.submit}
             onPress={this.verify}>
-            <Text style={{ color: 'white', fontSize: 20 }}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
               Verify
             </Text>
           </TouchableHighlight>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   buttons: {
-    height: 70,
+    height: 65,
     flexDirection: 'row',
     alignSelf: 'stretch',
   },

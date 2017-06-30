@@ -33,7 +33,7 @@ export default class Home extends Component {
           <Transections logout={this.logout} />
           <TouchableHighlight
             style={styles.submit}
-            onPress={() => this.props.navigation.navigate("SendMoney")}>
+            onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Send
             </Text>
