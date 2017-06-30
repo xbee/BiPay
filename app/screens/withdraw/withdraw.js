@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Withdraw extends Component {
   static navigationOptions = {
-    title: 'Withdraw',
+    title: 'Sell',
   }
 
   goToBankAccounts = () => {

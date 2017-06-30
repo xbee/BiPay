@@ -149,7 +149,7 @@ export default StackNavigator(RouteConfigs, {
     headerStyle: {
       backgroundColor: '#3C8DBC',
       paddingTop: Expo.Constants.statusBarHeight,
-      height: 65 + Expo.Constants.statusBarHeight,
+      height: 55 + Expo.Constants.statusBarHeight,
       borderColor: '#3C8DBC',
       shadowOpacity: 0,
       shadowOffset: {

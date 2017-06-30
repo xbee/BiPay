@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, KeyboardAvoidingView, AsyncStorage, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
-import TransectionService from './../../services/transectionService'
+import TransectionService from './../../services/transactionService'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
 

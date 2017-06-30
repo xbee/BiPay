@@ -4,7 +4,7 @@ import UserInfoService from './../../services/userInfoService'
 
 export default class Deposit extends Component {
   static navigationOptions = {
-    title: 'Deposit',
+    title: 'Buy',
   }
 
   constructor() {

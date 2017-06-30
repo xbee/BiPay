@@ -46,7 +46,7 @@ const CustomDrawerContentComponent = (props) => (
       <DrawerItems
         {...props}
         activeTintColor="white"
-        activeBackgroundColor="#3C8DBC"
+        activeBackgroundColor="#2070A0"
         inactiveTintColor="white"
         inactiveBackgroundColor="transparent"
         labelStyle={{ margin: 15, alignItems: 'center', fontSize: 18, fontWeight: 'normal' }}
@@ -68,6 +68,6 @@ export default DrawerNavigator(RouteConfigs, {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2070A0',
+    backgroundColor: '#3C8DBC',
   },
 })
