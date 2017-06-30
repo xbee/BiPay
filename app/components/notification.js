@@ -8,7 +8,7 @@ export default class Notification extends Component {
       <TouchableHighlight
         style={styles.options} >
         <View style={styles.optionsElement}>
-          <Text style={{ fontSize: 22 }}>
+          <Text style={{ fontSize: 22, color: '#4D4D4D' }}>
             {this.props.data.description}
           </Text>
           <View style={styles.buttons}>

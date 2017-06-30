@@ -31,9 +31,12 @@ export default class AmountEntry extends Component {
   goToBarcodeScanner = () => {
     if (this.state.amount <= 0) {
       Alert.alert(
-        'Invalid',
-        'Enter valid amount',
-        [[{ text: 'OK' }]]
+        'Are you sure?',
+        'You are about to withdraw ' + currency.symbol + this.state.amount,
+        [
+          { text: 'Yes', onPress: this.withdrawConfirmed },
+          { text: 'No', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home"), style: 'cancel' },
+        ]
       )
     }
     else {

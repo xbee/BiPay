@@ -50,15 +50,15 @@ export default class About extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.details}>
-          <Text style={{ fontSize: 30 }}>
+          <Text style={{ fontSize: 30, color: '#4D4D4D' }}>
             {this.state.company.name}
           </Text>
           <View style={styles.description}>
-            <Text style={{ fontSize: 20 }}>
+            <Text style={{ fontSize: 20, color: '#4D4D4D' }}>
               {this.state.company.description}
             </Text>
             <Text
-              style={{ fontSize: 20, color: 'blue' }}
+              style={{ fontSize: 20, color: '#2470A0' }}
               onPress={this.openLink}>
               (link)
             </Text>

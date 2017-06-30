@@ -31,25 +31,27 @@ export default class Account extends Component {
           <View style={styles.icon}>
             <Image
               source={require('./../../assets/icons/placeholder.png')}
-              style={{height:40, width:40}}
+              style={{ height: 40, width: 40 }}
             />
           </View>
           <View style={styles.type}>
-            <Text style={{ fontSize: 18 }}>
-              {this.props.data.currency.code}
-            </Text>
-            <Text style={{ fontSize: 14 }}>
-              {this.props.data.currency.symbol + ' ' + this.state.balance}
-            </Text>
-          </View>
-          <View style={styles.buttonView}>
-            <TouchableHighlight
-              style={[styles.button, { backgroundColor: this.state.color }]}
-              onPress={this.props.data.active === true ? null : (code) => this.props.setActive(this.props.data.currency.code)} >
-              <Text style={{ color: 'white', fontSize: 20 }}>
-                Active
+            <View style={styles.accountInfo}>
+              <Text style={{ fontSize: 22, color: '#4D4D4D' }}>
+                {this.props.data.currency.code}
               </Text>
-            </TouchableHighlight>
+              <Text style={{ fontSize: 13, color: '#4D4D4D' }}>
+                {this.props.data.currency.symbol + ' ' + this.state.balance}
+              </Text>
+            </View>
+            <View style={styles.buttonView}>
+              <TouchableHighlight
+                style={[styles.button, { backgroundColor: this.state.color }]}
+                onPress={this.props.data.active === true ? null : (code) => this.props.setActive(this.props.data.currency.code)} >
+                <Text style={{ color: 'white', fontSize: 18 }}>
+                  {this.props.data.active === true ? 'Active' : 'Activate'}
+                </Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </View>
       </TouchableHighlight>
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: "100%",
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
+    borderBottomColor: "#EBEBEB",
     alignItems: 'flex-start',
     justifyContent: 'center',
   },
@@ -77,19 +79,23 @@ const styles = StyleSheet.create({
   },
   type: {
     flex: 4,
+    flexDirection: 'row',
+  },
+  accountInfo: {
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
   buttonView: {
     flex: 1,
-    padding:10,
-    paddingLeft:0,
+    padding: 10,
+    paddingLeft: 0,
     justifyContent: 'center',
     alignItems: 'center',
   },
   button: {
     flex: 1,
-    width: '100%',
+    alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,

@@ -16,10 +16,10 @@ export default class Account extends Component {
             />
           </View>
           <View style={styles.type}>
-            <Text style={{ fontSize: 22 }}>
+            <Text style={{ fontSize: 22, color: '#4D4D4D' }}>
               {this.props.name}
             </Text>
-            <Text style={{ fontSize: 13 }}>
+            <Text style={{ fontSize: 13, color: '#4D4D4D' }}>
               {this.props.reference}
             </Text>
           </View>

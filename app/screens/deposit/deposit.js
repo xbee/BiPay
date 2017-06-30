@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
   comment: {
     flex: 2,
-    backgroundColor: 'gainsboro',
+    backgroundColor: '#EBEBEB',
     alignItems: 'center',
     justifyContent: 'center',
     paddingRight: 30,
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
   commentText: {
     fontSize: 16,
     textAlign: 'center',
+    color: '#4D4D4D',
   },
   reference: {
     flex: 1,
@@ -168,10 +169,12 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: 'left',
     fontWeight: 'bold',
+    color: '#4D4D4D',
   },
   infoText: {
     flex: 1,
     fontSize: 17,
     textAlign: 'right',
+    color: '#4D4D4D',
   },
 })

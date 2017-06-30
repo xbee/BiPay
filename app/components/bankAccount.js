@@ -15,7 +15,7 @@ export default class Account extends Component {
               source={require('./../../assets/icons/placeholder.png')}
               style={{height:40, width:40}}
             />
-            <Text style={{ fontSize: 18, paddingLeft: 10 }}>
+            <Text style={{ fontSize: 18, paddingLeft: 10, color: '#4D4D4D' }}>
               {this.props.name}
             </Text>
           </View>

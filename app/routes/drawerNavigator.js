@@ -15,6 +15,11 @@ import DrawerHeader from './../components/drawerHeader'
 const RouteConfigs = {
   Home: {
     screen: Home,
+    navigationOptions: {
+      drawer: () => ({
+        label: 'Bar',
+      }),
+    },
   },
   Deposit: {
     screen: Deposit,
@@ -62,7 +67,21 @@ export default DrawerNavigator(RouteConfigs, {
     headerLeft: <DrawerButton navigation={navigation} />,
     headerTintColor: 'white',
   }),
-  contentComponent: CustomDrawerContentComponent,
+  contentComponent: (props, navigation) => (
+    <View style={styles.container}>
+      <DrawerHeader navigation={navigation} />
+      <ScrollView>
+        <DrawerItems
+          {...props}
+          activeTintColor="white"
+          activeBackgroundColor="#3C8DBC"
+          inactiveTintColor="white"
+          inactiveBackgroundColor="transparent"
+          labelStyle={{ margin: 15, alignItems: 'center', fontSize: 18, fontWeight: 'normal' }}
+        />
+      </ScrollView>
+    </View>
+  ),
 })
 
 const styles = StyleSheet.create({

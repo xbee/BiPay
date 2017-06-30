@@ -1,13 +1,27 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
+import { View, KeyboardAvoidingView, TouchableOpacity, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Contact from './../../components/contact'
 import TextInput from './../../components/textInput'
 import ContactService from './../../services/contactService'
+import UserInfoService from './../../services/userInfoService'
+import Auth from './../../util/auth'
 
 export default class SendTo extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'To',
-  }
+    headerRight: (
+      <TouchableOpacity style={{ padding: 10 }}>
+        <Icon
+          name="qrcode-scan"
+          size={40}
+          color="white"
+          style={{paddingRight: 10}}
+          onPress={() => navigation.navigate('QRcodeScanner')}
+        />
+      </TouchableOpacity>
+    ),
+  })
 
   constructor(props) {
     super(props)
@@ -21,8 +35,16 @@ export default class SendTo extends Component {
     }
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     this.showContactsAsync()
+    let responseJson = await UserInfoService.getUserDetails()
+    if (responseJson.status === "success") {
+      AsyncStorage.removeItem('user')
+      AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
+    }
+    else {
+      Auth.logout(this.props.navigation)
+    }
   }
 
   showContactsAsync = async () => {
@@ -85,16 +107,7 @@ export default class SendTo extends Component {
   }
 
   goToBarcodeScanner = () => {
-    if (this.state.amount <= 0) {
-      Alert.alert(
-        'Invalid',
-        'Enter valid amount',
-        [[{ text: 'OK' }]]
-      )
-    }
-    else {
-      this.props.navigation.navigate("QRcodeScanner", { amount: this.state.amount, note: this.state.note })
-    }
+    this.props.navigation.navigate("QRcodeScanner")
   }
 
   render() {
@@ -119,13 +132,6 @@ export default class SendTo extends Component {
               />
             </View>
           </View>
-          <TouchableHighlight
-            style={[styles.submit, { marginTop: 5 }]}
-            onPress={this.goToBarcodeScanner}>
-            <Text style={{ color: 'white', fontSize: 18 }}>
-              Scan QR code
-            </Text>
-          </TouchableHighlight>
         </KeyboardAvoidingView>
       )
     }
@@ -152,13 +158,6 @@ export default class SendTo extends Component {
           onPress={this.send}>
           <Text style={{ color: 'white', fontSize: 18 }}>
             Next
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={[styles.submit, { marginTop: 5 }]}
-          onPress={this.goToBarcodeScanner}>
-          <Text style={{ color: 'white', fontSize: 18 }}>
-            or Scan QR code
           </Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>

@@ -16,7 +16,7 @@ export default class Contact extends Component {
             />
           </View>
           <View style={styles.contactInfo}>
-            <Text style={{fontSize: 20, color: '#4D4D4D', fontWeight: 'bold'}}>
+            <Text style={{fontSize: 20, color: '#4D4D4D'}}>
               {this.props.rowData.name}
             </Text>
             <Text style={{fontSize: 14, color: 'darkgray'}}>
