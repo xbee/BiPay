@@ -4,7 +4,7 @@ import TextInput from './../../components/textInput'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
-    title: 'Sell',
+    title: 'Withdraw',
   }
 
   constructor(props) {
