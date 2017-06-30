@@ -74,6 +74,9 @@ export default class SendTo extends Component {
     }
 
     let contacts = this.state.data.filter((node) => {
+      if (typeof node.name == 'undefined') {
+        return false
+      }
       let name = node.name.toLowerCase()
       if (name.indexOf(searchText) !== -1) {
         return true
@@ -139,7 +142,7 @@ export default class SendTo extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85} >
         <View style={{ flex: 1 }}>
           <TextInput
-            title="Recepient"
+            title="Recipient"
             placeholder="Enter name/email/mobile"
             autoCapitalize="none"
             value={this.state.searchText}
