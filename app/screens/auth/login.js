@@ -55,6 +55,7 @@ export default class Login extends Component {
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
           <TextInput
             title="Email"
+            autoCapitalize="none"
             placeholder="e.g john@gmail.com"
             keyboardType="email-address"
             value={this.state.email}
@@ -62,12 +63,14 @@ export default class Login extends Component {
           />
           <TextInput
             title="Company"
+            autoCapitalize="none"
             placeholder="e.g rehive"
             value={this.state.company}
             onChangeText={(company) => this.setState({ company })}
           />
           <TextInput
             title="Password"
+            autoCapitalize="none"
             placeholder="Password"
             secureTextEntry
             value={this.state.password}

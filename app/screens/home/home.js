@@ -31,14 +31,23 @@ export default class Home extends Component {
         <CurrentBalance logout={this.logout} style={styles.balance} />
         <View style={styles.transaction} >
           <Transactions logout={this.logout} />
-          <TouchableHighlight
-            style={styles.submit}
-            onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              Send
-            </Text>
-          </TouchableHighlight>
         </View>
+        <View style={styles.buttonbar} >
+            <TouchableHighlight
+              style={styles.submit}
+              onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
+              <Text style={{ color: 'white', fontSize: 20 }}>
+                Receive
+              </Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+                style={styles.submit}
+                onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
+                <Text style={{ color: 'white', fontSize: 20 }}>
+                  Send
+                </Text>
+              </TouchableHighlight>
+          </View>
       </View>
     )
   }
@@ -57,10 +66,16 @@ const styles = StyleSheet.create({
     flex: 5,
     backgroundColor: '#F7F7F7',
   },
+  buttonbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+    backgroundColor: '#F7F7F7',
+  },
   submit: {
-    height: 65,
+    height: "100%",
     backgroundColor: '#3C8DBC',
-    width: "100%",
+    width: "50%",
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
