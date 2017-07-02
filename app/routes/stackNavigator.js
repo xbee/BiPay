@@ -64,7 +64,7 @@ const Stack = {
   Withdraw: {
       screen: Withdraw
   },
-    Receive: {
+  Receive: {
     screen: Receive,
   },
   Accounts: {
@@ -185,7 +185,7 @@ const Stack = {
 
 const StackNavigationOptions = {
     headerStyle: {
-        backgroundColor: '#3C8DBC',
+        backgroundColor: '#3D95CE',
         paddingTop: Expo.Constants.statusBarHeight,
         height: 55 + Expo.Constants.statusBarHeight,
         borderColor: '#3C8DBC',
@@ -220,6 +220,34 @@ const DrawerRoutes = {
           navigationOptions: StackNavigationOptions
         })
 	},
+    Receive: {
+		name: 'ReceiveStack',
+		screen: StackNavigator(Stack, {
+          initialRouteName: 'Receive',
+          navigationOptions: StackNavigationOptions
+        })
+	},
+    Accounts: {
+		name: 'AccountsStack',
+		screen: StackNavigator(Stack, {
+          initialRouteName: 'Accounts',
+          navigationOptions: StackNavigationOptions
+        })
+	},
+    Settings: {
+		name: 'SettingsStack',
+		screen: StackNavigator(Stack, {
+          initialRouteName: 'Settings',
+          navigationOptions: StackNavigationOptions
+        })
+	},
+    About: {
+		name: 'AboutStack',
+		screen: StackNavigator(Stack, {
+          initialRouteName: 'About',
+          navigationOptions: StackNavigationOptions
+        })
+	},
     Logout: {
           name: 'Logout',
           screen: Logout
@@ -235,14 +263,14 @@ export default StackNavigator({
                     contentComponent: (props, navigation) => (
                         <View style={styles.container}>
                           <DrawerHeader navigation={navigation} />
-                          <ScrollView>
+                          <ScrollView >
                             <DrawerItems
                               {...props}
-                              activeTintColor="white"
-                              activeBackgroundColor="#3C8DBC"
+                              activeTintColor="#6EBDF7"
+                              activeBackgroundColor="#485159"
                               inactiveTintColor="white"
                               inactiveBackgroundColor="transparent"
-                              labelStyle={{ margin: 15, alignItems: 'center', fontSize: 18, fontWeight: 'normal' }}
+                              labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
                             />
                           </ScrollView>
                         </View>
@@ -260,6 +288,7 @@ export default StackNavigator({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3C8DBC',
+    flexDirection: 'column',
+    backgroundColor: '#333B42',
   },
 })

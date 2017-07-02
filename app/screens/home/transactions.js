@@ -72,7 +72,7 @@ export default class Transactions extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>          
+      <View style={{ flex: 1 }}>
         <FlatList
           data={this.state.data}
           renderItem={({item}) => (
@@ -84,6 +84,7 @@ export default class Transactions extends Component {
               rightTitleStyle={{'color':'#bdc6cf'}}
               hideChevron
               roundAvatar
+              //containerStyle={{'backgroundColor':'#FAFBFC'}}
             />
           )}
           keyExtractor={tx => tx.id}

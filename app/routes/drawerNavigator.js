@@ -13,41 +13,10 @@ import Logout from './../screens/auth/logout'
 import DrawerButton from './../components/drawerButton'
 import DrawerHeader from './../components/drawerHeader'
 
-const Stack = {
-	Home: {
-		screen: Home
-	},
-	Deposit: {
-		screen: Deposit
-	},
-	Settings: {
-		screen: Settings
-	}
-};
-
-const HomeStackNavigator = StackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#3C8DBC',
-        paddingTop: Expo.Constants.statusBarHeight,
-        height: 55 + Expo.Constants.statusBarHeight,
-        borderColor: '#3C8DBC',
-        shadowOpacity: 0,
-        shadowOffset: {
-          height: 0,
-        },
-        elevation: 0,
-      },
-      headerTintColor: 'white'
-    }
-  }});
 
 const RouteConfigs = {
-  HomeStack: {
-    name: 'HomeStack',
-    screen: StackNavigator(Stack, { initialRouteName: 'Home' })
+  Home: {
+    screen: Home,
   },
   Deposit: {
     screen: Deposit,
@@ -100,11 +69,11 @@ export default DrawerNavigator(RouteConfigs, {
       <ScrollView>
         <DrawerItems
           {...props}
-          activeTintColor="white"
-          activeBackgroundColor="#3C8DBC"
-          inactiveTintColor="white"
+          activeTintColor="#C0C9CF"
+          activeBackgroundColor="#3D95CE"
+          inactiveTintColor="#C0C9CF"
           inactiveBackgroundColor="transparent"
-          labelStyle={{ margin: 15, alignItems: 'center', fontSize: 18, fontWeight: 'normal' }}
+          labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal', color: "#C0C9CF"}}
         />
       </ScrollView>
     </View>
@@ -114,6 +83,6 @@ export default DrawerNavigator(RouteConfigs, {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3C8DBC',
+    backgroundColor: '#3D95CE',
   },
 })

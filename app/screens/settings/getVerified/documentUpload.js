@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     height: 65,
-    backgroundColor: '#3C8DBC',
+    backgroundColor: '#3D95CE',
     flexDirection: 'row',
     alignSelf: 'stretch',
   },

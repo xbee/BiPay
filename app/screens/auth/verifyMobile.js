@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#3C8DBC',
+    backgroundColor: '#3D95CE',
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',

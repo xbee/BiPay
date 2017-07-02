@@ -56,7 +56,7 @@ export default class CurrentBalance extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3C8DBC',
+    backgroundColor: '#3D95CE',
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 20,

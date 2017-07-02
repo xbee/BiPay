@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   upload: {
     height: 65,
-    backgroundColor: '#3C8DBC',
+    backgroundColor: '#3D95CE',
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',

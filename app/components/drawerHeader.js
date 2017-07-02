@@ -20,7 +20,7 @@ export default class DrawerHeader extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.row}>
         <TouchableHighlight
           style={styles.button}
         //onPress={() => this.props.navigation.navigate("SettingsProfileImage")}
@@ -36,24 +36,27 @@ export default class DrawerHeader extends Component {
             />
           }
         </TouchableHighlight>
-
-        <Text style={styles.nameText}>
-          {this.state.userInfo.first_name + ' ' + this.state.userInfo.last_name}
-        </Text>
-        <Text style={styles.emailText}>
-          {this.state.userInfo.email}
-        </Text>
+        <View style={styles.col}>
+          <Text style={styles.nameText}>
+            {this.state.userInfo.first_name + ' ' + this.state.userInfo.last_name}
+          </Text>
+          <Text style={styles.emailText}>
+            {this.state.userInfo.email}
+          </Text>
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: 100,
+  row: {
+    flexDirection: "row",
+    marginTop: 55,
+    marginLeft: 15,
+  },
+  col: {
     flexDirection: "column",
-    marginTop: 15,
-    marginBottom: 15,
     marginLeft: 15,
   },
   stretch: {
@@ -62,12 +65,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   nameText: {
-    color: 'white',
-    fontSize: 18,
+    color: '#C0C9CF',
+    fontSize: 16,
     marginTop: 10,
+    fontWeight: "500",
   },
   emailText: {
-    color: 'white',
+    color: '#C0C9CF',
     fontSize: 11,
     marginTop: 10,
   },

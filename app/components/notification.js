@@ -13,14 +13,14 @@ export default class Notification extends Component {
           </Text>
           <View style={styles.buttons}>
             <TouchableHighlight
-              style={[styles.button, { backgroundColor: this.props.data.email_enabled === true ? '#3C8DBC' : 'greenyellow' }]}
+              style={[styles.button, { backgroundColor: this.props.data.email_enabled === true ? '#3D95CE' : 'greenyellow' }]}
               onPress={() => this.props.enableEmail(this.props.data.id, this.props.data.email_enabled)} >
               <Text style={{ color: 'white', fontSize: 20 }}>
                 Email
               </Text>
             </TouchableHighlight>
             <TouchableHighlight
-              style={[styles.button, { backgroundColor: this.props.data.sms_enabled === true ? '#3C8DBC' : 'greenyellow' }]}
+              style={[styles.button, { backgroundColor: this.props.data.sms_enabled === true ? '#3D95CE' : 'greenyellow' }]}
               onPress={() => this.props.enableSMS(this.props.data.id, this.props.data.sms_enabled)} >
               <Text style={{ color: 'white', fontSize: 20 }}>
                 SMS
