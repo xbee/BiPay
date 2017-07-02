@@ -1,6 +1,21 @@
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
 import Expo from 'expo'
-import Home from './drawerNavigator'
+import React from 'react'
+
+import { ScrollView, View, StyleSheet } from 'react-native'
+
+import DrawerButton from './../components/drawerButton'
+import DrawerHeader from './../components/drawerHeader'
+
+import Home from './../screens/home/home'
+import Deposit from './../screens/deposit/deposit'
+import Settings from './../screens/settings/settings'
+import Withdraw from './../screens/withdraw/withdraw'
+import About from './../screens/about/about'
+import Accounts from './../screens/accounts/accounts'
+import Receive from './../screens/receive/receive'
+import Logout from './../screens/auth/logout'
+
 import Login from './../screens/auth/login'
 import Signup from './../screens/auth/signup'
 import AuthVerifyMobile from './../screens/auth/verifyMobile'
@@ -36,7 +51,34 @@ import ChangePassword from './../screens/settings/security/changePassword'
 import TwoFactor from './../screens/settings/security/twoFactor'
 import SettingsNotifications from './../screens/settings/notifications'
 
-const RouteConfigs = {
+const Stack = {
+  Home: {
+      screen: Home,
+      navigationOptions: ({ navigation }) => ({
+          headerLeft: <DrawerButton navigation={navigation} />,
+      })
+  },
+  Deposit: {
+      screen: Deposit
+  },
+  Withdraw: {
+      screen: Withdraw
+  },
+    Receive: {
+    screen: Receive,
+  },
+  Accounts: {
+    screen: Accounts,
+  },
+  Settings: {
+    screen: Settings,
+  },
+  About: {
+    screen: About,
+  },
+  Logout: {
+    screen: Logout,
+  },
   Login: {
     screen: Login,
   },
@@ -48,9 +90,6 @@ const RouteConfigs = {
   },
   ForgetPassword: {
     screen: ForgetPassword,
-  },
-  Home: {
-    screen: Home,
   },
   BankAccounts: {
     screen: BankAccounts,
@@ -144,19 +183,83 @@ const RouteConfigs = {
   },
 }
 
-export default StackNavigator(RouteConfigs, {
-  navigationOptions: {
+const StackNavigationOptions = {
     headerStyle: {
-      backgroundColor: '#3C8DBC',
-      paddingTop: Expo.Constants.statusBarHeight,
-      height: 55 + Expo.Constants.statusBarHeight,
-      borderColor: '#3C8DBC',
-      shadowOpacity: 0,
-      shadowOffset: {
-        height: 0,
-      },
-      elevation: 0,
+        backgroundColor: '#3C8DBC',
+        paddingTop: Expo.Constants.statusBarHeight,
+        height: 55 + Expo.Constants.statusBarHeight,
+        borderColor: '#3C8DBC',
+        shadowOpacity: 0,
+        shadowOffset: {
+            height: 0,
+        },
+        elevation: 0,
     },
-    headerTintColor: 'white',
+    headerTintColor: 'white'
+}
+
+const DrawerRoutes = {
+	Home: {
+		name: 'HomeStack',
+		screen: StackNavigator(Stack, {
+          initialRouteName: 'Home',
+          navigationOptions: StackNavigationOptions
+        })
+	},
+	Deposit: {
+		name: 'DepositStack',
+		screen: StackNavigator(Stack, {
+          initialRouteName: 'Deposit',
+          navigationOptions: StackNavigationOptions
+        })
+	},
+	Withdraw: {
+		name: 'WithdrawStack',
+		screen: StackNavigator(Stack, {
+          initialRouteName: 'Withdraw',
+          navigationOptions: StackNavigationOptions
+        })
+	},
+    Logout: {
+          name: 'Logout',
+          screen: Logout
+      },
+};
+
+
+export default StackNavigator({
+		Drawer: {
+			name: 'Drawer',
+			screen: DrawerNavigator(
+				DrawerRoutes, {
+                    contentComponent: (props, navigation) => (
+                        <View style={styles.container}>
+                          <DrawerHeader navigation={navigation} />
+                          <ScrollView>
+                            <DrawerItems
+                              {...props}
+                              activeTintColor="white"
+                              activeBackgroundColor="#3C8DBC"
+                              inactiveTintColor="white"
+                              inactiveBackgroundColor="transparent"
+                              labelStyle={{ margin: 15, alignItems: 'center', fontSize: 18, fontWeight: 'normal' }}
+                            />
+                          </ScrollView>
+                        </View>
+                    ),
+                }
+			),
+		},
+		...Stack
+	},
+		{
+			headerMode: 'none'
+		}
+	);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#3C8DBC',
   },
 })

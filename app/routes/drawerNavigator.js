@@ -1,6 +1,7 @@
 import React from 'react'
+import Expo from 'expo'
 import { ScrollView, View, StyleSheet } from 'react-native'
-import { DrawerNavigator, DrawerItems } from 'react-navigation'
+import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
 import Home from './../screens/home/home'
 import Deposit from './../screens/deposit/deposit'
 import Settings from './../screens/settings/settings'
@@ -12,14 +13,41 @@ import Logout from './../screens/auth/logout'
 import DrawerButton from './../components/drawerButton'
 import DrawerHeader from './../components/drawerHeader'
 
-const RouteConfigs = {
+const Stack = {
+	Home: {
+		screen: Home
+	},
+	Deposit: {
+		screen: Deposit
+	},
+	Settings: {
+		screen: Settings
+	}
+};
+
+const HomeStackNavigator = StackNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
-      drawer: () => ({
-        label: 'Bar',
-      }),
-    },
+      headerStyle: {
+        backgroundColor: '#3C8DBC',
+        paddingTop: Expo.Constants.statusBarHeight,
+        height: 55 + Expo.Constants.statusBarHeight,
+        borderColor: '#3C8DBC',
+        shadowOpacity: 0,
+        shadowOffset: {
+          height: 0,
+        },
+        elevation: 0,
+      },
+      headerTintColor: 'white'
+    }
+  }});
+
+const RouteConfigs = {
+  HomeStack: {
+    name: 'HomeStack',
+    screen: StackNavigator(Stack, { initialRouteName: 'Home' })
   },
   Deposit: {
     screen: Deposit,
@@ -62,7 +90,6 @@ const CustomDrawerContentComponent = (props) => (
 
 export default DrawerNavigator(RouteConfigs, {
   drawerWidth: 300,
-  initialRouteName: 'Home',
   navigationOptions: ({ navigation }) => ({
     headerLeft: <DrawerButton navigation={navigation} />,
     headerTintColor: 'white',
