@@ -35,7 +35,7 @@ export default class Home extends Component {
         <View style={styles.buttonbar} >
             <TouchableHighlight
               style={styles.submit}
-              onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
+              onPress={() => this.props.navigation.navigate("Receive", { reference: "" })}>
               <Text style={{ color: 'white', fontSize: 20 }}>
                 Receive
               </Text>
