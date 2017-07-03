@@ -1,7 +1,6 @@
 import React from 'react'
-import Expo from 'expo'
 import { ScrollView, View, StyleSheet } from 'react-native'
-import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
+import { DrawerNavigator, DrawerItems } from 'react-navigation'
 import Home from './../screens/home/home'
 import Deposit from './../screens/deposit/deposit'
 import Settings from './../screens/settings/settings'
@@ -40,22 +39,6 @@ const RouteConfigs = {
     screen: Logout,
   },
 }
-
-const CustomDrawerContentComponent = (props) => (
-  <View style={styles.container}>
-    <DrawerHeader />
-    <ScrollView>
-      <DrawerItems
-        {...props}
-        activeTintColor="white"
-        activeBackgroundColor="#2070A0"
-        inactiveTintColor="white"
-        inactiveBackgroundColor="transparent"
-        labelStyle={{ margin: 15, alignItems: 'center', fontSize: 18, fontWeight: 'normal' }}
-      />
-    </ScrollView>
-  </View>
-)
 
 export default DrawerNavigator(RouteConfigs, {
   drawerWidth: 300,

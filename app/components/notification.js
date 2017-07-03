@@ -1,65 +1,57 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Switch } from 'react-native'
 
 export default class Notification extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      switchValue: this.props.switchValue,
+    }
+  }
+
+  valueChanged = (value) => {
+    this.setState({
+      switchValue: value,
+    })
+    this.props.toggleValue(this.props.data.id, value)
+  }
+
   render() {
     return (
-      <TouchableHighlight
+      <View
         style={styles.options} >
         <View style={styles.optionsElement}>
-          <Text style={{ fontSize: 22, color: '#4D4D4D' }}>
+          <Text style={{ fontSize: 18, color: '#4D4D4D' }}>
             {this.props.data.description}
           </Text>
-          <View style={styles.buttons}>
-            <TouchableHighlight
-              style={[styles.button, { backgroundColor: this.props.data.email_enabled === true ? '#3D95CE' : 'greenyellow' }]}
-              onPress={() => this.props.enableEmail(this.props.data.id, this.props.data.email_enabled)} >
-              <Text style={{ color: 'white', fontSize: 20 }}>
-                Email
-              </Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={[styles.button, { backgroundColor: this.props.data.sms_enabled === true ? '#3D95CE' : 'greenyellow' }]}
-              onPress={() => this.props.enableSMS(this.props.data.id, this.props.data.sms_enabled)} >
-              <Text style={{ color: 'white', fontSize: 20 }}>
-                SMS
-              </Text>
-            </TouchableHighlight>
-          </View>
         </View>
-      </TouchableHighlight>
+        <View style={styles.switch}>
+          <Switch onValueChange={(value) => this.valueChanged(value)} value={this.state.switchValue} />
+        </View>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
   options: {
-    padding: 10,
-    height: 120,
+    height: 80,
     width: "100%",
+    flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    borderBottomColor: "#EBEBEB",
   },
   optionsElement: {
-    flex: 1,
-    flexDirection: 'column',
+    flex: 3,
+    padding: 20,
     alignItems: 'flex-start',
     justifyContent: 'center',
   },
-  buttons: {
-    flexDirection: 'row',
+  switch: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 10,
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    marginRight: 6,
-    padding: 10,
   },
 })

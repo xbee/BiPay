@@ -49,20 +49,22 @@ import SettingsCards from './../screens/settings/cards'
 import SettingsSecurity from './../screens/settings/security/security'
 import ChangePassword from './../screens/settings/security/changePassword'
 import TwoFactor from './../screens/settings/security/twoFactor'
-import SettingsNotifications from './../screens/settings/notifications'
+import SettingsNotifications from './../screens/settings/notifications/notifications'
+import EmailNotifications from './../screens/settings/notifications/emailNotifications'
+import MobileNotifications from './../screens/settings/notifications/mobileNotifications'
 
 const Stack = {
   Home: {
-      screen: Home,
-      navigationOptions: ({ navigation }) => ({
-          headerLeft: <DrawerButton navigation={navigation} />,
-      })
+    screen: Home,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
+    }),
   },
   Deposit: {
-      screen: Deposit
+    screen: Deposit,
   },
   Withdraw: {
-      screen: Withdraw
+    screen: Withdraw,
   },
   Receive: {
     screen: Receive,
@@ -181,109 +183,115 @@ const Stack = {
   SettingsNotifications: {
     screen: SettingsNotifications,
   },
+  EmailNotifications: {
+    screen: EmailNotifications,
+  },
+  MobileNotifications: {
+    screen: MobileNotifications,
+  },
 }
 
 const StackNavigationOptions = {
-    headerStyle: {
-        backgroundColor: '#3D95CE',
-        paddingTop: Expo.Constants.statusBarHeight,
-        height: 55 + Expo.Constants.statusBarHeight,
-        borderColor: '#3C8DBC',
-        shadowOpacity: 0,
-        shadowOffset: {
-            height: 0,
-        },
-        elevation: 0,
+  headerStyle: {
+    backgroundColor: '#3D95CE',
+    paddingTop: Expo.Constants.statusBarHeight,
+    height: 55 + Expo.Constants.statusBarHeight,
+    borderColor: '#3C8DBC',
+    shadowOpacity: 0,
+    shadowOffset: {
+      height: 0,
     },
-    headerTintColor: 'white'
+    elevation: 0,
+  },
+  headerTintColor: 'white',
 }
 
 const DrawerRoutes = {
-	Home: {
-		name: 'HomeStack',
-		screen: StackNavigator(Stack, {
-          initialRouteName: 'Home',
-          navigationOptions: StackNavigationOptions
-        })
-	},
-	Deposit: {
-		name: 'DepositStack',
-		screen: StackNavigator(Stack, {
-          initialRouteName: 'Deposit',
-          navigationOptions: StackNavigationOptions
-        })
-	},
-	Withdraw: {
-		name: 'WithdrawStack',
-		screen: StackNavigator(Stack, {
-          initialRouteName: 'Withdraw',
-          navigationOptions: StackNavigationOptions
-        })
-	},
-    Receive: {
-		name: 'ReceiveStack',
-		screen: StackNavigator(Stack, {
-          initialRouteName: 'Receive',
-          navigationOptions: StackNavigationOptions
-        })
-	},
-    Accounts: {
-		name: 'AccountsStack',
-		screen: StackNavigator(Stack, {
-          initialRouteName: 'Accounts',
-          navigationOptions: StackNavigationOptions
-        })
-	},
-    Settings: {
-		name: 'SettingsStack',
-		screen: StackNavigator(Stack, {
-          initialRouteName: 'Settings',
-          navigationOptions: StackNavigationOptions
-        })
-	},
-    About: {
-		name: 'AboutStack',
-		screen: StackNavigator(Stack, {
-          initialRouteName: 'About',
-          navigationOptions: StackNavigationOptions
-        })
-	},
-    Logout: {
-          name: 'Logout',
-          screen: Logout
-      },
+  Home: {
+    name: 'HomeStack',
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'Home',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
+  Deposit: {
+    name: 'DepositStack',
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'Deposit',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
+  Withdraw: {
+    name: 'WithdrawStack',
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'Withdraw',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
+  Receive: {
+    name: 'ReceiveStack',
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'Receive',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
+  Accounts: {
+    name: 'AccountsStack',
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'Accounts',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
+  Settings: {
+    name: 'SettingsStack',
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'Settings',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
+  About: {
+    name: 'AboutStack',
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'About',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
+  Logout: {
+    name: 'Logout',
+    screen: Logout,
+  },
 };
 
 
 export default StackNavigator({
-		Drawer: {
-			name: 'Drawer',
-			screen: DrawerNavigator(
-				DrawerRoutes, {
-                    contentComponent: (props, navigation) => (
-                        <View style={styles.container}>
-                          <DrawerHeader navigation={navigation} />
-                          <ScrollView >
-                            <DrawerItems
-                              {...props}
-                              activeTintColor="#6EBDF7"
-                              activeBackgroundColor="#485159"
-                              inactiveTintColor="white"
-                              inactiveBackgroundColor="transparent"
-                              labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
-                            />
-                          </ScrollView>
-                        </View>
-                    ),
-                }
-			),
-		},
-		...Stack
-	},
-		{
-			headerMode: 'none'
-		}
-	);
+  Drawer: {
+    name: 'Drawer',
+    screen: DrawerNavigator(
+      DrawerRoutes, {
+        contentComponent: (props, navigation) => (
+          <View style={styles.container}>
+            <DrawerHeader navigation={navigation} />
+            <ScrollView >
+              <DrawerItems
+                {...props}
+                activeTintColor="#6EBDF7"
+                activeBackgroundColor="#485159"
+                inactiveTintColor="white"
+                inactiveBackgroundColor="transparent"
+                labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
+              />
+            </ScrollView>
+          </View>
+        ),
+      }
+    ),
+  },
+  ...Stack,
+},
+  {
+    headerMode: 'none',
+  }
+);
 
 const styles = StyleSheet.create({
   container: {

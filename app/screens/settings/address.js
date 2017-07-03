@@ -65,14 +65,16 @@ export default class Address extends Component {
           <ScrollView keyboardDismissMode={'interactive'}>
 
             <TextInput
-              title="Line 1"
+              title="Address Line 1"
+              placeholder="Address Line 1"
               autoCapitalize="none"
               value={this.state.line_1}
               onChangeText={(line_1) => this.setState({ line_1 })}
             />
 
             <TextInput
-              title="Line 2"
+              title="Address Line 2"
+              placeholder="Address Line 2"
               autoCapitalize="none"
               value={this.state.line_2}
               onChangeText={(line_2) => this.setState({ line_2 })}
@@ -80,6 +82,7 @@ export default class Address extends Component {
 
             <TextInput
               title="City"
+              placeholder="City"
               autoCapitalize="none"
               value={this.state.city}
               onChangeText={(city) => this.setState({ city })}
@@ -87,6 +90,7 @@ export default class Address extends Component {
 
             <TextInput
               title="State province"
+              placeholder="e.g Western Cape"
               autoCapitalize="none"
               value={this.state.state_province}
               onChangeText={(state_province) => this.setState({ state_province })}
@@ -108,6 +112,7 @@ export default class Address extends Component {
 
             <TextInput
               title="Postal code"
+              placeholder="Postal code"
               autoCapitalize="none"
               value={this.state.postal_code}
               onChangeText={(postal_code) => this.setState({ postal_code })}
