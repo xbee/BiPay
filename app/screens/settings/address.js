@@ -61,7 +61,7 @@ export default class Address extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
 
             <TextInput
@@ -105,6 +105,7 @@ export default class Address extends Component {
                   this.setState({ country: value.cca2 });
                 }}
                 cca2={this.state.country}
+                closeable
                 translation="eng"
                 styles={{ flex: 1, justifyContent: 'center' }}
               />

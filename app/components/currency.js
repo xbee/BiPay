@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native'
+import Colors from './../config/colors'
 
 export default class Account extends Component {
   constructor(props) {
     super(props);
-    const color = this.props.data.active === true ? '#EBEBEB' : '#03DBBB'
+    const color = this.props.data.active === true ? Colors.lightgray : Colors.green
     this.state = {
       balance: 0,
       color,
@@ -36,10 +37,10 @@ export default class Account extends Component {
           </View>
           <View style={styles.type}>
             <View style={styles.accountInfo}>
-              <Text style={{ fontSize: 22, color: '#4D4D4D' }}>
+              <Text style={{ fontSize: 22, color: Colors.black }}>
                 {this.props.data.currency.code}
               </Text>
-              <Text style={{ fontSize: 13, color: '#4D4D4D' }}>
+              <Text style={{ fontSize: 13, color: Colors.black }}>
                 {this.props.data.currency.symbol + ' ' + this.state.balance}
               </Text>
             </View>
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: "100%",
     borderBottomWidth: 1,
-    borderBottomColor: "#EBEBEB",
+    borderBottomColor: Colors.lightgray,
     alignItems: 'flex-start',
     justifyContent: 'center',
   },

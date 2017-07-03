@@ -41,7 +41,7 @@ export default class ForgetPassword extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <TextInput
             title="Email"
             placeholder="e.g john@gmail.com"

@@ -65,7 +65,7 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
             <ProfileImage navigateToUploadImage={this.navigateToUploadImage} />
             <View style={styles.inputContainer}>
@@ -112,6 +112,7 @@ export default class Settings extends Component {
                 onChange={(value) => {
                   this.setState({ nationality: value.cca2 });
                 }}
+                closeable
                 cca2={this.state.nationality}
                 translation="eng"
                 styles={{ flex: 1, justifyContent: 'center' }}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
+import Colors from './../config/colors'
 
 export default class Contact extends Component {
 
@@ -16,7 +17,7 @@ export default class Contact extends Component {
             />
           </View>
           <View style={styles.contactInfo}>
-            <Text style={{fontSize: 20, color: '#4D4D4D'}}>
+            <Text style={{fontSize: 20, color: Colors.black}}>
               {this.props.rowData.name}
             </Text>
             <Text style={{fontSize: 14, color: 'darkgray'}}>
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   contact: {
     height: 60,
     borderBottomWidth: 1,
-    borderBottomColor: '#EBEBEB',
+    borderBottomColor: Colors.lightgray,
   },
 })
 

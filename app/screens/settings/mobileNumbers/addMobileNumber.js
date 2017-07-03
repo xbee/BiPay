@@ -31,7 +31,7 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
         <View style={{ flex: 1 }}>
           <TextInput
             title="Enter number"

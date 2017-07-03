@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
+import Colors from './../config/colors'
 
 export default class Account extends Component {
 
@@ -8,7 +9,7 @@ export default class Account extends Component {
       <TouchableHighlight
         style={styles.options} >
         <View style={styles.optionsElement}>
-          <Text style={{ fontSize: 20, color: '#4D4D4D' }}>
+          <Text style={{ fontSize: 20, color: Colors.black }}>
             {this.props.mobile.number}
           </Text>
           {this.props.mobile.verified === true ?
@@ -21,7 +22,7 @@ export default class Account extends Component {
           <View style={styles.buttons}>
             {this.props.mobile.verified !== true ?
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: '#3D95CE' }]}
+                style={[styles.button, { backgroundColor: Colors.lightblue }]}
                 onPress={() => this.props.verify(this.props.mobile.number)} >
                 <Text style={styles.buttonText}>
                   Verify
@@ -31,14 +32,14 @@ export default class Account extends Component {
             }
             {this.props.mobile.primary === true ?
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: '#03DBBB' }]}
+                style={[styles.button, { backgroundColor: Colors.green }]}
                 onPress={null} >
                 <Text style={styles.buttonText}>
                   Primary
                 </Text>
               </TouchableHighlight> :
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: '#3D95CE' }]}
+                style={[styles.button, { backgroundColor: Colors.lightblue }]}
                 onPress={() => this.props.makePrimary(this.props.mobile.id)} >
                 <Text style={styles.buttonText}>
                   Make Primary
@@ -47,7 +48,7 @@ export default class Account extends Component {
             }
             {this.props.mobile.primary !== true ?
               <TouchableHighlight
-                style={[styles.button, { backgroundColor: '#ED675A' }]}
+                style={[styles.button, { backgroundColor: Colors.red }]}
                 onPress={() => this.props.delete(this.props.mobile.id)} >
                 <Text style={styles.buttonText}>
                   Delete
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
+    borderBottomColor: Colors.lightgray,
     alignItems: 'flex-start',
     justifyContent: 'center',
   },

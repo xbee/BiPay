@@ -52,7 +52,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <TextInput
             title="Email"
             autoCapitalize="none"
