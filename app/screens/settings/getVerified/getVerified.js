@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   optionsText: {
     flex: 1,
     fontSize: 18,
+    color: '#4D4D4D',
   },
   optionsIcon: {
     flex: 1,
