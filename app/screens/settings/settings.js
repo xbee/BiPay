@@ -15,7 +15,6 @@ export default class Settings extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Option name="Profile image" gotoAddress="SettingsProfileImage" goTo={this.goTo} />
           <Option name="Personal details" gotoAddress="SettingsPersonalDetails" goTo={this.goTo} />
           <Option name="Mobile numbers" gotoAddress="SettingsMobileNumbers" goTo={this.goTo} />
           <Option name="Email addresses" gotoAddress="SettingsEmailAddresses" goTo={this.goTo} />

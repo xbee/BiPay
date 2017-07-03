@@ -40,7 +40,7 @@ export default class ProfileImage extends Component {
     })
     this.setState({ modalVisible: false })
     if (!result.cancelled) {
-      this.props.navigation.navigate("UploadImage", { image: result })
+      this.props.navigateToUploadImage(result)
     }
   }
 
@@ -51,7 +51,7 @@ export default class ProfileImage extends Component {
     })
     this.setState({ modalVisible: false })
     if (!result.cancelled) {
-      this.props.navigation.navigate("UploadImage", { image: result })
+      this.props.navigateToUploadImage(result)
     }
   }
 
@@ -108,11 +108,11 @@ export default class ProfileImage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 300,
     flexDirection: 'column',
     backgroundColor: 'white',
-    padding: 20,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   photo: {
     width: 200,
