@@ -88,7 +88,7 @@ export default class DocumentUpload extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 10,
+    paddingTop: 10,
     flexDirection: 'column',
     backgroundColor: 'white',
     alignItems: 'center',
