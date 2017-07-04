@@ -183,7 +183,8 @@ const Stack = {
   },
 }
 
-const StackNavigationOptions = {
+const StackNavigationOptions = label => ({
+    label: label,
     headerStyle: {
         backgroundColor: '#3D95CE',
         paddingTop: Expo.Constants.statusBarHeight,
@@ -196,14 +197,14 @@ const StackNavigationOptions = {
         elevation: 0,
     },
     headerTintColor: 'white'
-}
+})
 
 const DrawerRoutes = {
 	Home: {
 		name: 'HomeStack',
 		screen: StackNavigator(Stack, {
           initialRouteName: 'Home',
-          navigationOptions: StackNavigationOptions
+          navigationOptions: StackNavigationOptions('Home')
         })
 	},
 	Deposit: {
@@ -254,6 +255,8 @@ const DrawerRoutes = {
       },
 };
 
+const RoutesOrder = ['Home', 'Deposit', 'Withdraw', 'Receive', 'Accounts', 'Settings', 'About', 'Logout']
+
 
 export default StackNavigator({
 		Drawer: {
@@ -275,6 +278,7 @@ export default StackNavigator({
                           </ScrollView>
                         </View>
                     ),
+                    order: RoutesOrder
                 }
 			),
 		},
