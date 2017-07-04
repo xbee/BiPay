@@ -32,6 +32,7 @@ export default class Settings extends Component {
     const value = await AsyncStorage.getItem('user')
 
     const user = JSON.parse(value)
+
     if (user.language === '' || !user.language) {
       user.language = 'en'
     }

@@ -1,4 +1,4 @@
-import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
+import { StackNavigator, DrawerNavigator } from 'react-navigation'
 import Expo from 'expo'
 import React from 'react'
 
@@ -6,6 +6,7 @@ import { ScrollView, View, StyleSheet } from 'react-native'
 
 import DrawerButton from './../components/drawerButton'
 import DrawerHeader from './../components/drawerHeader'
+import DrawerOption from './../components/drawerOption'
 
 import Home from './../screens/home/home'
 import Deposit from './../screens/deposit/deposit'
@@ -290,14 +291,14 @@ export default StackNavigator({
           <View style={styles.container}>
             <DrawerHeader navigation={props.navigation} />
             <ScrollView >
-              <DrawerItems
-                {...props}
-                activeTintColor="#6EBDF7"
-                activeBackgroundColor="#485159"
-                inactiveTintColor="white"
-                inactiveBackgroundColor="transparent"
-                labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
-              />
+              <DrawerOption name="Home" gotoAddress="Home" navigation={props.navigation} />
+              <DrawerOption name="Deposit" gotoAddress="Deposit" navigation={props.navigation} />
+              <DrawerOption name="Withdraw" gotoAddress="Withdraw" navigation={props.navigation} />
+              <DrawerOption name="Receive" gotoAddress="Receive" navigation={props.navigation} />
+              <DrawerOption name="Accounts" gotoAddress="Accounts" navigation={props.navigation} />
+              <DrawerOption name="Settings" gotoAddress="Settings" navigation={props.navigation} />
+              <DrawerOption name="About" gotoAddress="About" navigation={props.navigation} />
+              <DrawerOption name="Logout" gotoAddress="Logout" navigation={props.navigation} />
             </ScrollView>
           </View>
         ),

@@ -25,10 +25,16 @@ export default class DrawerHeader extends Component {
         <TouchableHighlight
           style={styles.button}
           onPress={() => this.props.navigation.navigate("SettingsPersonalDetails")}>
-          <Image
-            style={styles.stretch}
-            source={{ uri: this.state.userInfo.profile || './../../assets/icons/profile_1.png' }}
-          />
+          {this.state.userInfo.profile ?
+            <Image
+              style={styles.stretch}
+              source={{ uri: this.state.userInfo.profile }}
+            /> :
+            <Image
+              source={require('./../../assets/icons/profile_1.png')}
+              style={styles.stretch}
+            />
+          }
 
         </TouchableHighlight>
         <View style={styles.col}>
@@ -49,6 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 55,
     marginLeft: 15,
+    marginBottom: 15,
   },
   col: {
     flexDirection: "column",
