@@ -39,7 +39,7 @@ export default class Settings extends Component {
       first_name: user.first_name,
       last_name: user.last_name,
       id_number: user.id_number,
-      nationality: user.nationality,
+      nationality: user.nationality !== "" ? user.nationality : 'US',
       language: user.language,
     })
   }

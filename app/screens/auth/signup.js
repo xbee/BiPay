@@ -23,7 +23,7 @@ export default class Signup extends Component {
   }
 
   changeCountryCode = (code) => {
-    this.setState({number: '+' + code})
+    this.setState({mobile: '+' + code})
   }
 
   signup = async () => {

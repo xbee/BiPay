@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TextInput, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import SettingsService from './../../services/settingsService'
 import Auth from './../../util/auth'
+import TextInput from './../../components/textInput'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -39,8 +40,8 @@ export default class AmountEntry extends Component {
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
         <View style={{ flex: 1 }}>
           <TextInput
-            style={styles.input}
-            placeholder="Enter OTP"
+            title="Enter OTP"
+            placeholder="OTP"
             autoCapitalize="none"
             keyboardType="numeric"
             onChangeText={(otp) => this.setState({ otp })}
