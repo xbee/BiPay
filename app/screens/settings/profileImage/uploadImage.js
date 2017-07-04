@@ -19,7 +19,7 @@ export default class UploadImage extends Component {
   }
 
   goBackAndReload = () => {
-    ResetNavigation.dispatchUnderDrawer(this.props.navigation, "Settings", 'SettingsProfileImage')
+    ResetNavigation.dispatchUnderDrawer(this.props.navigation, "Settings", 'SettingsPersonalDetails')
   }
 
   saveImage = async () => {

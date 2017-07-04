@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, ListView, Alert, RefreshControl } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
-import Notification from './../../components/notification'
-import SettingsService from './../../services/settingsService'
-import ResetNavigation from './../../util/resetNavigation'
+import Notification from './../../../components/notification'
+import SettingsService from './../../../services/settingsService'
+import ResetNavigation from './../../../util/resetNavigation'
 
 export default class Settings extends Component {
   static navigationOptions = {
-    title: 'Notifications',
+    title: 'Mobile Notifications',
   }
 
   constructor(props) {
@@ -49,40 +49,21 @@ export default class Settings extends Component {
     ResetNavigation.dispatchUnderDrawer(this.props.navigation, 'Settings', 'SettingsNotifications')
   }
 
-  enableEmail = async (id, previous) => {
+  toggleValue = async (id, value) => {
     this.setState({ loading: true })
 
     const body = {
-      email_enabled: !previous,
-    }
-
-    let responseJson = await SettingsService.changeStateOfNotification(id, body)
-
-    if (responseJson.status === "success") {
-      this.reload()
-    }
-    else {
-      Alert.alert('Error',
-        responseJson.message,
-        [{ text: 'OK' }])
-    }
-  }
-
-  enableSMS = async (id, previous) => {
-    this.setState({ loading: true })
-
-    const body = {
-      sms_enabled: !previous,
+      sms_enabled: value,
     }
     let responseJson = await SettingsService.changeStateOfNotification(id, body)
 
     if (responseJson.status === "success") {
-      this.reload()
+      this.setState({ loading: false })
     }
     else {
       Alert.alert('Error',
         responseJson.message,
-        [{ text: 'OK' }])
+        [{ text: 'OK', onPress: () => this.reload() }])
     }
   }
 
@@ -97,7 +78,7 @@ export default class Settings extends Component {
         <ListView
           refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.getData.bind(this)} />}
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Notification data={rowData} enableEmail={this.enableEmail} enableSMS={this.enableSMS} />}
+          renderRow={(rowData) => <Notification data={rowData} toggleValue={this.toggleValue} switchValue={rowData.sms_enabled} />}
         />
       </View>
     )

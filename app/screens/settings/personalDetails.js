@@ -3,6 +3,7 @@ import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TextIn
 import CountryPicker from 'react-native-country-picker-modal'
 import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
+import ProfileImage from './profileImage/profileImage'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -38,13 +39,17 @@ export default class Settings extends Component {
       first_name: user.first_name,
       last_name: user.last_name,
       id_number: user.id_number,
-      nationality: user.nationality,
+      nationality: user.nationality !== "" ? user.nationality : 'US',
       language: user.language,
     })
   }
 
+  navigateToUploadImage = (result) => {
+    this.props.navigation.navigate("UploadImage", { image: result })
+  }
+
   save = async () => {
-    let responseJson = await UserInfoService.updateUserDetails()
+    let responseJson = await UserInfoService.updateUserDetails(this.state)
     if (responseJson.status === "success") {
       await AsyncStorage.removeItem('user')
       await AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
@@ -60,12 +65,13 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
+            <ProfileImage navigateToUploadImage={this.navigateToUploadImage} />
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
                 First name
-              </Text>
+                </Text>
               <TextInput
                 style={styles.input}
                 placeholder=""
@@ -77,7 +83,7 @@ export default class Settings extends Component {
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
                 Last name
-              </Text>
+                </Text>
               <TextInput
                 style={styles.input}
                 placeholder=""
@@ -89,7 +95,7 @@ export default class Settings extends Component {
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
                 Identity number
-              </Text>
+                </Text>
               <TextInput
                 style={styles.input}
                 placeholder=""
@@ -106,18 +112,20 @@ export default class Settings extends Component {
                 onChange={(value) => {
                   this.setState({ nationality: value.cca2 });
                 }}
+                closeable
+                filterable
                 cca2={this.state.nationality}
                 translation="eng"
-                styles={{ flex: 1, justifyContent: 'center' }}
+                styles={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
               />
             </View>
             <View style={[styles.pickerContainer, { height: 58 }]}>
-              <Text style={[styles.text, { flex: 2 }]}>
+              <Text style={[styles.text, { flex: 3 }]}>
                 Language
               </Text>
               <Picker
                 selectedValue={this.state.language}
-                style={{ flex: 1, justifyContent: 'center' }}
+                style={{ flex: 1 }}
                 onValueChange={(lang) => {
                   this.setState({ language: lang })
                 }}>
@@ -129,9 +137,9 @@ export default class Settings extends Component {
           <TouchableHighlight
             style={styles.submit}
             onPress={() => this.save()}>
-            <Text style={{ color: 'white', fontSize:18 }}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
               Save
-            </Text>
+              </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>
       </View>

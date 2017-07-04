@@ -41,6 +41,16 @@ export default class BankAccounts extends Component {
         refreshing: false,
         dataSource: ds.cloneWithRows(data, ids),
       })
+
+      if (data.length === 0) {
+        Alert.alert('No bank accounts exists',
+        'Do you want to create new bank account?',
+        [
+          { text: 'Yes', onPress: () => this.props.navigation.navigate("AddBankAccount", { parentRoute: 'Withdraw', nextRoute: 'BankAccounts' }) },
+          { text: 'No' },
+        ]
+        )
+      }
     }
     else {
       this.setState({
@@ -58,6 +68,7 @@ export default class BankAccounts extends Component {
         <ListView
           refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.getData.bind(this)} />}
           dataSource={this.state.dataSource}
+          enableEmptySections
           renderRow={(rowData) => <Account onPress={this.getAmount} reference={rowData.code} name={rowData.bank_name} />}
         />
         <TouchableHighlight

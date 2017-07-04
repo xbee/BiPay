@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native'
+import Colors from './../config/colors'
 
 export default class Account extends Component {
 
@@ -16,10 +17,10 @@ export default class Account extends Component {
             />
           </View>
           <View style={styles.type}>
-            <Text style={{ fontSize: 22, color: '#4D4D4D' }}>
+            <Text style={{ fontSize: 22, color: Colors.black }}>
               {this.props.name}
             </Text>
-            <Text style={{ fontSize: 13, color: '#4D4D4D' }}>
+            <Text style={{ fontSize: 13, color: Colors.black }}>
               {this.props.reference}
             </Text>
           </View>
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: "100%",
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
+    borderBottomColor: Colors.lightgray,
     alignItems: 'flex-start',
     justifyContent: 'center',
   },

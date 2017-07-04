@@ -11,6 +11,14 @@ export default class Home extends Component {
   }
 
   async componentDidMount() {
+    try {
+      const token = await AsyncStorage.getItem('token')
+      if (token === null) {
+        this.logout()
+      }
+      return token
+    } catch (error) {
+    }
     let responseJson = await UserInfoService.getUserDetails()
     if (responseJson.status === "success") {
       AsyncStorage.removeItem('user')
@@ -33,21 +41,21 @@ export default class Home extends Component {
           <Transactions logout={this.logout} />
         </View>
         <View style={styles.buttonbar} >
-            <TouchableHighlight
-              style={styles.submit}
-              onPress={() => this.props.navigation.navigate("Receive", { reference: "" })}>
-              <Text style={{ color: 'white', fontSize: 20 }}>
-                Receive
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={() => this.props.navigation.navigate("Receive", { reference: "" })}>
+            <Text style={{ color: 'white', fontSize: 20 }}>
+              Receive
               </Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-                style={styles.submit}
-                onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
-                <Text style={{ color: 'white', fontSize: 20 }}>
-                  Send
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
+            <Text style={{ color: 'white', fontSize: 20 }}>
+              Send
                 </Text>
-              </TouchableHighlight>
-          </View>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
   buttonbar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flex: 1,
+    height: 65,
     backgroundColor: '#F7F7F7',
   },
   submit: {

@@ -116,7 +116,7 @@ export default class SendTo extends Component {
   render() {
     if (!this.state.ready) {
       return (
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={70}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <View style={{ flex: 1 }}>
             <TextInput
               title="Enter name/email/mobile"
@@ -139,7 +139,7 @@ export default class SendTo extends Component {
       )
     }
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85} >
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75} >
         <View style={{ flex: 1 }}>
           <TextInput
             title="Recipient"

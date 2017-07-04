@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import SettingsService from './../../../services/settingsService'
-import TextInput from './../../../components/textInput'
+import TextInput from './../../../components/mobileNumberInput'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -11,11 +11,13 @@ export default class AmountEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: 0,
+      number: '+1',
       primary: false,
     }
   }
-
+  changeCountryCode = (code) => {
+    this.setState({number: '+' + code})
+  }
   add = async () => {
     let responseJson = await SettingsService.addMobile(this.state)
 
@@ -31,12 +33,14 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
         <View style={{ flex: 1 }}>
           <TextInput
             title="Enter number"
             autoCapitalize="none"
+            value={this.state.number}
             onChangeText={(number) => this.setState({ number })}
+            changeCountryCode={this.changeCountryCode}
           />
         </View>
         <TouchableHighlight

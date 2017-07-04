@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from './../config/colors'
 
 export default class Account extends Component {
 
@@ -15,7 +16,7 @@ export default class Account extends Component {
               source={require('./../../assets/icons/placeholder.png')}
               style={{height:40, width:40}}
             />
-            <Text style={{ fontSize: 18, paddingLeft: 10, color: '#4D4D4D' }}>
+            <Text style={{ fontSize: 18, paddingLeft: 10, color: Colors.black }}>
               {this.props.name}
             </Text>
           </View>
@@ -23,7 +24,7 @@ export default class Account extends Component {
             <IconFontAwesome
               name="angle-right"
               size={45}
-              color="#4D4D4D"
+              color={Colors.black}
             />
           </View>
         </View>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: "100%",
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
+    borderBottomColor: Colors.lightgray,
   },
   optionsElement: {
     flex: 1,

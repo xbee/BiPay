@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, AsyncStorage, TouchableHighlight, Image, Text } from 'react-native';
+import Colors from './../config/colors'
 
 export default class DrawerHeader extends Component {
   constructor(props) {
@@ -58,13 +59,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   nameText: {
-    color: '#C0C9CF',
+    color: Colors.drawerHeaderText,
     fontSize: 16,
     marginTop: 10,
     fontWeight: "500",
   },
   emailText: {
-    color: '#C0C9CF',
+    color: Colors.drawerHeaderText,
     fontSize: 11,
     marginTop: 10,
   },

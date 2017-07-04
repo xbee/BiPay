@@ -22,8 +22,8 @@ export default class ForgetPassword extends Component {
 
   sendEmail = async () => {
     var body = {
-      "identifier": this.state.email,
-      "company_id": this.state.company,
+      "user": this.state.email,
+      "company": this.state.company,
     }
     let responseJson = await AuthService.forgetPassword(body)
     if (responseJson.status === "success") {
@@ -41,7 +41,7 @@ export default class ForgetPassword extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <TextInput
             title="Email"
             placeholder="e.g john@gmail.com"
@@ -50,8 +50,8 @@ export default class ForgetPassword extends Component {
             onChangeText={(email) => this.setState({ email })}
           />
           <TextInput
-            title="Company name"
-            placeholder="e.g regive"
+            title="Company"
+            placeholder="e.g rehive"
             autoCapitalize="none"
             onChangeText={(company) => this.setState({ company })}
           />

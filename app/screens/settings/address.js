@@ -35,7 +35,7 @@ export default class Address extends Component {
         line_2: address.line_2,
         city: address.city,
         state_province: address.state_province,
-        country: address.country,
+        country: address.country !== "" ? address.country : 'US',
         postal_code: address.postal_code,
       })
     }
@@ -47,7 +47,8 @@ export default class Address extends Component {
   }
 
   save = async () => {
-    let responseJson = UserInfoService.updateAddress(this.state)
+    let responseJson = await UserInfoService.updateAddress(this.state)
+    //console.log(responseJson)
     if (responseJson.status === "success") {
       this.props.navigation.goBack()
     }
@@ -61,18 +62,20 @@ export default class Address extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
 
             <TextInput
-              title="Line 1"
+              title="Address Line 1"
+              placeholder="Address Line 1"
               autoCapitalize="none"
               value={this.state.line_1}
               onChangeText={(line_1) => this.setState({ line_1 })}
             />
 
             <TextInput
-              title="Line 2"
+              title="Address Line 2"
+              placeholder="Address Line 2"
               autoCapitalize="none"
               value={this.state.line_2}
               onChangeText={(line_2) => this.setState({ line_2 })}
@@ -80,6 +83,7 @@ export default class Address extends Component {
 
             <TextInput
               title="City"
+              placeholder="City"
               autoCapitalize="none"
               value={this.state.city}
               onChangeText={(city) => this.setState({ city })}
@@ -87,6 +91,7 @@ export default class Address extends Component {
 
             <TextInput
               title="State province"
+              placeholder="e.g Western Cape"
               autoCapitalize="none"
               value={this.state.state_province}
               onChangeText={(state_province) => this.setState({ state_province })}
@@ -101,6 +106,7 @@ export default class Address extends Component {
                   this.setState({ country: value.cca2 });
                 }}
                 cca2={this.state.country}
+                closeable
                 translation="eng"
                 styles={{ flex: 1, justifyContent: 'center' }}
               />
@@ -108,6 +114,7 @@ export default class Address extends Component {
 
             <TextInput
               title="Postal code"
+              placeholder="Postal code"
               autoCapitalize="none"
               value={this.state.postal_code}
               onChangeText={(postal_code) => this.setState({ postal_code })}

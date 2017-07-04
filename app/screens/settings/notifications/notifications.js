@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class Settings extends Component {
+export default class Withdraw extends Component {
   static navigationOptions = {
-    title: 'Get verified',
-  }
-
-  goToDocument = (name) => {
-    this.props.navigation.navigate("Document", {name})
+    title: 'Withdraw',
   }
 
   render() {
@@ -16,10 +12,10 @@ export default class Settings extends Component {
       <View style={styles.container}>
         <TouchableHighlight
           style={styles.options}
-          onPress={() => this.goToDocument("ID Document")}>
+          onPress={() => this.props.navigation.navigate("EmailNotifications")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              ID document
+              Email Notifications
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
@@ -32,26 +28,10 @@ export default class Settings extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.options}
-          onPress={() => this.goToDocument("ID Selfie")}>
+          onPress={() => this.props.navigation.navigate("MobileNotifications")}>
           <View style={styles.optionsElement}>
             <Text style={styles.optionsText}>
-              ID selfie
-            </Text>
-            <View style={styles.optionsIcon}>
-              <Icon
-                name="angle-right"
-                size={50}
-                color="#4D4D4D"
-              />
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.options}
-          onPress={() => this.goToDocument("Proof Of Address")}>
-          <View style={styles.optionsElement}>
-            <Text style={styles.optionsText}>
-              Proof of address
+              Mobile Notifications
             </Text>
             <View style={styles.optionsIcon}>
               <Icon
@@ -74,8 +54,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   options: {
-    padding: 10,
-    height: 60,
+    padding: 20,
+    height: 70,
     width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "lightgray",
