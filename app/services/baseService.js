@@ -1,4 +1,5 @@
 import { AsyncStorage, Alert } from 'react-native'
+import Auth from './../util/auth'
 
 const baseUrl = 'https://rehive.com/api/3/'
 
@@ -24,9 +25,9 @@ let _apiCallWithData = async (url, method, data) => {
       method,
       headers,
       body: JSON.stringify(data),
+      credentials: 'omit',
     })
     let responseJson = await response.json()
-    console.log(responseJson)
     return responseJson
   } catch (error) {
     Alert.alert(
@@ -42,7 +43,8 @@ let _apiCallWithoutData = async (url, method) => {
     let headers = await getHeaders()
     let response = await fetch(url, {
       method,
-      headers,
+      headers: headers,
+      credentials: 'omit',
     })
     let responseJson = await response.json()
     return responseJson
@@ -52,6 +54,7 @@ let _apiCallWithoutData = async (url, method) => {
       JSON.stringify(error),
       [{ text: 'OK' }]
     )
+    return {}
   }
 }
 

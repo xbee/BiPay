@@ -8,7 +8,7 @@
   "dependencies": {
     "expo": "16.0.0",
     "react": "16.0.0-alpha.6",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-16.0.0.tar.gz",
+    "react-native": "github:exponent/react-native#sdk-17.0.0",
     "react-native-country-picker-modal": "^0.3.0-rc1",
     "react-native-device-info": "^0.10.2",
     "react-native-infinite-scroll-view": "^0.4.2",

@@ -9,8 +9,10 @@ const auth = {
     await resetNavigation.dispatchToSingleRoute(navigation, "Home")
   },
   logout: async (navigation) => {
-    await AsyncStorage.clear()
-    await resetNavigation.dispatchToSingleRoute(navigation, "Login")
+    store = await AsyncStorage.getAllKeys()
+    await AsyncStorage.removeItem("token")
+    await AsyncStorage.removeItem("user")
+    resetNavigation.dispatchToSingleRoute(navigation, "Login")
   },
 }
 
