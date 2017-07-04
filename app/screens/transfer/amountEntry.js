@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, KeyboardAvoidingView, AsyncStorage, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
-import TransactionService from './../../services/transactionService'
+import stellarService from './../../services/stellarService'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
 
@@ -16,7 +16,7 @@ export default class AmountEntry extends Component {
     this.state = {
       reference: params.reference,
       amount: 0,
-      note: '',
+      memo: '',
     }
   }
 
@@ -47,7 +47,7 @@ export default class AmountEntry extends Component {
   }
 
   transferConfirmed = async (amount) => {
-    let responseJson = await TransactionService.sendMoney(amount, this.state.reference, this.state.note)
+    let responseJson = await stellarService.sendMoney(amount,this.state.memo, this.state.reference, 'XBT', 'default')
     if (responseJson.status === "success") {
       Alert.alert('Success',
         "Transaction successful",
@@ -82,10 +82,10 @@ export default class AmountEntry extends Component {
             onChangeText={this.amountChanged}
           />
           <TextInput
-            title="Note"
-            placeholder="Enter note here"
+            title="Memo"
+            placeholder="Enter memo here"
             autoCapitalize="none"
-            onChangeText={(note) => this.setState({ note })}
+            onChangeText={(memo) => this.setState({ memo })}
           />
         </ScrollView>
         <TouchableHighlight

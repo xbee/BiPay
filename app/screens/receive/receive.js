@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, AsyncStorage } from 'react-native'
+import stellarService from './../../services/stellarService'
 
 export default class Receive extends Component {
   static navigationOptions = {
@@ -15,10 +16,24 @@ export default class Receive extends Component {
   }
 
   async componentWillMount() {
-    const value = await AsyncStorage.getItem('user');
+    const value = await AsyncStorage.getItem('user')
     const user = JSON.parse(value)
     const imageURI = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + user.email + '&choe=UTF-8'
     this.setState({ imageURI })
+  }
+
+  getCryptoAddress = async () => {
+    AsyncStorage.getItem('cryptoAddress').then((value) => {
+      this.setState({ 'cryptoAddress': value || {} })
+    })
+  }
+
+  setCryptoAddress = async () => {
+    let responseJson = await stellarService.getAddress()
+    if (responseJson.status === "success") {
+      AsyncStorage.removeItem('cryptoAddress')
+      AsyncStorage.setItem('cryptoAddress', JSON.stringify(responseJson.data))
+    }
   }
 
   render() {
