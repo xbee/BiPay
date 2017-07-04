@@ -39,7 +39,7 @@ export default class AmountEntry extends Component {
         <View style={{ flex: 1 }}>
           <TextInput
             title="Enter email address"
-            placeholder="e.g. "
+            placeholder="e.g. john@gmail.com"
             autoCapitalize="none"
             onChangeText={(email) => this.setState({ email })}
           />

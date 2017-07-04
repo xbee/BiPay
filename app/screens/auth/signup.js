@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Alert, StyleSheet, ScrollView, TouchableHighlight, Text, KeyboardAvoidingView } from 'react-native'
 import AuthService from './../../services/authService'
 import TextInput from './../../components/textInput'
+import MobileInput from './../../components/mobileNumberInput'
 
 export default class Signup extends Component {
   static navigationOptions = {
@@ -14,11 +15,15 @@ export default class Signup extends Component {
       first_name: '',
       last_name: '',
       email: '',
-      mobile: '',
+      mobile: '+1',
       company: '',
       password1: '',
       password2: '',
     }
+  }
+
+  changeCountryCode = (code) => {
+    this.setState({number: '+' + code})
   }
 
   signup = async () => {
@@ -41,13 +46,13 @@ export default class Signup extends Component {
           <ScrollView keyboardDismissMode={'interactive'}>
             <TextInput
               title="First name"
-              placeholder="John"
+              placeholder="e.g. John"
               autoCapitalize="none"
               onChangeText={(first_name) => this.setState({ first_name })}
             />
             <TextInput
               title="Last name"
-              placeholder="Last name"
+              placeholder="e.g. Snow"
               autoCapitalize="none"
               onChangeText={(last_name) => this.setState({ last_name })}
             />
@@ -59,12 +64,14 @@ export default class Signup extends Component {
               keyboardType="email-address"
               onChangeText={(email) => this.setState({ email })}
             />
-            <TextInput
+            <MobileInput
               style={styles.input}
               title="Mobile number"
               autoCapitalize="none"
               keyboardType="numeric"
+              value={this.state.mobile}
               onChangeText={(mobile) => this.setState({ mobile })}
+              changeCountryCode={this.changeCountryCode}
             />
             <TextInput
               style={styles.input}
@@ -74,16 +81,15 @@ export default class Signup extends Component {
               onChangeText={(company) => this.setState({ company })}
             />
             <TextInput
-              style={styles.input}
               title="Password"
-              placeholder="password"
+              placeholder="Password"
               autoCapitalize="none"
               secureTextEntry
               onChangeText={(password1) => this.setState({ password1 })}
             />
             <TextInput
-              style={styles.input}
               title="Confirm password"
+              placeholder="Confirm password"
               autoCapitalize="none"
               secureTextEntry
               onChangeText={(password2) => this.setState({ password2 })}

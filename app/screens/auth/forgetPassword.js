@@ -51,7 +51,7 @@ export default class ForgetPassword extends Component {
           />
           <TextInput
             title="Company"
-            placeholder="e.g regive"
+            placeholder="e.g rehive"
             autoCapitalize="none"
             onChangeText={(company) => this.setState({ company })}
           />

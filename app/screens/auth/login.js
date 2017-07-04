@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Alert, AsyncStorage, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text } from 'react-native'
+import { View, Alert, AsyncStorage, ScrollView, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text } from 'react-native'
 import AuthService from './../../services/authService'
 import Auth from './../../util/auth'
 import ResetNavigation from './../../util/resetNavigation'
@@ -53,29 +53,31 @@ export default class Login extends Component {
     return (
       <View style={styles.mainContainer}>
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
-          <TextInput
-            title="Email"
-            autoCapitalize="none"
-            placeholder="e.g john@gmail.com"
-            keyboardType="email-address"
-            value={this.state.email}
-            onChangeText={(email) => this.setState({ email })}
-          />
-          <TextInput
-            title="Company"
-            autoCapitalize="none"
-            placeholder="e.g rehive"
-            value={this.state.company}
-            onChangeText={(company) => this.setState({ company })}
-          />
-          <TextInput
-            title="Password"
-            autoCapitalize="none"
-            placeholder="Password"
-            secureTextEntry
-            value={this.state.password}
-            onChangeText={(password) => this.setState({ password })}
-          />
+          <ScrollView style={{width: '100%'}} keyboardDismissMode={'interactive'}>
+            <TextInput
+              title="Email"
+              autoCapitalize="none"
+              placeholder="e.g john@gmail.com"
+              keyboardType="email-address"
+              value={this.state.email}
+              onChangeText={(email) => this.setState({ email })}
+            />
+            <TextInput
+              title="Company"
+              autoCapitalize="none"
+              placeholder="e.g rehive"
+              value={this.state.company}
+              onChangeText={(company) => this.setState({ company })}
+            />
+            <TextInput
+              title="Password"
+              autoCapitalize="none"
+              placeholder="Password"
+              secureTextEntry
+              value={this.state.password}
+              onChangeText={(password) => this.setState({ password })}
+            />
+          </ScrollView>
           <TouchableHighlight
             style={styles.login}
             onPress={this.login}>
@@ -83,21 +85,22 @@ export default class Login extends Component {
               Login
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.forgetPassword}
-            onPress={() => this.props.navigation.navigate("ForgetPassword")}>
-            <Text style={{ color: '#2070A0' }}>
-              Forgot Password?
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.register}
-            onPress={() => this.props.navigation.navigate("Signup")}>
-            <Text style={{ color: '#2070A0' }}>
-              Create New Account
-            </Text>
-          </TouchableHighlight>
         </KeyboardAvoidingView>
+        <TouchableHighlight
+          style={styles.forgetPassword}
+          onPress={() => this.props.navigation.navigate("ForgetPassword")}>
+          <Text style={{ color: '#2070A0' }}>
+            Forgot Password?
+            </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.register}
+          onPress={() => this.props.navigation.navigate("Signup")}>
+          <Text style={{ color: '#2070A0' }}>
+            Create New Account
+            </Text>
+        </TouchableHighlight>
+
       </View>
     )
   }
@@ -108,8 +111,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     padding: 15,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   container: {
+    height: 380,
+    width: "100%",
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -117,6 +124,7 @@ const styles = StyleSheet.create({
   input: {
     height: 60,
     width: "100%",
+    alignSelf: 'stretch',
     padding: 10,
     marginTop: 20,
     borderColor: 'white',

@@ -35,7 +35,7 @@ export default class Address extends Component {
         line_2: address.line_2,
         city: address.city,
         state_province: address.state_province,
-        country: address.country,
+        country: address.country !== "" ? address.country : 'US',
         postal_code: address.postal_code,
       })
     }
@@ -47,7 +47,8 @@ export default class Address extends Component {
   }
 
   save = async () => {
-    let responseJson = UserInfoService.updateAddress(this.state)
+    let responseJson = await UserInfoService.updateAddress(this.state)
+    //console.log(responseJson)
     if (responseJson.status === "success") {
       this.props.navigation.goBack()
     }

@@ -108,16 +108,16 @@ export default class ProfileImage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 300,
+    height: 130,
     flexDirection: 'column',
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   photo: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   modal: {
     flex: 1,

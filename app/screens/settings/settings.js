@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
-import Option from './../../components/settingsOption';
+import Option from './../../components/settingsOption'
 
 export default class Settings extends Component {
   static navigationOptions = {

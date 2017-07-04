@@ -10,56 +10,56 @@ export default class BankAccountComponent extends Component {
         <ScrollView keyboardDismissMode={'interactive'}>
           <TextInput
             title="Account holder"
-            placeholder="Account holder"
+            placeholder="e.g. John Snow"
             autoCapitalize="none"
             value={this.props.values.name}
             onChangeText={(text) => this.props.updateName(text)}
           />
           <TextInput
             title="Account number"
-            placeholder="Account number"
+            placeholder="e.g. 4083764677"
             autoCapitalize="none"
             value={this.props.values.number}
             onChangeText={(text) => this.props.updateNumber(text)}
           />
           <TextInput
             title="Account type"
-            placeholder="Account type"
+            placeholder="e.g. Cheque account"
             autoCapitalize="none"
             value={this.props.values.type}
             onChangeText={(text) => this.props.updateType(text)}
           />
           <TextInput
             title="Bank name"
-            placeholder="Bank name"
+            placeholder="e.g. Bank of World"
             autoCapitalize="none"
             value={this.props.values.bank_name}
             onChangeText={(text) => this.props.updateBank(text)}
           />
           <TextInput
             title="Branch code"
-            placeholder="Branch code"
+            placeholder="e.g. 46589"
             autoCapitalize="none"
             value={this.props.values.branch_code}
             onChangeText={(text) => this.props.updateBranch(text)}
           />
           <TextInput
             title="Swift code"
-            placeholder="Swift code"
+            placeholder="Usually 8 or 11 characters"
             autoCapitalize="none"
             value={this.props.values.swift}
             onChangeText={(text) => this.props.updateSwift(text)}
           />
           <TextInput
             title="IBAN number"
-            placeholder="IBAN number"
+            placeholder="34 alphanumeric characters"
             autoCapitalize="none"
             value={this.props.values.iban}
             onChangeText={(text) => this.props.updateIBAN(text)}
           />
           <TextInput
             title="BIC number"
-            placeholder="BIC number"
+            placeholder="Usually 8 or 11 characters"
             autoCapitalize="none"
             value={this.props.values.bic}
             onChangeText={(text) => this.props.updateBIC(text)}

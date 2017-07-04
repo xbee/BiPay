@@ -6,11 +6,11 @@ const auth = {
     console.log()
     await AsyncStorage.setItem("token", loginInfo.token)
     await AsyncStorage.setItem("user", JSON.stringify(loginInfo.user))
-    resetNavigation.dispatchToSingleRoute(navigation, "Home")
+    await resetNavigation.dispatchToSingleRoute(navigation, "Home")
   },
   logout: async (navigation) => {
     await AsyncStorage.clear()
-    resetNavigation.dispatchToSingleRoute(navigation, "Login")
+    await resetNavigation.dispatchToSingleRoute(navigation, "Login")
   },
 }
 

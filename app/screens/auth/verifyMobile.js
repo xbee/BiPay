@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   buttons: {
-    height: 70,
+    height: 65,
     flexDirection: 'row',
     alignSelf: 'stretch',
   },

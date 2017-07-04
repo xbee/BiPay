@@ -107,24 +107,25 @@ export default class Settings extends Component {
             <View style={styles.pickerContainer}>
               <Text style={[styles.text, { flex: 1 }]}>
                 Country
-                </Text>
+              </Text>
               <CountryPicker
                 onChange={(value) => {
                   this.setState({ nationality: value.cca2 });
                 }}
                 closeable
+                filterable
                 cca2={this.state.nationality}
                 translation="eng"
-                styles={{ flex: 1, justifyContent: 'center' }}
+                styles={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
               />
             </View>
             <View style={[styles.pickerContainer, { height: 58 }]}>
-              <Text style={[styles.text, { flex: 2 }]}>
+              <Text style={[styles.text, { flex: 3 }]}>
                 Language
-                </Text>
+              </Text>
               <Picker
                 selectedValue={this.state.language}
-                style={{ flex: 1, justifyContent: 'center' }}
+                style={{ flex: 1 }}
                 onValueChange={(lang) => {
                   this.setState({ language: lang })
                 }}>
