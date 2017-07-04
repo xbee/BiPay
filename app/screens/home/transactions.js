@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import moment from 'moment'
 import {
   View,
+  Text,
   FlatList,
 } from 'react-native'
-import { List, ListItem } from "react-native-elements";
-import Transaction from './../../components/transaction'
+import { List, ListItem } from "react-native-elements"
 import TransactionService from './../../services/transactionService'
 
 export default class Transactions extends Component {
@@ -13,6 +13,7 @@ export default class Transactions extends Component {
     super(props);
 
     this.state = {
+      noTransaction: false,
       loading: false,
       data: [],
       nextUrl: null,
@@ -36,6 +37,10 @@ export default class Transactions extends Component {
     }
     else {
       this.props.logout()
+    }
+
+    if (this.state.data.length === 0) {
+       this.setState({noTransaction: true})
     }
   }
 
@@ -70,7 +75,30 @@ export default class Transactions extends Component {
     }
   }
 
+  getAmount = (amount, divisibility) => {
+    for (let i = 0; i < divisibility; i++) {
+      amount = amount / 10
+    }
+
+    return amount.toFixed(8).replace(/\.?0+$/, "")
+  }
+
   render() {
+    if (this.state.noTransaction) {
+      return (
+        <View style={{ flex: 1, backgroundColor: '#EBEBEB', padding: 10 }}>
+          <View style={{ marginTop:10, flexDirection: 'column', backgroundColor: 'white', padding: 20 }}>
+            <Text style={{ fontSize:30, fontWeight: 'normal', color: '#4D4D4D' }}>
+              Welcome to Rehive
+            </Text>
+            <Text style={{ paddingTop:15, fontSize:18, fontWeight: 'normal', color: '#4D4D4D', textAlign: 'justify' }}>
+              Please verify your email address to redeem any unclaimed transactions. Pull to refresh your balance.
+            </Text>
+          </View>
+        </View>
+      )
+    }
+    else {
     return (
       <View style={{ flex: 1 }}>
         <FlatList
@@ -80,7 +108,7 @@ export default class Transactions extends Component {
               avatar={item.user.profile || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgmT5tM-IGcFDpqZ87p9zKGaWQuzpvAcDKfOTPYfx5A9zOmbTh8RMMFg'}
               title={item.label}
               subtitle={moment(item.created).fromNow()}
-              rightTitle={`${item.currency.symbol}${item.amount}`}
+              rightTitle={`${item.currency.symbol}${this.getAmount(item.amount, item.currency.divisibility)}`}
               rightTitleStyle={{'color':'#bdc6cf'}}
               hideChevron
               roundAvatar
@@ -94,6 +122,7 @@ export default class Transactions extends Component {
           onEndReachedThreshold={50}
         />
       </View>
-    );
+    )
+    }
   }
 }

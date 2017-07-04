@@ -62,21 +62,39 @@ const Stack = {
   },
   Deposit: {
     screen: Deposit,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
+    }),
   },
   Withdraw: {
     screen: Withdraw,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
+    }),
   },
   Receive: {
     screen: Receive,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
+    }),
   },
   Accounts: {
     screen: Accounts,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
+    }),
   },
   Settings: {
     screen: Settings,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
+    }),
   },
   About: {
     screen: About,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
+    }),
   },
   Logout: {
     screen: Logout,
@@ -268,9 +286,9 @@ export default StackNavigator({
     name: 'Drawer',
     screen: DrawerNavigator(
       DrawerRoutes, {
-        contentComponent: (props, navigation) => (
+        contentComponent: (props) => (
           <View style={styles.container}>
-            <DrawerHeader navigation={navigation} />
+            <DrawerHeader navigation={props.navigation} />
             <ScrollView >
               <DrawerItems
                 {...props}

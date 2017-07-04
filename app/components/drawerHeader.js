@@ -15,7 +15,7 @@ export default class DrawerHeader extends Component {
 
   getUserInfo = () => {
     AsyncStorage.getItem('user').then((value) => {
-      this.setState({ 'userInfo': JSON.parse(value) });
+      this.setState({ 'userInfo': JSON.parse(value) })
     })
   }
 
@@ -24,8 +24,7 @@ export default class DrawerHeader extends Component {
       <View style={styles.row}>
         <TouchableHighlight
           style={styles.button}
-        //onPress={() => this.props.navigation.navigate("SettingsProfileImage")}
-        >
+          onPress={() => this.props.navigation.navigate("SettingsPersonalDetails")}>
           {this.state.userInfo.profile !== null ?
             <Image
               style={styles.stretch}

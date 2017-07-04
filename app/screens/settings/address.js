@@ -28,6 +28,7 @@ export default class Address extends Component {
 
   getAddress = async () => {
     let responseJson = await UserInfoService.getAddress()
+    console.log(responseJson)
     if (responseJson.status === "success") {
       const address = responseJson.data
       this.setState({
@@ -35,7 +36,7 @@ export default class Address extends Component {
         line_2: address.line_2,
         city: address.city,
         state_province: address.state_province,
-        country: address.country !== "" ? address.country : 'US',
+        country: address.country !== "--" ? address.country : 'US',
         postal_code: address.postal_code,
       })
     }
@@ -67,7 +68,7 @@ export default class Address extends Component {
 
             <TextInput
               title="Address Line 1"
-              placeholder="Address Line 1"
+              placeholder="e.g. Plot-02, Road-08"
               autoCapitalize="none"
               value={this.state.line_1}
               onChangeText={(line_1) => this.setState({ line_1 })}
@@ -75,7 +76,7 @@ export default class Address extends Component {
 
             <TextInput
               title="Address Line 2"
-              placeholder="Address Line 2"
+              placeholder="e.g. Mohakhali C/A, Dhaka"
               autoCapitalize="none"
               value={this.state.line_2}
               onChangeText={(line_2) => this.setState({ line_2 })}
@@ -83,7 +84,7 @@ export default class Address extends Component {
 
             <TextInput
               title="City"
-              placeholder="City"
+              placeholder="e.g. Capetown"
               autoCapitalize="none"
               value={this.state.city}
               onChangeText={(city) => this.setState({ city })}
@@ -91,7 +92,7 @@ export default class Address extends Component {
 
             <TextInput
               title="State province"
-              placeholder="e.g Western Cape"
+              placeholder="e.g. Western Cape"
               autoCapitalize="none"
               value={this.state.state_province}
               onChangeText={(state_province) => this.setState({ state_province })}
@@ -107,6 +108,7 @@ export default class Address extends Component {
                 }}
                 cca2={this.state.country}
                 closeable
+                filterable
                 translation="eng"
                 styles={{ flex: 1, justifyContent: 'center' }}
               />
@@ -114,7 +116,7 @@ export default class Address extends Component {
 
             <TextInput
               title="Postal code"
-              placeholder="Postal code"
+              placeholder="e.g. 1212"
               autoCapitalize="none"
               value={this.state.postal_code}
               onChangeText={(postal_code) => this.setState({ postal_code })}

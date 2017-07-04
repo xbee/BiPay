@@ -46,7 +46,7 @@ export default class QRcodeScanner extends Component {
           <View style={{ flex: 1 }}>
             <View style={styles.container}>
               <Text style={styles.input}>
-                Reference: {this.state.reference}
+                To: {this.state.reference}
               </Text>
             </View>
             <View style={styles.footer}>

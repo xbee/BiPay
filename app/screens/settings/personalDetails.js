@@ -119,8 +119,8 @@ export default class Settings extends Component {
                 styles={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
               />
             </View>
-            <View style={[styles.pickerContainer, { height: 58 }]}>
-              <Text style={[styles.text, { flex: 3 }]}>
+            <View style={[styles.pickerContainer, { height: 60 }]}>
+              <Text style={[styles.text, { flex: 2 }]}>
                 Language
               </Text>
               <Picker

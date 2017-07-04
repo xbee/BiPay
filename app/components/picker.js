@@ -12,15 +12,16 @@ export default class Picker extends Component {
       <View
         style={[{
           backgroundColor: 'white',
-          justifyContent: 'center',
-          alignItems: 'center',
+          width: 200,
         }, style]}>
         <PickerDropDown.Picker
           {...this.props}
           style={[{
             alignSelf: 'stretch',
             color: Colors.black,
-            height: 32,
+            width: 200,
+            height: 50,
+            fontSize: 16,
           }, style]}>
           {children}
         </PickerDropDown.Picker>

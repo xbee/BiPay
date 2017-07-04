@@ -42,7 +42,7 @@ export default class Signup extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
           <ScrollView keyboardDismissMode={'interactive'}>
             <TextInput
               title="First name"
@@ -99,7 +99,7 @@ export default class Signup extends Component {
             style={styles.submit}
             onPress={() => this.signup()}>
             <Text style={{ color: 'white' }}>
-              Sign Up
+              Sign up
             </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>
