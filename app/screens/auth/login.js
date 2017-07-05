@@ -5,6 +5,7 @@ import Auth from './../../util/auth'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
 import Colors from './../../config/colors'
+import Constants from './../../config/constants'
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -16,7 +17,7 @@ export default class Login extends Component {
     this.checkLoggedIn()
     this.state = {
       email: '',
-      company: '',
+      company: Constants.company_id,
       password: '',
     }
   }
@@ -62,13 +63,6 @@ export default class Login extends Component {
               keyboardType="email-address"
               value={this.state.email}
               onChangeText={(email) => this.setState({ email })}
-            />
-            <TextInput
-              title="Company"
-              autoCapitalize="none"
-              placeholder="e.g rehive"
-              value={this.state.company}
-              onChangeText={(company) => this.setState({ company })}
             />
             <TextInput
               title="Password"
