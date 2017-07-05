@@ -118,7 +118,7 @@ export default class Transactions extends Component {
             renderItem={({ item }) => (
               <ListItem
                 avatar={item.user.profile || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgmT5tM-IGcFDpqZ87p9zKGaWQuzpvAcDKfOTPYfx5A9zOmbTh8RMMFg'}
-                title={item.label}
+                title={item.tx_type == 'credit' ? "Received" : "Sent"}
                 subtitle={moment(item.created).fromNow()}
                 rightTitle={`${item.currency.symbol}${this.getAmount(item.amount, item.currency.divisibility)}`}
                 rightTitleStyle={{ 'color': '#bdc6cf' }}
