@@ -12,7 +12,11 @@ export default class Receive extends Component {
     super()
 
     this.state = {
-      cryptoAddress: {}
+      cryptoAddress: {
+        address: '',
+        memo: '',
+        reference: ''
+      }
     }
   }
 
@@ -21,8 +25,15 @@ export default class Receive extends Component {
   }
 
   getCryptoAddress = async () => {
-    let cryptoAddress = await stellarService.getAddress()
-    cryptoAddress.qrCode = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + cryptoAddress.reference + '&choe=UTF-8'
+    const cryptoAddressResponse = await stellarService.getAddress()
+    console.log(cryptoAddressResponse)
+    const cryptoAddress = this.state
+    cryptoAddress.qrCode = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + cryptoAddressResponse.reference + '&choe=UTF-8'
+    cryptoAddress.address = cryptoAddressResponse.details.address
+    cryptoAddress.memo = cryptoAddressResponse.details.memo
+    cryptoAddress.reference = cryptoAddressResponse.reference
+
+    console.log(cryptoAddress)
     this.setState({ cryptoAddress })
   }
 
@@ -38,6 +49,12 @@ export default class Receive extends Component {
         />
         <Text style={styles.text}>
           {this.state.cryptoAddress.reference}
+        </Text>
+        <Text style={styles.text}>
+          Memo: {this.state.cryptoAddress.memo}
+        </Text>
+        <Text style={styles.boxed}>
+          {this.state.cryptoAddress.address}
         </Text>
       </View>
     )
@@ -57,4 +74,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.black,
   },
+  boxed: {
+    fontSize: 16,
+    textAlign: 'center',
+    padding: 10,
+    backgroundColor: Colors.lightgray
+  }
 })
