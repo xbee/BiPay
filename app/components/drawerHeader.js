@@ -20,6 +20,7 @@ export default class DrawerHeader extends Component {
   }
 
   render() {
+    this.getUserInfo()
     return (
       <View style={styles.row}>
         <TouchableHighlight
