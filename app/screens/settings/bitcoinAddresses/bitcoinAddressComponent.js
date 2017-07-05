@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, StyleSheet, TouchableHighlight, Text, KeyboardAvoidingView } from 'react-native'
 import TextInput from './../../../components/textInput'
+import Colors from './../../../config/colors'
 
 export default class BitcoinAddressComponent extends Component {
 
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

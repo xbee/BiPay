@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Colors from './../../../config/colors'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -25,7 +26,7 @@ export default class Settings extends Component {
               <Icon
                 name="angle-right"
                 size={50}
-                color="#4D4D4D"
+                color={Colors.black}
               />
             </View>
           </View>
@@ -41,7 +42,7 @@ export default class Settings extends Component {
               <Icon
                 name="angle-right"
                 size={50}
-                color="#4D4D4D"
+                color={Colors.black}
               />
             </View>
           </View>
@@ -57,7 +58,7 @@ export default class Settings extends Component {
               <Icon
                 name="angle-right"
                 size={50}
-                color="#4D4D4D"
+                color={Colors.black}
               />
             </View>
           </View>
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: "100%",
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
+    borderBottomColor: Colors.lightgray,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   optionsText: {
     flex: 1,
     fontSize: 18,
-    color: '#4D4D4D',
+    color: Colors.black,
   },
   optionsIcon: {
     flex: 1,

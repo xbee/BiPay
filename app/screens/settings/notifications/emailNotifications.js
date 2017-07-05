@@ -92,13 +92,4 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
-  submit: {
-    padding: 10,
-    height: 70,
-    backgroundColor: '#3D95CE',
-    width: "100%",
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 })

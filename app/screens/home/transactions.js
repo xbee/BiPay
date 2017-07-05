@@ -7,6 +7,8 @@ import {
 } from 'react-native'
 import { List, ListItem } from "react-native-elements"
 import TransactionService from './../../services/transactionService'
+import UserInfoService from './../../services/userInfoService'
+import Colors from './../../config/colors'
 
 export default class Transactions extends Component {
   constructor(props) {
@@ -19,6 +21,7 @@ export default class Transactions extends Component {
       nextUrl: null,
       error: null,
       refreshing: false,
+      company: {},
     };
   }
 
@@ -27,7 +30,7 @@ export default class Transactions extends Component {
     console.log(this.state.data)
   }
 
-  setData = (responseJson) => {
+  setData = async (responseJson) => {
     if (responseJson.status === "success") {
       const data = this.state.data.concat(responseJson.data.results)
       this.setState({
@@ -40,7 +43,16 @@ export default class Transactions extends Component {
     }
 
     if (this.state.data.length === 0) {
-       this.setState({noTransaction: true})
+      let responseJson = await UserInfoService.getCompany()
+      if (responseJson.status === "success") {
+        this.setState({
+          company: responseJson.data,
+        })
+      }
+      else {
+        this.props.logout()
+      }
+      this.setState({ noTransaction: true })
     }
   }
 
@@ -55,9 +67,9 @@ export default class Transactions extends Component {
   handleRefresh() {
     console.log('refreshing')
     if (this.state.loading !== true) {
-      this.setState({refreshing: true});
+      this.setState({ refreshing: true });
       this.getData().then(() => {
-        this.setState({refreshing: false});
+        this.setState({ refreshing: false });
       })
       console.log(this.state.refreshing)
     }
@@ -68,10 +80,10 @@ export default class Transactions extends Component {
     console.log('loadmore')
     console.log(this.state.nextUrl)
     if (this.state.refreshing !== true && this.state.loading !== true && this.state.nextUrl) {
-      this.setState({'loading': true})
+      this.setState({ 'loading': true })
       let responseJson = await TransactionService.getNextTransactions(this.state.nextUrl)
       this.setData(responseJson)
-      this.setState({'loading': false})
+      this.setState({ 'loading': false })
     }
   }
 
@@ -86,12 +98,12 @@ export default class Transactions extends Component {
   render() {
     if (this.state.noTransaction) {
       return (
-        <View style={{ flex: 1, backgroundColor: '#EBEBEB', padding: 10 }}>
-          <View style={{ marginTop:10, flexDirection: 'column', backgroundColor: 'white', padding: 20 }}>
-            <Text style={{ fontSize:30, fontWeight: 'normal', color: '#4D4D4D' }}>
-              Welcome to Rehive
+        <View style={{ flex: 1, backgroundColor: Colors.lightgray, padding: 10 }}>
+          <View style={{ marginTop: 10, flexDirection: 'column', backgroundColor: 'white', padding: 20 }}>
+            <Text style={{ fontSize: 30, fontWeight: 'normal', color: Colors.black }}>
+              Welcome to {this.state.company.name}
             </Text>
-            <Text style={{ paddingTop:15, fontSize:18, fontWeight: 'normal', color: '#4D4D4D', textAlign: 'justify' }}>
+            <Text style={{ paddingTop: 15, fontSize: 18, fontWeight: 'normal', color: Colors.black, textAlign: 'justify' }}>
               Please verify your email address to redeem any unclaimed transactions. Pull to refresh your balance.
             </Text>
           </View>
@@ -99,30 +111,30 @@ export default class Transactions extends Component {
       )
     }
     else {
-    return (
-      <View style={{ flex: 1 }}>
-        <FlatList
-          data={this.state.data}
-          renderItem={({item}) => (
-            <ListItem
-              avatar={item.user.profile || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgmT5tM-IGcFDpqZ87p9zKGaWQuzpvAcDKfOTPYfx5A9zOmbTh8RMMFg'}
-              title={item.label}
-              subtitle={moment(item.created).fromNow()}
-              rightTitle={`${item.currency.symbol}${this.getAmount(item.amount, item.currency.divisibility)}`}
-              rightTitleStyle={{'color':'#bdc6cf'}}
-              hideChevron
-              roundAvatar
+      return (
+        <View style={{ flex: 1 }}>
+          <FlatList
+            data={this.state.data}
+            renderItem={({ item }) => (
+              <ListItem
+                avatar={item.user.profile || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgmT5tM-IGcFDpqZ87p9zKGaWQuzpvAcDKfOTPYfx5A9zOmbTh8RMMFg'}
+                title={item.label}
+                subtitle={moment(item.created).fromNow()}
+                rightTitle={`${item.currency.symbol}${this.getAmount(item.amount, item.currency.divisibility)}`}
+                rightTitleStyle={{ 'color': '#bdc6cf' }}
+                hideChevron
+                roundAvatar
               //containerStyle={{'backgroundColor':'#FAFBFC'}}
-            />
-          )}
-          keyExtractor={tx => tx.id}
-          onRefresh={this.handleRefresh.bind(this)}
-          refreshing={this.state.refreshing}
-          onEndReached={this.handleLoadMore.bind(this)}
-          onEndReachedThreshold={50}
-        />
-      </View>
-    )
+              />
+            )}
+            keyExtractor={tx => tx.id}
+            onRefresh={this.handleRefresh.bind(this)}
+            refreshing={this.state.refreshing}
+            onEndReached={this.handleLoadMore.bind(this)}
+            onEndReachedThreshold={50}
+          />
+        </View>
+      )
     }
   }
 }

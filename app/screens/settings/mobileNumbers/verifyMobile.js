@@ -3,6 +3,7 @@ import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
 import TextInput from './../../../components/textInput'
+import Colors from './../../../config/colors'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -39,6 +40,7 @@ export default class AmountEntry extends Component {
         <View style={{ flex: 1 }}>
           <TextInput
             title="Enter OTP"
+            placeholder="OTP"
             autoCapitalize="none"
             keyboardType="numeric"
             onChangeText={(otp) => this.setState({ otp })}
@@ -46,7 +48,7 @@ export default class AmountEntry extends Component {
         </View>
         <View style={styles.buttons}>
           <TouchableHighlight
-            style={[styles.submit, { backgroundColor: '#ED675A' }]}
+            style={[styles.submit, { backgroundColor: Colors.red }]}
             onPress={() => this.reload()}>
             <Text style={{ color: 'white', fontSize: 18 }}>
               Skip
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',

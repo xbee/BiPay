@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import Date from './../util/date.js'
+import Colors from './../config/colors'
 
 export default class Withdraw extends Component {
 
@@ -23,7 +24,7 @@ export default class Withdraw extends Component {
             />
           </View>
           <View style={styles.type}>
-            <Text style={{ fontSize: 18, fontWeight: 'normal', color: '#4D4D4D' }}>
+            <Text style={{ fontSize: 18, fontWeight: 'normal', color: Colors.black }}>
               {this.props.data.label}
             </Text>
             <Text style={{ fontSize: 13, color: '#4D4D4D' }}>
@@ -32,10 +33,10 @@ export default class Withdraw extends Component {
           </View>
         </View>
         <View style={styles.right}>
-          <Text style={{ fontSize: 20, fontWeight: 'normal', color: '#4D4D4D' }}>
+          <Text style={{ fontSize: 20, fontWeight: 'normal', color: Colors.black }}>
             {this.props.data.currency.symbol + " " + this.getAmount(this.props.data.amount, this.props.data.currency.divisibility)}
           </Text>
-          <Text style={{ fontSize: 14, color: '#4D4D4D' }}>
+          <Text style={{ fontSize: 14, color: Colors.black }}>
             {Date.getDateFromMiliseconds(this.props.data.updated)} | {this.props.data.status}
           </Text>
         </View>
@@ -49,9 +50,9 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: Colors.lightgray,
     height: 70,
-    backgroundColor: '#F7F7F7',
+    backgroundColor: Colors.transactionBackground,
   },
   left: {
     flex: 220,

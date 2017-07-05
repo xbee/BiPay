@@ -3,6 +3,7 @@ import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert
 import SettingsService from './../../services/settingsService'
 import Auth from './../../util/auth'
 import TextInput from './../../components/textInput'
+import Colors from './../../config/colors'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -49,7 +50,7 @@ export default class AmountEntry extends Component {
         </View>
         <View style={styles.buttons}>
           <TouchableHighlight
-            style={[styles.submit, { backgroundColor: 'red' }]}
+            style={[styles.submit, { backgroundColor: Colors.red }]}
             onPress={() => this.reload()}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Skip
@@ -77,18 +78,10 @@ const styles = StyleSheet.create({
   submit: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input: {
-    height: 60,
-    width: "100%",
-    padding: 10,
-    marginTop: 20,
-    borderColor: 'white',
-    borderWidth: 1,
   },
   buttons: {
     height: 65,

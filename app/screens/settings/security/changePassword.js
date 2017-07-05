@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TouchableHighlight } from 'react-native'
 import AuthService from './../../../services/authService'
 import TextInput from './../../../components/textInput'
+import Colors from './../../../config/colors'
 
 export default class ChangePassword extends Component {
   static navigationOptions = {
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

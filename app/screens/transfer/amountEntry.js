@@ -3,6 +3,7 @@ import { ScrollView, KeyboardAvoidingView, AsyncStorage, StyleSheet, TouchableHi
 import stellarService from './../../services/stellarService'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
+import Colors from './../../config/colors'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     height: 65,
-    backgroundColor: '#3C8DBC',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

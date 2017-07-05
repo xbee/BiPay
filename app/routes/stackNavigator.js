@@ -1,4 +1,4 @@
-import { StackNavigator, DrawerNavigator } from 'react-navigation'
+import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
 import Expo from 'expo'
 import React from 'react'
 
@@ -53,6 +53,8 @@ import TwoFactor from './../screens/settings/security/twoFactor'
 import SettingsNotifications from './../screens/settings/notifications/notifications'
 import EmailNotifications from './../screens/settings/notifications/emailNotifications'
 import MobileNotifications from './../screens/settings/notifications/mobileNotifications'
+
+import Colors from './../config/colors'
 
 const Stack = {
   Home: {
@@ -212,10 +214,10 @@ const Stack = {
 
 const StackNavigationOptions = {
   headerStyle: {
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     paddingTop: Expo.Constants.statusBarHeight,
     height: 55 + Expo.Constants.statusBarHeight,
-    borderColor: '#3C8DBC',
+    borderColor: Colors.lightblue,
     shadowOpacity: 0,
     shadowOffset: {
       height: 0,
@@ -302,6 +304,21 @@ export default StackNavigator({
             </ScrollView>
           </View>
         ),
+        // contentComponent: (props) => (
+        //   <View style={styles.container}>
+        //     <DrawerHeader navigation={props.navigation} />
+        //     <ScrollView >
+        //       <DrawerItems
+        //         {...props}
+        //         activeTintColor="#6EBDF7"
+        //         activeBackgroundColor="#485159"
+        //         inactiveTintColor="white"
+        //         inactiveBackgroundColor="transparent"
+        //         labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
+        //       />
+        //     </ScrollView>
+        //   </View>
+        // ),
       }
     ),
   },
@@ -316,6 +333,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#333B42',
+    backgroundColor: Colors.drawerColor,
   },
 })

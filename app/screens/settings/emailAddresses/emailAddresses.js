@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import Spinner from 'react-native-loading-spinner-overlay'
 import EmailAddress from './../../../components/emailAddress'
 import SettingsService from './../../../services/settingsService'
+import Colors from './../../../config/colors'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

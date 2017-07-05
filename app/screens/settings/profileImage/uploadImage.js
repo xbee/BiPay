@@ -3,6 +3,7 @@ import { View, StyleSheet, Image, AsyncStorage, Alert, Text, TouchableHighlight 
 import Spinner from 'react-native-loading-spinner-overlay'
 import UserInfoService from './../../../services/userInfoService'
 import ResetNavigation from './../../../util/resetNavigation'
+import Colors from './../../../config/colors'
 
 export default class UploadImage extends Component {
   static navigationOptions = {
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   submit: {
     marginTop: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

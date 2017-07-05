@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, AsyncStorage } from 'react-native'
 import stellarService from './../../services/stellarService'
+import Colors from './../../config/colors'
 
 export default class Receive extends Component {
   static navigationOptions = {
@@ -54,6 +55,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#4D4D4D',
+    color: Colors.black,
   },
 })

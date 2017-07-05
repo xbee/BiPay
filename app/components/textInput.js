@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
+import Colors from './../config/colors'
 
 export default class Account extends Component {
 
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingLeft: 0,
     fontSize: 16,
-    color: '#4D4D4D',
+    color: Colors.black,
     fontWeight: 'normal',
     borderColor: 'white',
     borderWidth: 1,
@@ -33,13 +34,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: '#4D4D4D',
+    color: Colors.black,
   },
   inputContainer: {
     flexDirection: 'column',
     width: '100%',
     padding: 15,
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: Colors.lightgray,
   },
 })

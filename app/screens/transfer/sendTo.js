@@ -6,6 +6,7 @@ import TextInput from './../../components/textInput'
 import ContactService from './../../services/contactService'
 import UserInfoService from './../../services/userInfoService'
 import Auth from './../../util/auth'
+import Colors from './../../config/colors'
 
 export default class SendTo extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     height: 65,
-    backgroundColor: '#3C8DBC',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',
