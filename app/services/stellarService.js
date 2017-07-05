@@ -1,4 +1,4 @@
-import BaseService from './baseService'
+import baseServiceStellar from './baseServiceStellar'
 
 var stellarService = {
 
@@ -10,18 +10,18 @@ var stellarService = {
       currency,
       account,
     }
-    return BaseService.post('transactions/send/', data)
+    return baseServiceStellar.post('transactions/send/', data)
   },
 
   getAddress: () => {
-    return BaseService.post('user/account/', data)
+    return baseServiceStellar.post('user/account/', data)
   },
 
   setUsername: (username) => {
     var data = {
       username,
     }
-    return BaseService.post('/user/username/set/', data)
+    return baseServiceStellar.post('/user/username/set/', data)
   },
 }
 

@@ -1,7 +1,7 @@
 import { AsyncStorage, Alert } from 'react-native'
 import Auth from './../util/auth'
 
-const baseUrl = 'https://rehive.com/crypto/stellar/'
+const baseUrl = 'https://rehive.com/services/crypto/'
 
 let getHeaders = async () => {
   const token = await AsyncStorage.getItem('token')
@@ -20,6 +20,7 @@ let getHeaders = async () => {
 
 let _apiCallWithData = async (url, method, data) => {
   try {
+    console.log(data)
     let headers = await getHeaders()
     let response = await fetch(url, {
       method,
@@ -27,8 +28,14 @@ let _apiCallWithData = async (url, method, data) => {
       body: JSON.stringify(data),
       credentials: 'omit',
     })
-    let responseJson = await response.json()
-    return responseJson
+    let status = await response.status
+    console.log(response.status)
+    if (status === 201) {
+      return {"status": "success"}  //hack
+    } else {
+      return {}
+    }
+
   } catch (error) {
     Alert.alert(
       "Error",
@@ -46,7 +53,7 @@ let _apiCallWithoutData = async (url, method) => {
       headers: headers,
       credentials: 'omit',
     })
-    let responseJson = await response.json()
+    let status = await response.json()
     return responseJson
   } catch (error) {
     Alert.alert(

@@ -35,6 +35,7 @@ export default class AmountEntry extends Component {
       for (let i = 0; i < currency.divisibility; i++) {
         amount = amount * 10
       }
+      amount = parseInt(amount,10)
       Alert.alert(
         'Are you sure?',
         'Send ' + currency.symbol + this.state.amount + ' to ' + this.state.reference,
@@ -47,7 +48,7 @@ export default class AmountEntry extends Component {
   }
 
   transferConfirmed = async (amount) => {
-    let responseJson = await stellarService.sendMoney(amount,this.state.memo, this.state.reference, 'XBT', 'default')
+    let responseJson = await stellarService.sendMoney(amount,this.state.memo, this.state.reference, 'XLM', 'default')
     if (responseJson.status === "success") {
       Alert.alert('Success',
         "Transaction successful",
