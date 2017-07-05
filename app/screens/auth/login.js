@@ -4,6 +4,7 @@ import AuthService from './../../services/authService'
 import Auth from './../../util/auth'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
+import Colors from './../../config/colors'
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -89,14 +90,14 @@ export default class Login extends Component {
         <TouchableHighlight
           style={styles.forgetPassword}
           onPress={() => this.props.navigation.navigate("ForgetPassword")}>
-          <Text style={{ color: '#2070A0' }}>
+          <Text style={{ color: Colors.lightblue }}>
             Forgot Password?
             </Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.register}
           onPress={() => this.props.navigation.navigate("Signup")}>
-          <Text style={{ color: '#2070A0' }}>
+          <Text style={{ color: Colors.lightblue }}>
             Create New Account
             </Text>
         </TouchableHighlight>
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     height: 50,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     borderRadius: 8,
     alignItems: 'center',
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
     width: "60%",
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#2070A0',
+    borderColor: Colors.lightblue,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'white',
     width: "100%",
-    borderColor: 'blue',
+    borderColor: Colors.lightblue,
     alignItems: 'center',
     justifyContent: 'center',
   },

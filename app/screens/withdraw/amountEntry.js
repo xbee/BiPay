@@ -3,6 +3,7 @@ import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, AsyncStorag
 import TransectionService from './../../services/transactionService'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
+import Colors from './../../config/colors'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

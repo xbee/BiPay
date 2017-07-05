@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text, AsyncStorage } from 'react-native'
 import UserInfoService from './../../services/userInfoService'
+import Colors from './../../config/colors'
 
 export default class CurrentBalance extends Component {
 
@@ -56,7 +57,7 @@ export default class CurrentBalance extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 20,

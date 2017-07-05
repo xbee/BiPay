@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native'
 import Expo, { Permissions } from 'expo'
+import Colors from './../../config/colors'
 
 export default class QRcodeScanner extends Component {
   static navigationOptions = {
@@ -51,14 +52,14 @@ export default class QRcodeScanner extends Component {
             </View>
             <View style={styles.footer}>
               <TouchableHighlight
-                style={[styles.buttons, { backgroundColor: 'red' }]}
+                style={[styles.buttons, { backgroundColor: Colors.red }]}
                 onPress={() => this.setState({ camera: true })}>
                 <Text style={{ color: 'white', fontSize: 20 }}>
                   Again
                 </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                style={[styles.buttons, { backgroundColor: '#2070A0' }]}
+                style={[styles.buttons, { backgroundColor: Colors.lightblue }]}
                 onPress={this.goToSendTo}>
                 <Text style={{ color: 'white', fontSize: 20 }}>
                   Next
@@ -83,14 +84,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   footer: {
-    height: 70,
+    height: 65,
     flexDirection: 'row',
     width: "100%",
     alignSelf: 'stretch',
   },
   buttons: {
     flex: 1,
-    padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },

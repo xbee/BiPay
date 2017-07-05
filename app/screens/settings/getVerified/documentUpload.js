@@ -3,6 +3,7 @@ import { View, StyleSheet, Image, Alert, Text, TouchableHighlight } from 'react-
 import Spinner from 'react-native-loading-spinner-overlay'
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
+import Colors from './../../../config/colors'
 
 export default class DocumentUpload extends Component {
   static navigationOptions = {
@@ -66,7 +67,7 @@ export default class DocumentUpload extends Component {
         </TouchableHighlight>
         <View style={styles.buttonsContainer}>
           <TouchableHighlight
-            style={[styles.button, {backgroundColor: '#ED675A'}]}
+            style={[styles.button, {backgroundColor: Colors.red}]}
             onPress={() => this.props.navigation.goBack()}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Cancel
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     flexDirection: 'row',
     alignSelf: 'stretch',
   },

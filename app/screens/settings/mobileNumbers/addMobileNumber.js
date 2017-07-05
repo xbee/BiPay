@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import SettingsService from './../../../services/settingsService'
 import TextInput from './../../../components/mobileNumberInput'
+import Colors from './../../../config/colors'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

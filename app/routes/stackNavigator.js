@@ -54,6 +54,8 @@ import SettingsNotifications from './../screens/settings/notifications/notificat
 import EmailNotifications from './../screens/settings/notifications/emailNotifications'
 import MobileNotifications from './../screens/settings/notifications/mobileNotifications'
 
+import Colors from './../config/colors'
+
 const Stack = {
   Home: {
     screen: Home,
@@ -212,10 +214,10 @@ const Stack = {
 
 const StackNavigationOptions = {
   headerStyle: {
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     paddingTop: Expo.Constants.statusBarHeight,
     height: 55 + Expo.Constants.statusBarHeight,
-    borderColor: '#3C8DBC',
+    borderColor: Colors.lightblue,
     shadowOpacity: 0,
     shadowOffset: {
       height: 0,
@@ -316,6 +318,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#333B42',
+    backgroundColor: Colors.drawerColor,
   },
 })

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, Alert, Linking } from 'react-native'
 import UserInfoService from './../../services/userInfoService'
+import Colors from './../../config/colors'
 
 export default class About extends Component {
   static navigationOptions = {
@@ -50,15 +51,15 @@ export default class About extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.details}>
-          <Text style={{ fontSize: 30, color: '#4D4D4D' }}>
+          <Text style={{ fontSize: 30, color: Colors.black }}>
             {this.state.company.name}
           </Text>
           <View style={styles.description}>
-            <Text style={{ fontSize: 20, color: '#4D4D4D' }}>
+            <Text style={{ fontSize: 20, color: Colors.black }}>
               {this.state.company.description}
             </Text>
             <Text
-              style={{ fontSize: 20, color: '#2470A0' }}
+              style={{ fontSize: 20, color: Colors.darkblue }}
               onPress={this.openLink}>
               (link)
             </Text>
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'flex-start',
     justifyContent: 'center',
-    backgroundColor: 'gainsboro',
+    backgroundColor: Colors.lightgray,
   },
   logo: {
     padding: 10,

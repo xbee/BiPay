@@ -4,6 +4,7 @@ import CountryPicker from 'react-native-country-picker-modal'
 import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
 import ProfileImage from './profileImage/profileImage'
+import Colors from './../../config/colors'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -167,20 +168,20 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: '#4D4D4D',
+    color: Colors.black,
   },
   inputContainer: {
     flexDirection: 'column',
     width: '100%',
     padding: 15,
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: Colors.lightgray,
   },
   submit: {
     padding: 10,
     marginTop: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: Colors.lightgray,
   },
 })
 

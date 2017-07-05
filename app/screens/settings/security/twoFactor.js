@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import Colors from './../../../config/colors'
 
 export default class TwoFactor extends Component {
   static navigationOptions = {
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   },
   comment: {
     flex: 1,
-    backgroundColor: 'gainsboro',
+    backgroundColor: Colors.lightgray,
     alignItems: 'center',
     justifyContent: 'center',
     paddingRight: 30,

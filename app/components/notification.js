@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Switch } from 'react-native'
+import Colors from './../config/colors'
 
 export default class Notification extends Component {
 
@@ -23,7 +24,7 @@ export default class Notification extends Component {
       <View
         style={styles.options} >
         <View style={styles.optionsElement}>
-          <Text style={{ fontSize: 18, color: '#4D4D4D' }}>
+          <Text style={{ fontSize: 18, color: Colors.black }}>
             {this.props.data.description}
           </Text>
         </View>
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: "#EBEBEB",
+    borderBottomColor: Colors.lightgray,
   },
   optionsElement: {
     flex: 3,

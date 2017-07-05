@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, View, StyleSheet, Text, Image, AsyncStorage, TouchableHighlight } from 'react-native'
 import { ImagePicker } from 'expo'
+import Colors from './../../../config/colors'
 
 export default class ProfileImage extends Component {
   static navigationOptions = {
@@ -67,12 +68,12 @@ export default class ProfileImage extends Component {
         <Modal
           animationType={"slide"}
           transparent
-          style={{ backgroundColor: 'lightgray' }}
+          style={{ backgroundColor: Colors.lightgray }}
           visible={this.state.modalVisible}
           onRequestClose={() => { console.log("Modal has been closed.") }} >
           <View style={styles.modal}>
             <View style={styles.bottomModal}>
-              <View style={[styles.button, { borderBottomColor: 'black' }]}>
+              <View style={[styles.button, { borderBottomColor: Colors.black }]}>
                 <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
                   Change Image
                 </Text>
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: 'white',
-    borderColor: 'black',
+    borderColor: Colors.black,
     alignItems: 'center',
     justifyContent: 'center',
   },

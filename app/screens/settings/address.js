@@ -3,6 +3,7 @@ import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, Toucha
 import CountryPicker from 'react-native-country-picker-modal'
 import UserInfoService from './../../services/userInfoService'
 import TextInput from './../../components/textInput'
+import Colors from './../../config/colors'
 
 export default class Address extends Component {
   static navigationOptions = {
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: '#4D4D4D',
+    color: Colors.black,
   },
   pickerContainer: {
     flexDirection: 'row',
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: Colors.lightgray,
   },
 })
 

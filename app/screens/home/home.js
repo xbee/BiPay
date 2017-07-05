@@ -4,6 +4,7 @@ import UserInfoService from './../../services/userInfoService'
 import Transactions from './transactions'
 import CurrentBalance from './currentBalance'
 import Auth from './../../util/auth'
+import Colors from './../../config/colors'
 
 export default class Home extends Component {
   static navigationOptions = {
@@ -43,7 +44,7 @@ export default class Home extends Component {
         <View style={styles.buttonbar} >
           <TouchableHighlight
             style={styles.submit}
-            onPress={() => this.props.navigation.navigate("Receive", { reference: "" })}>
+            onPress={() => this.props.navigation.navigate("Receive")}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Receive
               </Text>
@@ -72,17 +73,16 @@ const styles = StyleSheet.create({
   },
   transaction: {
     flex: 5,
-    backgroundColor: '#F7F7F7',
+    backgroundColor: Colors.transactionBackground,
   },
   buttonbar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     height: 65,
-    backgroundColor: '#F7F7F7',
+    backgroundColor: Colors.lightblue,
   },
   submit: {
     height: "100%",
-    backgroundColor: '#3D95CE',
     width: "50%",
     alignSelf: 'stretch',
     alignItems: 'center',

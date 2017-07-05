@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, AsyncStorage, Alert } from 'react-native'
 import UserInfoService from './../../services/userInfoService'
+import Colors from './../../config/colors'
 
 export default class Deposit extends Component {
   static navigationOptions = {
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   },
   comment: {
     flex: 2,
-    backgroundColor: '#EBEBEB',
+    backgroundColor: Colors.lightgray,
     alignItems: 'center',
     justifyContent: 'center',
     paddingRight: 30,
@@ -140,11 +141,11 @@ const styles = StyleSheet.create({
   commentText: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#4D4D4D',
+    color: Colors.black,
   },
   reference: {
     flex: 1,
-    backgroundColor: '#03DBBB',
+    backgroundColor: Colors.green,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -169,12 +170,12 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: 'left',
     fontWeight: 'bold',
-    color: '#4D4D4D',
+    color: Colors.black,
   },
   infoText: {
     flex: 1,
     fontSize: 17,
     textAlign: 'right',
-    color: '#4D4D4D',
+    color: Colors.black,
   },
 })

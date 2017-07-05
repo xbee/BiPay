@@ -7,4 +7,6 @@ export default {
   lightgray: '#EBEBEB',
   darkgray: '#4D4D4D',
   drawerHeaderText: '#C0C9CF',
+  transactionBackground: '#F7F7F7',
+  drawerColor: '#333B42',
 }

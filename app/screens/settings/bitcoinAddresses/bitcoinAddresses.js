@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, ListView, StyleSheet, Alert, RefreshControl, TouchableHighlight, Text } from 'react-native'
 import Account from './../../../components/bankAccount'
 import SettingsService from './../../../services/settingsService'
+import Colors from './../../../config/colors'
 
 export default class BitcoinAddresses extends Component {
   static navigationOptions = {
@@ -56,7 +57,7 @@ export default class BitcoinAddresses extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={() => this.props.navigation.navigate("AddBitcoinAddress", { parentRoute: 'Settings', nextRoute: 'SettingsBitcoinAddresses' })}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
+          <Text style={{ color: 'white', fontSize: 18 }}>
             Add bitcoin address
           </Text>
         </TouchableHighlight>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
   submit: {
     padding: 10,
     height: 70,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',

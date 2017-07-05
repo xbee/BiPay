@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, View, StyleSheet, Text, TouchableHighlight } from 'react-native'
 import { ImagePicker } from 'expo'
+import Colors from './../../../config/colors'
 
 export default class Document extends Component {
 
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     flex: 1,
-    backgroundColor: 'lightgray',
+    backgroundColor: Colors.lightgray,
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
   },
   upload: {
     height: 65,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: 'white',
-    borderColor: 'black',
+    borderColor: Colors.black,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#4D4D4D',
+    color: Colors.black,
   },
 })
 

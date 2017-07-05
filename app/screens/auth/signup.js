@@ -3,6 +3,7 @@ import { View, Alert, StyleSheet, ScrollView, TouchableHighlight, Text, Keyboard
 import AuthService from './../../services/authService'
 import TextInput from './../../components/textInput'
 import MobileInput from './../../components/mobileNumberInput'
+import Colors from './../../config/colors'
 
 export default class Signup extends Component {
   static navigationOptions = {
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 50,
     borderRadius: 8,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.lightblue,
     width: "100%",
     alignSelf: 'stretch',
     alignItems: 'center',
