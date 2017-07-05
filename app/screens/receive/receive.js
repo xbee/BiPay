@@ -50,10 +50,9 @@ export default class Receive extends Component {
         <Text style={styles.text}>
           {this.state.cryptoAddress.reference}
         </Text>
-        <Text style={styles.text}>
-          Memo: {this.state.cryptoAddress.memo}
-        </Text>
         <Text style={styles.boxed}>
+          Memo: {this.state.cryptoAddress.memo}
+          {"\n"}{"\n"}
           {this.state.cryptoAddress.address}
         </Text>
       </View>
@@ -73,9 +72,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     color: Colors.black,
+    paddingBottom: 10
   },
   boxed: {
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: "bold",
     textAlign: 'center',
     padding: 10,
     backgroundColor: Colors.lightgray
