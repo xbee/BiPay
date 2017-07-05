@@ -21,7 +21,7 @@ var stellarService = {
     var data = {
       username,
     }
-    return baseServiceStellar.post('/user/username/set/', data)
+    return baseServiceStellar.post('user/username/set/', data)
   },
 }
 

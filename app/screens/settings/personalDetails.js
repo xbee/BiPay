@@ -3,6 +3,7 @@ import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TextIn
 import CountryPicker from 'react-native-country-picker-modal'
 import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
+import stellarService from './../../services/stellarService'
 import ProfileImage from './profileImage/profileImage'
 import Colors from './../../config/colors'
 
@@ -22,11 +23,22 @@ export default class Settings extends Component {
       skype_name: '',
       mobile_number: '',
       language: '',
+      stellar_username: ''
     }
   }
 
   componentDidMount() {
     this.getUser()
+    this.getStellarUsername()
+  }
+
+  getStellarUsername = async () => {
+    let stellar_address = await stellarService.getAddress()
+    if(stellar_address && stellar_address.details && stellar_address.details.memo) {
+      this.setState({
+        stellar_username: stellar_address.details.memo
+      })
+    }
   }
 
   getUser = async () => {
@@ -52,6 +64,7 @@ export default class Settings extends Component {
 
   save = async () => {
     let responseJson = await UserInfoService.updateUserDetails(this.state)
+    let stellarResponse = await stellarService.setUsername(this.state.stellar_username)
     if (responseJson.status === "success") {
       await AsyncStorage.removeItem('user')
       await AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
@@ -70,6 +83,18 @@ export default class Settings extends Component {
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
             <ProfileImage navigateToUploadImage={this.navigateToUploadImage} />
+            <View style={styles.inputContainer}>
+              <Text style={styles.text}>
+                Username
+                </Text>
+              <TextInput
+                style={styles.input}
+                placeholder=""
+                autoCapitalize="none"
+                value={this.state.stellar_username}
+                onChangeText={(text) => this.setState({ stellar_username: text })}
+              />
+            </View>
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
                 First name
