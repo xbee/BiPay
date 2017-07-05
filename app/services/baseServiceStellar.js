@@ -53,7 +53,7 @@ let _apiCallWithoutData = async (url, method) => {
       headers: headers,
       credentials: 'omit',
     })
-    let status = await response.json()
+    let responseJson = await response.json()
     return responseJson
   } catch (error) {
     Alert.alert(

@@ -11,29 +11,18 @@ export default class Receive extends Component {
     super()
 
     this.state = {
-      imageURI: 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=undefined&choe=UTF-8',
+      cryptoAddress: {}
     }
   }
 
   async componentWillMount() {
-    const value = await AsyncStorage.getItem('user')
-    const user = JSON.parse(value)
-    const imageURI = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + user.email + '&choe=UTF-8'
-    this.setState({ imageURI })
+    await this.getCryptoAddress()
   }
 
   getCryptoAddress = async () => {
-    AsyncStorage.getItem('cryptoAddress').then((value) => {
-      this.setState({ 'cryptoAddress': value || {} })
-    })
-  }
-
-  setCryptoAddress = async () => {
-    let responseJson = await stellarService.getAddress()
-    if (responseJson.status === "success") {
-      AsyncStorage.removeItem('cryptoAddress')
-      AsyncStorage.setItem('cryptoAddress', JSON.stringify(responseJson.data))
-    }
+    let cryptoAddress = await stellarService.getAddress()
+    cryptoAddress.qrCode = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + cryptoAddress.reference + '&choe=UTF-8'
+    this.setState({ cryptoAddress })
   }
 
   render() {
@@ -44,8 +33,11 @@ export default class Receive extends Component {
         </Text>
         <Image
           style={{ width: 300, height: 300 }}
-          source={{ uri: this.state.imageURI }}
+          source={{ uri: this.state.cryptoAddress.qrCode }}
         />
+        <Text style={styles.text}>
+          {this.state.cryptoAddress.reference}
+        </Text>
       </View>
     )
   }

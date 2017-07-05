@@ -14,7 +14,7 @@ var stellarService = {
   },
 
   getAddress: () => {
-    return baseServiceStellar.post('user/account/', data)
+    return baseServiceStellar.get('user/account/')
   },
 
   setUsername: (username) => {
