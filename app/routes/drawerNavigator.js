@@ -11,7 +11,7 @@ import Receive from './../screens/receive/receive'
 import Logout from './../screens/auth/logout'
 import DrawerButton from './../components/drawerButton'
 import DrawerHeader from './../components/drawerHeader'
-
+import Colors from './../config/colors'
 
 const RouteConfigs = {
   Home: {
@@ -46,17 +46,17 @@ export default DrawerNavigator(RouteConfigs, {
     headerLeft: <DrawerButton navigation={navigation} />,
     headerTintColor: 'white',
   }),
-  contentComponent: (props, navigation) => (
+  contentComponent: (props) => (
     <View style={styles.container}>
-      <DrawerHeader navigation={navigation} />
+      <DrawerHeader navigation={props.navigation} />
       <ScrollView>
         <DrawerItems
           {...props}
-          activeTintColor="#C0C9CF"
-          activeBackgroundColor="#3D95CE"
-          inactiveTintColor="#C0C9CF"
+          activeTintColor="#6EBDF7"
+          activeBackgroundColor="#485159"
+          inactiveTintColor="white"
           inactiveBackgroundColor="transparent"
-          labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal', color: "#C0C9CF"}}
+          labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
         />
       </ScrollView>
     </View>
@@ -66,6 +66,6 @@ export default DrawerNavigator(RouteConfigs, {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3D95CE',
+    backgroundColor: Colors.drawerColor,
   },
 })

@@ -229,100 +229,104 @@ const StackNavigationOptions = {
 
 const DrawerRoutes = {
   Home: {
-    name: 'HomeStack',
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'Home',
-      navigationOptions: StackNavigationOptions,
+    screen: Home,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
     }),
   },
   Deposit: {
-    name: 'DepositStack',
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'Deposit',
-      navigationOptions: StackNavigationOptions,
+    screen: Deposit,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
     }),
   },
   Withdraw: {
-    name: 'WithdrawStack',
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'Withdraw',
-      navigationOptions: StackNavigationOptions,
+    screen: Withdraw,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
     }),
   },
   Receive: {
-    name: 'ReceiveStack',
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'Receive',
-      navigationOptions: StackNavigationOptions,
+    screen: Receive,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
     }),
   },
   Accounts: {
-    name: 'AccountsStack',
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'Accounts',
-      navigationOptions: StackNavigationOptions,
+    screen: Accounts,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
     }),
   },
   Settings: {
-    name: 'SettingsStack',
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'Settings',
-      navigationOptions: StackNavigationOptions,
+    screen: Settings,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
     }),
   },
   About: {
-    name: 'AboutStack',
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'About',
-      navigationOptions: StackNavigationOptions,
+    screen: About,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <DrawerButton navigation={navigation} />,
     }),
   },
   Logout: {
-    name: 'Logout',
     screen: Logout,
   },
 };
 
 
+// export default StackNavigator(Stack, {
+//       initialRouteName: 'Home',
+//       navigationOptions: StackNavigationOptions,
+//     })
+    
 export default StackNavigator({
   Drawer: {
     name: 'Drawer',
     screen: DrawerNavigator(
-      DrawerRoutes, {
-        contentComponent: (props) => (
-          <View style={styles.container}>
-            <DrawerHeader navigation={props.navigation} />
-            <ScrollView >
-              <DrawerOption name="Home" gotoAddress="Home" navigation={props.navigation} />
-              <DrawerOption name="Deposit" gotoAddress="Deposit" navigation={props.navigation} />
-              <DrawerOption name="Withdraw" gotoAddress="Withdraw" navigation={props.navigation} />
-              <DrawerOption name="Receive" gotoAddress="Receive" navigation={props.navigation} />
-              <DrawerOption name="Accounts" gotoAddress="Accounts" navigation={props.navigation} />
-              <DrawerOption name="Settings" gotoAddress="Settings" navigation={props.navigation} />
-              <DrawerOption name="About" gotoAddress="About" navigation={props.navigation} />
-              <DrawerOption name="Logout" gotoAddress="Logout" navigation={props.navigation} />
-            </ScrollView>
-          </View>
-        ),
+      DrawerRoutes,
+        {
+          navigationOptions: StackNavigationOptions,
         // contentComponent: (props) => (
         //   <View style={styles.container}>
         //     <DrawerHeader navigation={props.navigation} />
         //     <ScrollView >
-        //       <DrawerItems
-        //         {...props}
-        //         activeTintColor="#6EBDF7"
-        //         activeBackgroundColor="#485159"
-        //         inactiveTintColor="white"
-        //         inactiveBackgroundColor="transparent"
-        //         labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
-        //       />
+        //       <DrawerOption name="Home" gotoAddress="Home" navigation={props.navigation} />
+        //       <DrawerOption name="Deposit" gotoAddress="Deposit" navigation={props.navigation} />
+        //       <DrawerOption name="Withdraw" gotoAddress="Withdraw" navigation={props.navigation} />
+        //       <DrawerOption name="Receive" gotoAddress="Receive" navigation={props.navigation} />
+        //       <DrawerOption name="Accounts" gotoAddress="Accounts" navigation={props.navigation} />
+        //       <DrawerOption name="Settings" gotoAddress="Settings" navigation={props.navigation} />
+        //       <DrawerOption name="About" gotoAddress="About" navigation={props.navigation} />
+        //       <DrawerOption name="Logout" gotoAddress="Logout" navigation={props.navigation} />
         //     </ScrollView>
         //   </View>
         // ),
+        contentComponent: (props) => (
+          <View style={styles.container}>
+            <DrawerHeader navigation={props.navigation} />
+            <ScrollView >
+              <DrawerItems
+                {...props}
+                activeTintColor="#6EBDF7"
+                activeBackgroundColor="#485159"
+                inactiveTintColor="white"
+                inactiveBackgroundColor="transparent"
+                labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
+              />
+            </ScrollView>
+          </View>
+        ),
       }
     ),
   },
-  ...Stack,
+  Stack: {
+    screen: StackNavigator(Stack, {
+      initialRouteName: 'Home',
+      navigationOptions: StackNavigationOptions,
+    }),
+  },
 },
   {
     headerMode: 'none',
