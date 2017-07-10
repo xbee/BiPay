@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native'
 import Expo, { Permissions } from 'expo'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class QRcodeScanner extends Component {
   static navigationOptions = {
@@ -35,6 +36,11 @@ export default class QRcodeScanner extends Component {
       if (this.state.camera === true) {
         return (
           <View style={{ flex: 1 }}>
+            <Header
+              navigation={this.props.navigation}
+              back
+              title="QR code scanner"
+            />
             <Expo.BarCodeScanner
               onBarCodeRead={this._handleBarCodeRead}
               style={{ flex: 1 }}
@@ -45,6 +51,11 @@ export default class QRcodeScanner extends Component {
       else {
         return (
           <View style={{ flex: 1 }}>
+            <Header
+              navigation={this.props.navigation}
+              back
+              title="QR code scanner"
+            />
             <View style={styles.container}>
               <Text style={styles.input}>
                 To: {this.state.reference}

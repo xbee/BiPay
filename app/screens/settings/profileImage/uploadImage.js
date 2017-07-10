@@ -4,6 +4,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import UserInfoService from './../../../services/userInfoService'
 import ResetNavigation from './../../../util/resetNavigation'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class UploadImage extends Component {
   static navigationOptions = {
@@ -49,27 +50,34 @@ export default class UploadImage extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Spinner
-          visible={this.state.loading}
-          textContent={"Uploading..."}
-          textStyle={{ color: '#FFF' }}
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Upload image"
         />
-        <TouchableHighlight
-          style={{ flex: 1 }}
-          onPress={null}>
-          <Image
-            style={{ height: 300, width: 300, borderRadius: 150 }}
-            source={{ uri: this.state.image.uri }}
+        <View style={styles.container}>
+          <Spinner
+            visible={this.state.loading}
+            textContent={"Uploading..."}
+            textStyle={{ color: '#FFF' }}
           />
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.submit}
-          onPress={() => this.saveImage()}>
-          <Text style={{ color: 'white', fontSize: 20 }}>
-            Upload
+          <TouchableHighlight
+            style={{ flex: 1 }}
+            onPress={null}>
+            <Image
+              style={{ height: 300, width: 300, borderRadius: 150 }}
+              source={{ uri: this.state.image.uri }}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={() => this.saveImage()}>
+            <Text style={{ color: 'white', fontSize: 20 }}>
+              Upload
           </Text>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }

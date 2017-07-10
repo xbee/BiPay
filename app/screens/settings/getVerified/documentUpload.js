@@ -4,6 +4,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class DocumentUpload extends Component {
   static navigationOptions = {
@@ -51,35 +52,42 @@ export default class DocumentUpload extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Spinner
-          visible={this.state.loading}
-          textContent={"Uploading..."}
-          textStyle={{ color: '#FFF' }}
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Document upload"
         />
-        <TouchableHighlight
-          style={{ flex: 1 }}
-          onPress={null}>
-          <Image
-            style={{ height: 300, width: 300 }}
-            source={{ uri: this.state.image.uri }}
+        <View style={styles.container}>
+          <Spinner
+            visible={this.state.loading}
+            textContent={"Uploading..."}
+            textStyle={{ color: '#FFF' }}
           />
-        </TouchableHighlight>
-        <View style={styles.buttonsContainer}>
           <TouchableHighlight
-            style={[styles.button, {backgroundColor: Colors.red}]}
-            onPress={() => this.props.navigation.goBack()}>
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              Cancel
+            style={{ flex: 1 }}
+            onPress={null}>
+            <Image
+              style={{ height: 300, width: 300 }}
+              source={{ uri: this.state.image.uri }}
+            />
+          </TouchableHighlight>
+          <View style={styles.buttonsContainer}>
+            <TouchableHighlight
+              style={[styles.button, { backgroundColor: Colors.red }]}
+              onPress={() => this.props.navigation.goBack()}>
+              <Text style={{ color: 'white', fontSize: 20 }}>
+                Cancel
             </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => this.saveImage()}>
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              Upload
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.button}
+              onPress={() => this.saveImage()}>
+              <Text style={{ color: 'white', fontSize: 20 }}>
+                Upload
           </Text>
-          </TouchableHighlight>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     )

@@ -9,7 +9,6 @@ import About from './../screens/about/about'
 import Accounts from './../screens/accounts/accounts'
 import Receive from './../screens/receive/receive'
 import Logout from './../screens/auth/logout'
-import DrawerButton from './../components/drawerButton'
 import DrawerHeader from './../components/drawerHeader'
 import Colors from './../config/colors'
 
@@ -42,10 +41,6 @@ const RouteConfigs = {
 
 export default DrawerNavigator(RouteConfigs, {
   drawerWidth: 300,
-  navigationOptions: ({ navigation }) => ({
-    headerLeft: <DrawerButton navigation={navigation} />,
-    headerTintColor: 'white',
-  }),
   contentComponent: (props) => (
     <View style={styles.container}>
       <DrawerHeader navigation={props.navigation} />

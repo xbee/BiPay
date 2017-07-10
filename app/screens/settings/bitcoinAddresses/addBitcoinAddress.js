@@ -3,6 +3,7 @@ import { View, Alert, StyleSheet } from 'react-native'
 import AddBitcoinAddressComponent from './bitcoinAddressComponent'
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
+import Header from './../../../components/header'
 
 export default class AddBankAccount extends Component {
   static navigationOptions = {
@@ -41,6 +42,11 @@ export default class AddBankAccount extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Add new address"
+        />
         <AddBitcoinAddressComponent
           updateAddress={this.updateAddress}
           values={this.state}

@@ -1,22 +1,6 @@
-import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
-import Expo from 'expo'
-import React from 'react'
+import { StackNavigator} from 'react-navigation'
 
-import { ScrollView, View, StyleSheet } from 'react-native'
-
-import DrawerButton from './../components/drawerButton'
-import DrawerHeader from './../components/drawerHeader'
-import DrawerOption from './../components/drawerOption'
-
-import Home from './../screens/home/home'
-import Deposit from './../screens/deposit/deposit'
-import Settings from './../screens/settings/settings'
-import Withdraw from './../screens/withdraw/withdraw'
-import About from './../screens/about/about'
-import Accounts from './../screens/accounts/accounts'
-import Receive from './../screens/receive/receive'
-import Logout from './../screens/auth/logout'
-
+import Home from './drawerNavigator'
 import Login from './../screens/auth/login'
 import Signup from './../screens/auth/signup'
 import AuthVerifyMobile from './../screens/auth/verifyMobile'
@@ -54,53 +38,9 @@ import SettingsNotifications from './../screens/settings/notifications/notificat
 import EmailNotifications from './../screens/settings/notifications/emailNotifications'
 import MobileNotifications from './../screens/settings/notifications/mobileNotifications'
 
-import Colors from './../config/colors'
-
 const Stack = {
   Home: {
     screen: Home,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Deposit: {
-    screen: Deposit,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Withdraw: {
-    screen: Withdraw,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Receive: {
-    screen: Receive,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Accounts: {
-    screen: Accounts,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Settings: {
-    screen: Settings,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  About: {
-    screen: About,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Logout: {
-    screen: Logout,
   },
   Login: {
     screen: Login,
@@ -212,131 +152,66 @@ const Stack = {
   },
 }
 
-const StackNavigationOptions = {
-  headerStyle: {
-    backgroundColor: Colors.lightblue,
-    paddingTop: Expo.Constants.statusBarHeight,
-    height: 55 + Expo.Constants.statusBarHeight,
-    borderColor: Colors.lightblue,
-    shadowOpacity: 0,
-    shadowOffset: {
-      height: 0,
-    },
-    elevation: 0,
-  },
-  headerTintColor: 'white',
-}
 
-const DrawerRoutes = {
-  Home: {
-    screen: Home,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Deposit: {
-    screen: Deposit,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Withdraw: {
-    screen: Withdraw,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Receive: {
-    screen: Receive,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Accounts: {
-    screen: Accounts,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Settings: {
-    screen: Settings,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  About: {
-    screen: About,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: <DrawerButton navigation={navigation} />,
-    }),
-  },
-  Logout: {
-    screen: Logout,
-  },
-};
-
-
-// export default StackNavigator(Stack, {
+export default StackNavigator(Stack, {
+    headerMode: 'none',
+  })
+// export default StackNavigator({
+//   Home: {
+//     name: 'Home',
+//     screen: DrawerNavigator(
+//       DrawerRoutes,
+//         {
+//           navigationOptions: StackNavigationOptions,
+//         // contentComponent: (props) => (
+//         //   <View style={styles.container}>
+//         //     <DrawerHeader navigation={props.navigation} />
+//         //     <ScrollView >
+//         //       <DrawerOption name="Home" gotoAddress="Home" navigation={props.navigation} />
+//         //       <DrawerOption name="Deposit" gotoAddress="Deposit" navigation={props.navigation} />
+//         //       <DrawerOption name="Withdraw" gotoAddress="Withdraw" navigation={props.navigation} />
+//         //       <DrawerOption name="Receive" gotoAddress="Receive" navigation={props.navigation} />
+//         //       <DrawerOption name="Accounts" gotoAddress="Accounts" navigation={props.navigation} />
+//         //       <DrawerOption name="Settings" gotoAddress="Settings" navigation={props.navigation} />
+//         //       <DrawerOption name="About" gotoAddress="About" navigation={props.navigation} />
+//         //       <DrawerOption name="Logout" gotoAddress="Logout" navigation={props.navigation} />
+//         //     </ScrollView>
+//         //   </View>
+//         // ),
+//         contentComponent: (props) => (
+//           <View style={styles.container}>
+//             <DrawerHeader navigation={props.navigation} />
+//             <ScrollView >
+//               <DrawerItems
+//                 {...props}
+//                 activeTintColor="#6EBDF7"
+//                 activeBackgroundColor="#485159"
+//                 inactiveTintColor="white"
+//                 inactiveBackgroundColor="transparent"
+//                 labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
+//               />
+//             </ScrollView>
+//           </View>
+//         ),
+//       }
+//     ),
+//   },
+//   Stack: {
+//     screen: StackNavigator(Stack, {
 //       initialRouteName: 'Home',
 //       navigationOptions: StackNavigationOptions,
-//     })
-    
-export default StackNavigator({
-  Drawer: {
-    name: 'Drawer',
-    screen: DrawerNavigator(
-      DrawerRoutes,
-        {
-          navigationOptions: StackNavigationOptions,
-        // contentComponent: (props) => (
-        //   <View style={styles.container}>
-        //     <DrawerHeader navigation={props.navigation} />
-        //     <ScrollView >
-        //       <DrawerOption name="Home" gotoAddress="Home" navigation={props.navigation} />
-        //       <DrawerOption name="Deposit" gotoAddress="Deposit" navigation={props.navigation} />
-        //       <DrawerOption name="Withdraw" gotoAddress="Withdraw" navigation={props.navigation} />
-        //       <DrawerOption name="Receive" gotoAddress="Receive" navigation={props.navigation} />
-        //       <DrawerOption name="Accounts" gotoAddress="Accounts" navigation={props.navigation} />
-        //       <DrawerOption name="Settings" gotoAddress="Settings" navigation={props.navigation} />
-        //       <DrawerOption name="About" gotoAddress="About" navigation={props.navigation} />
-        //       <DrawerOption name="Logout" gotoAddress="Logout" navigation={props.navigation} />
-        //     </ScrollView>
-        //   </View>
-        // ),
-        contentComponent: (props) => (
-          <View style={styles.container}>
-            <DrawerHeader navigation={props.navigation} />
-            <ScrollView >
-              <DrawerItems
-                {...props}
-                activeTintColor="#6EBDF7"
-                activeBackgroundColor="#485159"
-                inactiveTintColor="white"
-                inactiveBackgroundColor="transparent"
-                labelStyle={{ margin: 15, alignItems: 'center', fontSize: 16, fontWeight: 'normal' }}
-              />
-            </ScrollView>
-          </View>
-        ),
-      }
-    ),
-  },
-  Stack: {
-    screen: StackNavigator(Stack, {
-      initialRouteName: 'Home',
-      navigationOptions: StackNavigationOptions,
-    }),
-  },
-},
-  {
-    headerMode: 'none',
-  }
-);
+//     }),
+//   },
+// },
+//   {
+//     headerMode: 'none',
+//   }
+// );
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: Colors.drawerColor,
-  },
-})
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     flexDirection: 'column',
+//     backgroundColor: Colors.drawerColor,
+//   },
+// })

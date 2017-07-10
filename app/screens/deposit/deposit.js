@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, AsyncStorage, Alert } from 'react-native'
 import UserInfoService from './../../services/userInfoService'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class Deposit extends Component {
   static navigationOptions = {
@@ -53,19 +54,29 @@ export default class Deposit extends Component {
     if (!this.state.bank.reference) {
       return (
         <View style={styles.container}>
+          <Header
+            navigation={this.props.navigation}
+            drawer
+            title="Deposit"
+          />
           <View style={styles.comment}>
             <Text style={styles.commentText}>
               No deposit instructions have been provided.
             </Text>
           </View>
-          <View style={[styles.bankInfo, {flex: 6}]} />
+          <View style={[styles.bankInfo, { flex: 6 }]} />
         </View>
       )
     }
     else {
       return (
         <View style={styles.container}>
-          <View style={{flex:1}}>
+          <Header
+            navigation={this.props.navigation}
+            drawer
+            title="Deposit"
+          />
+          <View style={{ flex: 1 }}>
             <View style={styles.comment}>
               <Text style={styles.commentText}>
                 Fund your account by transferring {this.state.currencyCode} to the unique reference number below.

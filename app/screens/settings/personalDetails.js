@@ -5,6 +5,7 @@ import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
 import ProfileImage from './profileImage/profileImage'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -67,6 +68,11 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Personal details"
+        />
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
             <ProfileImage navigateToUploadImage={this.navigateToUploadImage} />

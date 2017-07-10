@@ -3,6 +3,7 @@ import { View, ListView, StyleSheet, Alert, RefreshControl, TouchableHighlight, 
 import Account from './../../../components/bankAccount'
 import SettingsService from './../../../services/settingsService'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class BitcoinAddresses extends Component {
   static navigationOptions = {
@@ -49,6 +50,11 @@ export default class BitcoinAddresses extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Bitcoin addresses"
+        />
         <ListView
           refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.getData.bind(this)} />}
           dataSource={this.state.dataSource}

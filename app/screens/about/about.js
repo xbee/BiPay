@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, Alert, Linking } from 'react-native'
 import UserInfoService from './../../services/userInfoService'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class About extends Component {
   static navigationOptions = {
@@ -50,6 +51,11 @@ export default class About extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          drawer
+          title="About"
+        />
         <View style={styles.details}>
           <Text style={{ fontSize: 30, color: Colors.black }}>
             {this.state.company.name}

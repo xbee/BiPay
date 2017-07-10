@@ -3,6 +3,7 @@ import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, Toucha
 import AuthService from './../../../services/authService'
 import TextInput from './../../../components/textInput'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class ChangePassword extends Component {
   static navigationOptions = {
@@ -39,6 +40,11 @@ export default class ChangePassword extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Change password"
+        />
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
 

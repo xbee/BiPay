@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Auth from './../../util/auth'
+import Header from './../../components/header'
 
 export default class Home extends Component {
 
@@ -14,8 +15,14 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={{ fontSize: 30 }}>Logging Out</Text>
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          title="Log out"
+        />
+        <View style={styles.container}>
+          <Text style={{ fontSize: 30 }}>Logging Out</Text>
+        </View>
       </View>
     )
   }

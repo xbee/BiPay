@@ -4,6 +4,7 @@ import CountryPicker from 'react-native-country-picker-modal'
 import UserInfoService from './../../services/userInfoService'
 import TextInput from './../../components/textInput'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class Address extends Component {
   static navigationOptions = {
@@ -64,6 +65,11 @@ export default class Address extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Address"
+        />
         <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
           <ScrollView keyboardDismissMode={'interactive'}>
 

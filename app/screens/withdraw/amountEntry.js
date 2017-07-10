@@ -4,6 +4,7 @@ import TransectionService from './../../services/transactionService'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -74,24 +75,31 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
-        <View style={{ flex: 1 }}>
-          <TextInput
-            title="Amount"
-            placeholder="Enter amount here"
-            autoCapitalize="none"
-            keyboardType="numeric"
-            onChangeText={this.changeAmount}
-          />
-        </View>
-        <TouchableHighlight
-          style={styles.submit}
-          onPress={this.withdraw}>
-          <Text style={{ color: 'white', fontSize: 18 }}>
-            Withdraw
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Withdraw"
+        />
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+          <View style={{ flex: 1 }}>
+            <TextInput
+              title="Amount"
+              placeholder="Enter amount here"
+              autoCapitalize="none"
+              keyboardType="numeric"
+              onChangeText={this.changeAmount}
+            />
+          </View>
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={this.withdraw}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
+              Withdraw
           </Text>
-        </TouchableHighlight>
-      </KeyboardAvoidingView>
+          </TouchableHighlight>
+        </KeyboardAvoidingView>
+      </View>
     )
   }
 }

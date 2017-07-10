@@ -5,6 +5,7 @@ import Transactions from './transactions'
 import CurrentBalance from './currentBalance'
 import Auth from './../../util/auth'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class Home extends Component {
   static navigationOptions = {
@@ -37,6 +38,10 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          drawer
+        />
         <CurrentBalance logout={this.logout} style={styles.balance} />
         <View style={styles.transaction} >
           <Transactions logout={this.logout} />
@@ -54,7 +59,7 @@ export default class Home extends Component {
             onPress={() => this.props.navigation.navigate("SendTo", { reference: "" })}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Send
-                </Text>
+            </Text>
           </TouchableHighlight>
         </View>
       </View>

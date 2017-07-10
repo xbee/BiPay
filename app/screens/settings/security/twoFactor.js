@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class TwoFactor extends Component {
   static navigationOptions = {
@@ -10,6 +11,11 @@ export default class TwoFactor extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Two factor"
+        />
         <View style={styles.comment}>
           <Text style={styles.commentText}>
             You can manage two factor settings at https://www.rehive.com.

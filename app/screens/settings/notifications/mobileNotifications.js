@@ -4,6 +4,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import Notification from './../../../components/notification'
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
+import Header from './../../../components/header'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -26,7 +27,7 @@ export default class Settings extends Component {
   }
 
   getData = async () => {
-    this.setState({refreshing: true})
+    this.setState({ refreshing: true })
     let responseJson = await SettingsService.getAllNotifications()
     if (responseJson.status === "success") {
       const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => JSON.stringify(r1) !== JSON.stringify(r2) });
@@ -70,6 +71,11 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Mobile Notifications"
+        />
         <Spinner
           visible={this.state.loading}
           textContent={"Updating..."}

@@ -3,6 +3,7 @@ import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert
 import SettingsService from './../../../services/settingsService'
 import TextInput from './../../../components/mobileNumberInput'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -17,7 +18,7 @@ export default class AmountEntry extends Component {
     }
   }
   changeCountryCode = (code) => {
-    this.setState({number: '+' + code})
+    this.setState({ number: '+' + code })
   }
   add = async () => {
     let responseJson = await SettingsService.addMobile(this.state)
@@ -34,24 +35,31 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
-        <View style={{ flex: 1 }}>
-          <TextInput
-            title="Enter number"
-            autoCapitalize="none"
-            value={this.state.number}
-            onChangeText={(number) => this.setState({ number })}
-            changeCountryCode={this.changeCountryCode}
-          />
-        </View>
-        <TouchableHighlight
-          style={styles.submit}
-          onPress={this.add}>
-          <Text style={{ color: 'white', fontSize: 18 }}>
-            Save
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Add mobile number"
+        />
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+          <View style={{ flex: 1 }}>
+            <TextInput
+              title="Enter number"
+              autoCapitalize="none"
+              value={this.state.number}
+              onChangeText={(number) => this.setState({ number })}
+              changeCountryCode={this.changeCountryCode}
+            />
+          </View>
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={this.add}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
+              Save
           </Text>
-        </TouchableHighlight>
-      </KeyboardAvoidingView>
+          </TouchableHighlight>
+        </KeyboardAvoidingView>
+      </View>
     )
   }
 }

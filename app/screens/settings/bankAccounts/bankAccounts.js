@@ -3,6 +3,7 @@ import { View, ListView, StyleSheet, RefreshControl, TouchableHighlight, Text } 
 import Account from './../../../components/bankAccount'
 import SettingsService from './../../../services/settingsService'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class BankAccounts extends Component {
   static navigationOptions = {
@@ -48,6 +49,11 @@ export default class BankAccounts extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Bank accounts"
+        />
         <ListView
           refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.getData.bind(this)} />}
           dataSource={this.state.dataSource}

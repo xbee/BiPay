@@ -5,6 +5,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import EmailAddress from './../../../components/emailAddress'
 import SettingsService from './../../../services/settingsService'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -131,6 +132,11 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Email addresses"
+        />
         <Spinner
           visible={this.state.loading}
           textContent={this.state.loadingMessage}

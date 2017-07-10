@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -9,12 +10,17 @@ export default class Settings extends Component {
   }
 
   goToDocument = (name) => {
-    this.props.navigation.navigate("Document", {name})
+    this.props.navigation.navigate("Document", { name })
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Get verified"
+        />
         <TouchableHighlight
           style={styles.options}
           onPress={() => this.goToDocument("ID Document")}>

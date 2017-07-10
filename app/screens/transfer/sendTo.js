@@ -1,27 +1,16 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, TouchableOpacity, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { View, KeyboardAvoidingView, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
 import Contact from './../../components/contact'
 import TextInput from './../../components/textInput'
 import ContactService from './../../services/contactService'
 import UserInfoService from './../../services/userInfoService'
 import Auth from './../../util/auth'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class SendTo extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'To',
-    headerRight: (
-      <TouchableOpacity style={{ padding: 10 }}>
-        <Icon
-          name="ios-qr-scanner-outline"
-          size={30}
-          color="white"
-          style={{paddingRight: 10}}
-          onPress={() => navigation.navigate('QRcodeScanner')}
-        />
-      </TouchableOpacity>
-    ),
   })
 
   constructor(props) {
@@ -117,55 +106,73 @@ export default class SendTo extends Component {
   render() {
     if (!this.state.ready) {
       return (
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
-          <View style={{ flex: 1 }}>
-            <TextInput
-              title="Enter name/email/mobile"
-              autoCapitalize="none"
-              value={this.state.searchText}
-              onChange={this.searchTextChanged.bind(this)}
-            />
-            <View style={styles.spinner}>
-              <Text>
-                Loading Contacts
-              </Text>
-              <ActivityIndicator
-                animating
-                style={{ height: 80 }}
-                size="large"
+        <View style={{ flex: 1 }}>
+          <Header
+            navigation={this.props.navigation}
+            title="To"
+            back
+            right
+          />
+          <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+            <View style={{ flex: 1 }}>
+              <TextInput
+                title="Enter name/email/mobile"
+                autoCapitalize="none"
+                value={this.state.searchText}
+                onChange={this.searchTextChanged.bind(this)}
               />
+              <View style={styles.spinner}>
+                <Text>
+                  Loading Contacts
+              </Text>
+                <ActivityIndicator
+                  animating
+                  style={{ height: 80 }}
+                  size="large"
+                />
+              </View>
             </View>
-          </View>
-        </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+        </View>
       )
     }
-    return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75} >
+    else {
+      return (
         <View style={{ flex: 1 }}>
-          <TextInput
-            title="Recipient"
-            placeholder="Enter name/email/mobile"
-            autoCapitalize="none"
-            value={this.state.searchText}
-            onChange={this.searchTextChanged.bind(this)}
+          <Header
+            navigation={this.props.navigation}
+            title="To"
+            back
+            right
           />
-          <View style={{ flex: 1 }}>
-            <ListView
-              dataSource={this.state.contacts}
-              enableEmptySections
-              renderRow={(rowData) => <Contact selected={this.selectAContact} rowData={rowData} />}
-            />
-          </View>
-        </View>
-        <TouchableHighlight
-          style={styles.submit}
-          onPress={this.send}>
-          <Text style={{ color: 'white', fontSize: 18 }}>
-            Next
+          <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75} >
+            <View style={{ flex: 1 }}>
+              <TextInput
+                title="Recipient"
+                placeholder="Enter name/email/mobile"
+                autoCapitalize="none"
+                value={this.state.searchText}
+                onChange={this.searchTextChanged.bind(this)}
+              />
+              <View style={{ flex: 1 }}>
+                <ListView
+                  dataSource={this.state.contacts}
+                  enableEmptySections
+                  renderRow={(rowData) => <Contact selected={this.selectAContact} rowData={rowData} />}
+                />
+              </View>
+            </View>
+            <TouchableHighlight
+              style={styles.submit}
+              onPress={this.send}>
+              <Text style={{ color: 'white', fontSize: 18 }}>
+                Next
           </Text>
-        </TouchableHighlight>
-      </KeyboardAvoidingView>
-    )
+            </TouchableHighlight>
+          </KeyboardAvoidingView>
+        </View>
+      )
+    }
   }
 }
 
