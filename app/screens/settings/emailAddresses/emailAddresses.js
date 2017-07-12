@@ -92,12 +92,12 @@ export default class Settings extends Component {
     const user = JSON.parse(userData)
 
     const body = {
-      identifier: number,
-      company_id: user.company,
+      email: number,
+      company: user.company,
     }
-
+    console.log(body)
     let responseJson = await SettingsService.resendEmailVerification(body)
-
+    
     if (responseJson.status === "success") {
       Alert.alert(
         "Email Sent",

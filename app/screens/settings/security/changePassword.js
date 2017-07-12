@@ -45,7 +45,7 @@ export default class ChangePassword extends Component {
           back
           title="Change password"
         />
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
           <ScrollView keyboardDismissMode={'interactive'}>
 
             <TextInput

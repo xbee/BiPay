@@ -3,6 +3,7 @@ import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TextIn
 import CountryPicker from 'react-native-country-picker-modal'
 import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
+import ResetNavigation from './../../util/resetNavigation'
 import ProfileImage from './profileImage/profileImage'
 import Colors from './../../config/colors'
 import Header from './../../components/header'
@@ -44,6 +45,7 @@ export default class Settings extends Component {
       id_number: user.id_number,
       nationality: user.nationality !== "" ? user.nationality : 'US',
       language: user.language,
+      profile: user.profile,
     })
   }
 
@@ -52,11 +54,17 @@ export default class Settings extends Component {
   }
 
   save = async () => {
-    let responseJson = await UserInfoService.updateUserDetails(this.state)
+    let responseJson = await UserInfoService.updateUserDetails({
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      id_number: this.state.id_number,
+      nationality: this.state.nationality,
+      language: this.state.language,
+    })
     if (responseJson.status === "success") {
       await AsyncStorage.removeItem('user')
       await AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
-      this.props.navigation.goBack()
+      ResetNavigation.dispatchToDrawerRoute(this.props.navigation, "Settings")
     }
     else {
       Alert.alert('Error',
@@ -73,9 +81,9 @@ export default class Settings extends Component {
           back
           title="Personal details"
         />
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
           <ScrollView keyboardDismissMode={'interactive'}>
-            <ProfileImage navigateToUploadImage={this.navigateToUploadImage} />
+            <ProfileImage navigateToUploadImage={this.navigateToUploadImage} profile={this.state.profile} />
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
                 First name

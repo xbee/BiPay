@@ -145,7 +145,7 @@ export default class SendTo extends Component {
             back
             right
           />
-          <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75} >
+          <KeyboardAvoidingView style={styles.container} behavior={'padding'} >
             <View style={{ flex: 1 }}>
               <TextInput
                 title="Recipient"

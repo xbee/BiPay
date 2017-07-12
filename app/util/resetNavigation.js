@@ -10,6 +10,20 @@ const resetNavigation = {
     navigation.dispatch(resetAction)
   },
 
+  dispatchToDrawerRoute: (navigation, drawerRoute) => {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'Home',
+          params: {},
+          action: NavigationActions.navigate({ routeName: drawerRoute }),
+        }),
+      ],
+    })
+    navigation.dispatch(resetAction)
+  },
+
   dispatchUnderDrawer: (navigation, drawerRoute, finalRoute) => {
     const resetAction = NavigationActions.reset({
       index: 1,

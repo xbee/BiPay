@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, StyleSheet, AsyncStorage, TouchableHighlight, Text } from 'react-native'
 import UserInfoService from './../../services/userInfoService'
 import Transactions from './transactions'
-import CurrentBalance from './currentBalance'
 import Auth from './../../util/auth'
 import Colors from './../../config/colors'
 import Header from './../../components/header'
@@ -12,19 +11,58 @@ export default class Home extends Component {
     label: 'Home',
   }
 
-  async componentDidMount() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      balance: 0,
+      symbol: '',
+    }
+  }
+
+  async componentWillMount() {
     try {
       const token = await AsyncStorage.getItem('token')
       if (token === null) {
         this.logout()
       }
       return token
-    } catch (error) {
     }
+    catch (error) {
+    }
+  }
+
+  componentDidMount() {
+    this.getBalanceInfo()
+    this.getUserInfo()
+  }
+
+  setBalance = (balance, divisibility) => {
+    for (let i = 0; i < divisibility; i++) {
+      balance = balance / 10
+    }
+
+    return balance
+  }
+
+  getUserInfo = async () => {
     let responseJson = await UserInfoService.getUserDetails()
     if (responseJson.status === "success") {
       AsyncStorage.removeItem('user')
       AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
+    }
+    else {
+      this.logout()
+    }
+  }
+
+  getBalanceInfo = async () => {
+    console.log("dhukse")
+    let responseJson = await UserInfoService.getActiveAccount()
+    if (responseJson.status === "success") {
+      const account = responseJson.data.results[0].currencies[0]
+      AsyncStorage.setItem('currency', JSON.stringify(account.currency))
+      this.setState({ symbol: account.currency.symbol })
+      this.setState({ balance: this.setBalance(account.balance, account.currency.divisibility) })
     }
     else {
       this.logout()
@@ -42,9 +80,18 @@ export default class Home extends Component {
           navigation={this.props.navigation}
           drawer
         />
-        <CurrentBalance logout={this.logout} style={styles.balance} />
-        <View style={styles.transaction} >
-          <Transactions logout={this.logout} />
+        <View style={styles.balance}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ fontSize: 25, color: 'white' }}>
+              {this.state.symbol}
+            </Text>
+            <Text style={{ paddingLeft: 5, fontSize: 40, color: 'white' }}>
+              {this.state.balance.toFixed(4).replace(/0{0,2}$/, "")}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.transaction}>
+          <Transactions updateBalance={this.getBalanceInfo} logout={this.logout} />
         </View>
         <View style={styles.buttonbar} >
           <TouchableHighlight
@@ -75,6 +122,10 @@ const styles = StyleSheet.create({
   },
   balance: {
     flex: 1,
+    backgroundColor: Colors.lightblue,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 20,
   },
   transaction: {
     flex: 5,

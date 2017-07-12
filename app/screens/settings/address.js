@@ -70,7 +70,7 @@ export default class Address extends Component {
           back
           title="Address"
         />
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
           <ScrollView keyboardDismissMode={'interactive'}>
 
             <TextInput

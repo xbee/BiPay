@@ -42,10 +42,9 @@ export default class AmountEntry extends Component {
       <View style={{ flex: 1 }}>
         <Header
           navigation={this.props.navigation}
-          back
           title="Verify mobile number"
         />
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
           <View style={{ flex: 1 }}>
             <TextInput
               title="Enter OTP"

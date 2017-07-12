@@ -7,7 +7,7 @@ export default class BitcoinAddressComponent extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
         <ScrollView keyboardDismissMode={'interactive'}>
           <TextInput
             title="Bitcoin Address"

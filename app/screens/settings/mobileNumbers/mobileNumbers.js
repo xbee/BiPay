@@ -91,8 +91,8 @@ export default class Settings extends Component {
     const user = JSON.parse(userData)
 
     const body = {
-      identifier: number,
-      company_id: user.company,
+      mobile: number,
+      company: user.company,
     }
 
     let responseJson = await SettingsService.resendMobileVerification(body)

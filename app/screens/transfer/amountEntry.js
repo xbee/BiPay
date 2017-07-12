@@ -80,7 +80,7 @@ export default class AmountEntry extends Component {
           back
           title="Send money"
         />
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
           <ScrollView keyboardDismissMode={'interactive'}>
             <TextInput
               title="Amount"

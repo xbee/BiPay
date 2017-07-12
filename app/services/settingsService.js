@@ -82,7 +82,7 @@ var settingsService = {
     formData.append('file', file)
     formData.append('document_category', "")
     formData.append('document_type', "")
-    return BaseService.documentUpload('user/document/', formData)
+    return BaseService.documentUpload('user/documents/', formData)
   },
 }
 
