@@ -31,7 +31,7 @@ export default class Document extends Component {
     })
     this.setState({ modalVisible: false })
     if (!result.cancelled) {
-      this.props.navigation.navigate("DocumentUpload", { image: result })
+      this.props.navigation.navigate("DocumentUpload", { image: result, type: this.state.title })
     }
   }
 
@@ -42,7 +42,7 @@ export default class Document extends Component {
     })
     this.setState({ modalVisible: false })
     if (!result.cancelled) {
-      this.props.navigation.navigate("DocumentUpload", { image: result })
+      this.props.navigation.navigate("DocumentUpload", { image: result, type: this.state.title })
     }
   }
 

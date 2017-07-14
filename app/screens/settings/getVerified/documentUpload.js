@@ -16,6 +16,7 @@ export default class DocumentUpload extends Component {
     const params = this.props.navigation.state.params
     this.state = {
       image: params.image,
+      type: params.type,
       loading: false,
     }
   }
@@ -34,8 +35,19 @@ export default class DocumentUpload extends Component {
       name,
       type: 'image/jpg',
     }
+    var type = "other"
 
-    let responseJson = await SettingsService.documentUpload(file)
+    // if (this.state.type === "ID Document") {
+
+    // }
+    // else if (this.state.type === "ID Selfie") {
+
+    // }
+    // else if (this.state.type === "Proof Of Address") {
+
+    // }
+
+    let responseJson = await SettingsService.documentUpload(file, type)
     if (responseJson.status === "success") {
       Alert.alert(
         "Upload successful",
