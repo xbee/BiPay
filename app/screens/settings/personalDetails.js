@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import { ImagePicker } from 'expo'
-import { View, Modal, Alert, Text, Image, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, AsyncStorage, TouchableHighlight } from 'react-native'
+import { View, Alert, Text, Image, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, AsyncStorage, TouchableHighlight } from 'react-native'
 import CountryPicker from 'react-native-country-picker-modal'
+import Modal from 'react-native-modal'
 import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
 import ResetNavigation from './../../util/resetNavigation'
 import Colors from './../../config/colors'
 import Header from './../../components/header'
+
+const languages = {
+  "en": "English",
+  "af": "Africans",
+}
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -25,6 +31,7 @@ export default class Settings extends Component {
       mobile_number: '',
       language: '',
       modalVisible: false,
+      languageModalVisible: false,
     }
   }
 
@@ -54,6 +61,10 @@ export default class Settings extends Component {
     this.setState({ modalVisible: true })
   }
 
+  openLanguageModal = async () => {
+    this.setState({ languageModalVisible: true })
+  }
+
   launchCamera = async () => {
 
     let result = await ImagePicker.launchCameraAsync({
@@ -75,6 +86,13 @@ export default class Settings extends Component {
     if (!result.cancelled) {
       this.navigateToUploadImage(result)
     }
+  }
+
+  languageSelected = (lang) => {
+    this.setState({
+      languageModalVisible: false,
+      language: lang,
+    })
   }
 
   save = async () => {
@@ -176,15 +194,15 @@ export default class Settings extends Component {
               <Text style={[styles.text, { flex: 2 }]}>
                 Language
               </Text>
-              <Picker
-                selectedValue={this.state.language}
-                style={{ flex: 1 }}
-                onValueChange={(lang) => {
-                  this.setState({ language: lang })
+              <TouchableHighlight
+                style={{ flex: 1, alignItems: 'flex-end', paddingRight: 10 }}
+                onPress={() => {
+                  this.openLanguageModal()
                 }}>
-                <Picker.Item label="English" value="en" />
-                <Picker.Item label="Africans" value="af" />
-              </Picker>
+                <Text style={{ color: Colors.black, fontSize: 16, fontWeight: 'normal', }}>
+                  {languages[this.state.language]} ▼
+                </Text>
+              </TouchableHighlight>
             </View>
           </ScrollView>
           <TouchableHighlight
@@ -196,14 +214,10 @@ export default class Settings extends Component {
           </TouchableHighlight>
         </KeyboardAvoidingView>
         <Modal
-          animationType={"slide"}
-          transparent
-          style={{ backgroundColor: Colors.lightgray }}
-          visible={this.state.modalVisible}
-          onRequestClose={() => { console.log("Modal has been closed.") }} >
+          visible={this.state.modalVisible} >
           <View style={styles.modal}>
             <View style={styles.bottomModal}>
-              <View style={[styles.button, { borderBottomColor: Colors.black }]}>
+              <View style={[styles.button, { borderBottomWidth: 1, borderBottomColor: Colors.black }]}>
                 <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
                   Change Image
                 </Text>
@@ -225,6 +239,34 @@ export default class Settings extends Component {
               <TouchableHighlight
                 style={styles.button}
                 onPress={() => { this.setState({ modalVisible: false }) }}>
+                <Text style={styles.buttonText}>
+                  Cancel
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          visible={this.state.languageModalVisible} >
+          <View style={[styles.modal, { justifyContent: 'flex-end', paddingBottom: 30 }]}>
+            <View style={[styles.languageModal]}>
+              <TouchableHighlight
+                style={[styles.button, { marginTop:5, borderRadius: 5, backgroundColor: 'white' }]}
+                onPress={() => this.languageSelected("en")}>
+                <Text style={styles.buttonText}>
+                  English
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[styles.button, { marginTop:5, borderRadius: 5, backgroundColor: 'white' }]}
+                onPress={() => this.languageSelected("af")}>
+                <Text style={styles.buttonText}>
+                  Africans
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[styles.button, { marginTop:20, borderRadius: 5, backgroundColor: 'white' }]}
+                onPress={() => { this.setState({ languageModalVisible: false }) }}>
                 <Text style={styles.buttonText}>
                   Cancel
                 </Text>
@@ -302,8 +344,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomModal: {
-    width: '70%',
-    height: 220,
+    width: '80%',
+    height: 250,
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: 'white',
@@ -311,11 +353,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  languageModal: {
+    width: '100%',
+    height: 275,
+    paddingBottom: 20,
+    paddingTop: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, .10)',
+  },
   button: {
-    height: 50,
-    width: "100%",
-    borderWidth: 1,
-    borderColor: 'white',
+    height: 60,
+    width: "90%",
     alignItems: 'center',
     justifyContent: 'center',
   },
