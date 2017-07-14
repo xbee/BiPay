@@ -12,7 +12,6 @@ import SendMoney from './../screens/transfer/amountEntry'
 import SendTo from './../screens/transfer/sendTo'
 import QRcodeScanner from './../screens/transfer/qrcodeScanner'
 import AccountCurrencies from './../screens/accounts/accountCurrencies'
-import SettingsProfileImage from './../screens/settings/profileImage/profileImage'
 import UploadImage from './../screens/settings/profileImage/uploadImage'
 import SettingsPersonalDetails from './../screens/settings/personalDetails'
 import SettingsMobileNumbers from './../screens/settings/mobileNumbers/mobileNumbers'
@@ -74,9 +73,6 @@ const Stack = {
   },
   AccountCurrencies: {
     screen: AccountCurrencies,
-  },
-  SettingsProfileImage: {
-    screen: SettingsProfileImage,
   },
   UploadImage: {
     screen: UploadImage,

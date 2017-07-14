@@ -3,7 +3,6 @@ import { ImagePicker } from 'expo'
 import { View, Alert, Text, Image, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, AsyncStorage, TouchableHighlight } from 'react-native'
 import CountryPicker from 'react-native-country-picker-modal'
 import Modal from 'react-native-modal'
-import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
 import ResetNavigation from './../../util/resetNavigation'
 import Colors from './../../config/colors'
@@ -131,6 +130,7 @@ export default class Settings extends Component {
                   <Image
                     style={styles.photo}
                     source={{ uri: this.state.profile, cache: 'only-if-cached' }}
+                    key={this.state.profile}
                   /> :
                   <Image
                     source={require('./../../../assets/icons/profile_1.png')}
@@ -199,7 +199,7 @@ export default class Settings extends Component {
                 onPress={() => {
                   this.openLanguageModal()
                 }}>
-                <Text style={{ color: Colors.black, fontSize: 16, fontWeight: 'normal', }}>
+                <Text style={{ color: Colors.black, fontSize: 16, fontWeight: 'normal' }}>
                   {languages[this.state.language]} ▼
                 </Text>
               </TouchableHighlight>

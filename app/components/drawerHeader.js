@@ -37,7 +37,6 @@ export default class DrawerHeader extends Component {
               style={styles.stretch}
             />
           }
-
         </TouchableHighlight>
         <View style={styles.col}>
           <Text style={styles.nameText}>
