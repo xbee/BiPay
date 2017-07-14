@@ -95,9 +95,9 @@ export default class Settings extends Component {
       email: number,
       company: user.company,
     }
-    console.log(body)
+
     let responseJson = await SettingsService.resendEmailVerification(body)
-    
+
     if (responseJson.status === "success") {
       Alert.alert(
         "Email Sent",

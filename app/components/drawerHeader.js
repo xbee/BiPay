@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, AsyncStorage, TouchableHighlight, Image, Text } from 'react-native';
 import Colors from './../config/colors'
+import ResetNavigation from './../util/resetNavigation'
 
 export default class DrawerHeader extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class DrawerHeader extends Component {
       <View style={styles.row}>
         <TouchableHighlight
           style={styles.button}
-          onPress={() => this.props.navigation.navigate("SettingsPersonalDetails")}>
+          onPress={() => ResetNavigation.dispatchUnderDrawer(this.props.navigation, "Settings", 'SettingsPersonalDetails')}>
           {this.state.userInfo.profile ?
             <Image
               style={styles.stretch}

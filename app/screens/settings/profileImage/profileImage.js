@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, View, StyleSheet, Text, Image, TouchableHighlight } from 'react-native'
+import { Modal, View, StyleSheet, Text, Image, AsyncStorage, TouchableHighlight } from 'react-native'
 import { ImagePicker } from 'expo'
 import Colors from './../../../config/colors'
 
@@ -13,7 +13,26 @@ export default class ProfileImage extends Component {
 
     this.state = {
       modalVisible: false,
-      imageURI: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgmT5tM-IGcFDpqZ87p9zKGaWQuzpvAcDKfOTPYfx5A9zOmbTh8RMMFg',
+      profile: null,
+    }
+  }
+
+  componentDidMount() {
+    this.getInfo()
+  }
+
+  getInfo = async() => {
+    const value = await AsyncStorage.getItem('user')
+
+    const user = JSON.parse(value)
+
+    if (user.language === '' || !user.language) {
+      user.language = 'en'
+    }
+    if (user.profile) {
+      this.setState({
+        profile: user.profile,
+      })
     }
   }
 
@@ -45,18 +64,18 @@ export default class ProfileImage extends Component {
   }
 
   render() {
+    console.log(this.state.imageURI)
     return (
       <View style={styles.container}>
         <TouchableHighlight onPress={() => this.openModal()}>
-          {this.props.profile ?
+          {this.state.profile ?
             <Image
               style={styles.photo}
-              cached
-              source={{ uri: this.props.profile }}
+              source={{ uri: this.state.profile }}
             /> :
             <Image
+              source={require('./../../../../assets/icons/profile_1.png')}
               style={styles.photo}
-              source={{ uri: this.state.imageURI }}
             />
           }
         </TouchableHighlight>

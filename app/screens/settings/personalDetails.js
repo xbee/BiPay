@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, AsyncStorage, TouchableHighlight } from 'react-native'
+import { ImagePicker } from 'expo'
+import { View, Modal, Alert, Text, Image, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, AsyncStorage, TouchableHighlight } from 'react-native'
 import CountryPicker from 'react-native-country-picker-modal'
 import Picker from './../../components/picker'
 import UserInfoService from './../../services/userInfoService'
 import ResetNavigation from './../../util/resetNavigation'
-import ProfileImage from './profileImage/profileImage'
 import Colors from './../../config/colors'
 import Header from './../../components/header'
 
@@ -24,14 +24,11 @@ export default class Settings extends Component {
       skype_name: '',
       mobile_number: '',
       language: '',
+      modalVisible: false,
     }
   }
 
-  componentDidMount() {
-    this.getUser()
-  }
-
-  getUser = async () => {
+  async componentWillMount() {
     const value = await AsyncStorage.getItem('user')
 
     const user = JSON.parse(value)
@@ -51,6 +48,33 @@ export default class Settings extends Component {
 
   navigateToUploadImage = (result) => {
     this.props.navigation.navigate("UploadImage", { image: result })
+  }
+
+  openModal = async () => {
+    this.setState({ modalVisible: true })
+  }
+
+  launchCamera = async () => {
+
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    })
+    this.setState({ modalVisible: false })
+    if (!result.cancelled) {
+      this.navigateToUploadImage(result)
+    }
+  }
+
+  launchImageLibrary = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    })
+    this.setState({ modalVisible: false })
+    if (!result.cancelled) {
+      this.navigateToUploadImage(result)
+    }
   }
 
   save = async () => {
@@ -83,7 +107,20 @@ export default class Settings extends Component {
         />
         <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
           <ScrollView keyboardDismissMode={'interactive'}>
-            <ProfileImage navigateToUploadImage={this.navigateToUploadImage} profile={this.state.profile} />
+            <View style={styles.profile}>
+              <TouchableHighlight onPress={() => this.openModal()}>
+                {this.state.profile ?
+                  <Image
+                    style={styles.photo}
+                    source={{ uri: this.state.profile, cache: 'only-if-cached' }}
+                  /> :
+                  <Image
+                    source={require('./../../../assets/icons/profile_1.png')}
+                    style={styles.photo}
+                  />
+                }
+              </TouchableHighlight>
+            </View>
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
                 First name
@@ -158,6 +195,43 @@ export default class Settings extends Component {
               </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>
+        <Modal
+          animationType={"slide"}
+          transparent
+          style={{ backgroundColor: Colors.lightgray }}
+          visible={this.state.modalVisible}
+          onRequestClose={() => { console.log("Modal has been closed.") }} >
+          <View style={styles.modal}>
+            <View style={styles.bottomModal}>
+              <View style={[styles.button, { borderBottomColor: Colors.black }]}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
+                  Change Image
+                </Text>
+              </View>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this.launchCamera()}>
+                <Text style={styles.buttonText}>
+                  Use Camera
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this.launchImageLibrary()}>
+                <Text style={styles.buttonText}>
+                  Choose From Gallery
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => { this.setState({ modalVisible: false }) }}>
+                <Text style={styles.buttonText}>
+                  Cancel
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
       </View>
     )
   }
@@ -209,6 +283,44 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.lightgray,
+  },
+  profile: {
+    height: 130,
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  photo: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomModal: {
+    width: '70%',
+    height: 220,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    borderColor: Colors.black,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    height: 50,
+    width: "100%",
+    borderWidth: 1,
+    borderColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
   },
 })
 
