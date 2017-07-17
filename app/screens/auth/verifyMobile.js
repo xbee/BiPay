@@ -25,6 +25,7 @@ export default class AmountEntry extends Component {
   }
 
   verify = async () => {
+    await AsyncStorage.setItem("token", this.state.loginInfo.token)
     let responseJson = await SettingsService.verifyMobile(this.state)
 
     if (responseJson.status === "success") {

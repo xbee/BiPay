@@ -133,7 +133,7 @@ export default class Settings extends Component {
                     key={this.state.profile}
                   /> :
                   <Image
-                    source={require('./../../../assets/icons/profile_1.png')}
+                    source={require('./../../../assets/icons/profile.png')}
                     style={styles.photo}
                   />
                 }
