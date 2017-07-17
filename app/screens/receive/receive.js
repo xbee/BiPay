@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, AsyncStorage } from 'react-native'
 import stellarService from './../../services/stellarService'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class Receive extends Component {
   static navigationOptions = {
@@ -40,6 +41,11 @@ export default class Receive extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          drawer
+          title="Receive"
+        />
         <Text style={styles.text}>
           The QR code is your public address for accepting payments.
         </Text>
@@ -65,20 +71,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-    padding: 20,
     alignItems: 'center',
   },
   text: {
     fontSize: 16,
     textAlign: 'center',
     color: Colors.black,
-    paddingBottom: 10
+    padding: 20,
   },
   boxed: {
     fontSize: 14,
     fontWeight: "bold",
     textAlign: 'center',
     padding: 10,
-    backgroundColor: Colors.lightgray
+    backgroundColor: Colors.lightgray,
   }
 })

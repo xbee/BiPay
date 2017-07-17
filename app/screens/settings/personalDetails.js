@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
-import { View, Alert, Text, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, AsyncStorage, TouchableHighlight } from 'react-native'
+import { ImagePicker } from 'expo'
+import { View, Alert, Text, Image, StyleSheet, KeyboardAvoidingView, ScrollView, TextInput, AsyncStorage, TouchableHighlight } from 'react-native'
 import CountryPicker from 'react-native-country-picker-modal'
-import Picker from './../../components/picker'
+import Modal from 'react-native-modal'
 import UserInfoService from './../../services/userInfoService'
 import stellarService from './../../services/stellarService'
 import ProfileImage from './profileImage/profileImage'
+import ResetNavigation from './../../util/resetNavigation'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
+
+const languages = {
+  "en": "English",
+  "af": "Africans",
+}
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -23,7 +31,9 @@ export default class Settings extends Component {
       skype_name: '',
       mobile_number: '',
       language: '',
-      stellar_username: ''
+      stellar_username: '',
+      modalVisible: false,
+      languageModalVisible: false,
     }
   }
 
@@ -36,12 +46,12 @@ export default class Settings extends Component {
     let stellar_address = await stellarService.getAddress()
     if(stellar_address && stellar_address.details && stellar_address.details.memo) {
       this.setState({
-        stellar_username: stellar_address.details.memo
+        stellar_username: stellar_address.details.memo,
       })
     }
   }
 
-  getUser = async () => {
+  async componentWillMount() {
     const value = await AsyncStorage.getItem('user')
 
     const user = JSON.parse(value)
@@ -55,6 +65,7 @@ export default class Settings extends Component {
       id_number: user.id_number,
       nationality: user.nationality !== "" ? user.nationality : 'US',
       language: user.language,
+      profile: user.profile,
     })
   }
 
@@ -62,13 +73,58 @@ export default class Settings extends Component {
     this.props.navigation.navigate("UploadImage", { image: result })
   }
 
+  openModal = async () => {
+    this.setState({ modalVisible: true })
+  }
+
+  openLanguageModal = async () => {
+    this.setState({ languageModalVisible: true })
+  }
+
+  launchCamera = async () => {
+
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    })
+    this.setState({ modalVisible: false })
+    if (!result.cancelled) {
+      this.navigateToUploadImage(result)
+    }
+  }
+
+  launchImageLibrary = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    })
+    this.setState({ modalVisible: false })
+    if (!result.cancelled) {
+      this.navigateToUploadImage(result)
+    }
+  }
+
+  languageSelected = (lang) => {
+    this.setState({
+      languageModalVisible: false,
+      language: lang,
+    })
+  }
+
   save = async () => {
-    let responseJson = await UserInfoService.updateUserDetails(this.state)
+    let responseJson = await UserInfoService.updateUserDetails({
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      id_number: this.state.id_number,
+      nationality: this.state.nationality,
+      language: this.state.language,
+    })
     let stellarResponse = await stellarService.setUsername(this.state.stellar_username)
+    
     if (responseJson.status === "success") {
       await AsyncStorage.removeItem('user')
       await AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
-      this.props.navigation.goBack()
+      ResetNavigation.dispatchToDrawerRoute(this.props.navigation, "Settings")
     }
     else {
       Alert.alert('Error',
@@ -80,9 +136,28 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Personal details"
+        />
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
           <ScrollView keyboardDismissMode={'interactive'}>
-            <ProfileImage navigateToUploadImage={this.navigateToUploadImage} />
+            <View style={styles.profile}>
+              <TouchableHighlight onPress={() => this.openModal()}>
+                {this.state.profile ?
+                  <Image
+                    style={styles.photo}
+                    source={{ uri: this.state.profile, cache: 'only-if-cached' }}
+                    key={this.state.profile}
+                  /> :
+                  <Image
+                    source={require('./../../../assets/icons/profile_1.png')}
+                    style={styles.photo}
+                  />
+                }
+              </TouchableHighlight>
+            </View>
             <View style={styles.inputContainer}>
               <Text style={styles.text}>
                 Username
@@ -150,15 +225,15 @@ export default class Settings extends Component {
               <Text style={[styles.text, { flex: 2 }]}>
                 Language
               </Text>
-              <Picker
-                selectedValue={this.state.language}
-                style={{ flex: 1 }}
-                onValueChange={(lang) => {
-                  this.setState({ language: lang })
+              <TouchableHighlight
+                style={{ flex: 1, alignItems: 'flex-end', paddingRight: 10 }}
+                onPress={() => {
+                  this.openLanguageModal()
                 }}>
-                <Picker.Item label="English" value="en" />
-                <Picker.Item label="Africans" value="af" />
-              </Picker>
+                <Text style={{ color: Colors.black, fontSize: 16, fontWeight: 'normal' }}>
+                  {languages[this.state.language]} ▼
+                </Text>
+              </TouchableHighlight>
             </View>
           </ScrollView>
           <TouchableHighlight
@@ -169,6 +244,67 @@ export default class Settings extends Component {
               </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>
+        <Modal
+          visible={this.state.modalVisible} >
+          <View style={styles.modal}>
+            <View style={styles.bottomModal}>
+              <View style={[styles.button, { borderBottomWidth: 1, borderBottomColor: Colors.black }]}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
+                  Change Image
+                </Text>
+              </View>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this.launchCamera()}>
+                <Text style={styles.buttonText}>
+                  Use Camera
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this.launchImageLibrary()}>
+                <Text style={styles.buttonText}>
+                  Choose From Gallery
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => { this.setState({ modalVisible: false }) }}>
+                <Text style={styles.buttonText}>
+                  Cancel
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          visible={this.state.languageModalVisible} >
+          <View style={[styles.modal, { justifyContent: 'flex-end', paddingBottom: 30 }]}>
+            <View style={[styles.languageModal]}>
+              <TouchableHighlight
+                style={[styles.button, { marginTop:5, borderRadius: 5, backgroundColor: 'white' }]}
+                onPress={() => this.languageSelected("en")}>
+                <Text style={styles.buttonText}>
+                  English
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[styles.button, { marginTop:5, borderRadius: 5, backgroundColor: 'white' }]}
+                onPress={() => this.languageSelected("af")}>
+                <Text style={styles.buttonText}>
+                  Africans
+                </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[styles.button, { marginTop:20, borderRadius: 5, backgroundColor: 'white' }]}
+                onPress={() => { this.setState({ languageModalVisible: false }) }}>
+                <Text style={styles.buttonText}>
+                  Cancel
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
       </View>
     )
   }
@@ -220,6 +356,51 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.lightgray,
+  },
+  profile: {
+    height: 130,
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  photo: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomModal: {
+    width: '80%',
+    height: 250,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    borderColor: Colors.black,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  languageModal: {
+    width: '100%',
+    height: 275,
+    paddingBottom: 20,
+    paddingTop: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, .10)',
+  },
+  button: {
+    height: 60,
+    width: "90%",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
   },
 })
 

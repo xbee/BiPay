@@ -15,12 +15,12 @@ export default {
           10,
           () => ({
             title: Faker.Lorem.sentence(),
-            description: Faker.Lorem.paragraph()
+            description: Faker.Lorem.paragraph(),
           })
         )
 
         resolve({ pagination, records })
       }, random(1000, 3000))
     })
-  }
+  },
 }

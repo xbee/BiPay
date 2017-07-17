@@ -4,8 +4,10 @@ import {
   View,
   Text,
   FlatList,
+  ScrollView,
+  RefreshControl,
 } from 'react-native'
-import { List, ListItem } from "react-native-elements"
+import { ListItem } from "react-native-elements"
 import TransactionService from './../../services/transactionService'
 import UserInfoService from './../../services/userInfoService'
 import Colors from './../../config/colors'
@@ -65,20 +67,19 @@ export default class Transactions extends Component {
   }
 
   handleRefresh() {
-    console.log('refreshing')
+    this.props.updateBalance()
     if (this.state.loading !== true) {
       this.setState({ refreshing: true });
       this.getData().then(() => {
         this.setState({ refreshing: false });
       })
-      console.log(this.state.refreshing)
     }
   }
 
 
   handleLoadMore = async () => {
-    console.log('loadmore')
-    console.log(this.state.nextUrl)
+    // console.log('loadmore')
+    // console.log(this.state.nextUrl)
     if (this.state.refreshing !== true && this.state.loading !== true && this.state.nextUrl) {
       this.setState({ 'loading': true })
       let responseJson = await TransactionService.getNextTransactions(this.state.nextUrl)
@@ -99,14 +100,22 @@ export default class Transactions extends Component {
     if (this.state.noTransaction) {
       return (
         <View style={{ flex: 1, backgroundColor: Colors.lightgray, padding: 10 }}>
-          <View style={{ marginTop: 10, flexDirection: 'column', backgroundColor: 'white', padding: 20 }}>
-            <Text style={{ fontSize: 30, fontWeight: 'normal', color: Colors.black }}>
-              Welcome to {this.state.company.name}
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.handleRefresh.bind(this)}
+              />
+            }>
+            <View style={{ marginTop: 10, flexDirection: 'column', backgroundColor: 'white', padding: 20 }}>
+              <Text style={{ fontSize: 30, fontWeight: 'normal', color: Colors.black }}>
+                Welcome to {this.state.company.name}
+              </Text>
+              <Text style={{ paddingTop: 15, fontSize: 18, fontWeight: 'normal', color: Colors.black, textAlign: 'justify' }}>
+                Please verify your email address to redeem any unclaimed transactions. Pull to refresh your balance.
             </Text>
-            <Text style={{ paddingTop: 15, fontSize: 18, fontWeight: 'normal', color: Colors.black, textAlign: 'justify' }}>
-              Please verify your email address to redeem any unclaimed transactions. Pull to refresh your balance.
-            </Text>
-          </View>
+            </View>
+          </ScrollView>
         </View>
       )
     }

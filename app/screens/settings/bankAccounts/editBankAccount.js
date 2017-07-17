@@ -3,6 +3,7 @@ import { View, Alert, StyleSheet } from 'react-native'
 import EditBankAccountComponent from './bankAccountComponent'
 import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
+import Header from './../../../components/header'
 
 export default class EditBankAccount extends Component {
   static navigationOptions = {
@@ -69,6 +70,11 @@ export default class EditBankAccount extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Edit bank account"
+        />
         <EditBankAccountComponent
           values={this.state}
           updateName={this.updateName}

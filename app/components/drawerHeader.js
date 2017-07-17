@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, AsyncStorage, TouchableHighlight, Image, Text } from 'react-native';
 import Colors from './../config/colors'
+import ResetNavigation from './../util/resetNavigation'
 
 export default class DrawerHeader extends Component {
   constructor(props) {
@@ -20,12 +21,12 @@ export default class DrawerHeader extends Component {
   }
 
   render() {
-    this.getUserInfo()
+    //this.getUserInfo()
     return (
       <View style={styles.row}>
         <TouchableHighlight
           style={styles.button}
-          onPress={() => this.props.navigation.navigate("SettingsPersonalDetails")}>
+          onPress={() => ResetNavigation.dispatchUnderDrawer(this.props.navigation, "Settings", 'SettingsPersonalDetails')}>
           {this.state.userInfo.profile ?
             <Image
               style={styles.stretch}
@@ -36,7 +37,6 @@ export default class DrawerHeader extends Component {
               style={styles.stretch}
             />
           }
-
         </TouchableHighlight>
         <View style={styles.col}>
           <Text style={styles.nameText}>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 55,
     marginLeft: 15,
-    marginBottom: 15,
+    //marginBottom: 15,
   },
   col: {
     flexDirection: "column",

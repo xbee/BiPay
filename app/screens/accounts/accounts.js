@@ -3,6 +3,7 @@ import { View, ListView, StyleSheet, Alert, RefreshControl } from 'react-native'
 import InfiniteScrollView from 'react-native-infinite-scroll-view'
 import AccountService from './../../services/accountService'
 import Account from './../../components/account'
+import Header from './../../components/header'
 
 export default class Accounts extends Component {
   static navigationOptions = {
@@ -72,6 +73,11 @@ export default class Accounts extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          drawer
+          title="Accounts"
+        />
         <ListView
           renderScrollComponent={(props) => <InfiniteScrollView {...props} />}
           refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.getData.bind(this)} />}

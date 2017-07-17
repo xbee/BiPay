@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Modal, View, StyleSheet, Text, TouchableHighlight } from 'react-native'
 import { ImagePicker } from 'expo'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class Document extends Component {
 
@@ -30,7 +31,7 @@ export default class Document extends Component {
     })
     this.setState({ modalVisible: false })
     if (!result.cancelled) {
-      this.props.navigation.navigate("DocumentUpload", { image: result })
+      this.props.navigation.navigate("DocumentUpload", { image: result, type: this.state.title })
     }
   }
 
@@ -41,24 +42,29 @@ export default class Document extends Component {
     })
     this.setState({ modalVisible: false })
     if (!result.cancelled) {
-      this.props.navigation.navigate("DocumentUpload", { image: result })
+      this.props.navigation.navigate("DocumentUpload", { image: result, type: this.state.title })
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Document"
+        />
         <View style={styles.topContainer}>
-          <Text style={{fontSize: 18, textAlign: 'center'}}>
+          <Text style={{ fontSize: 18, textAlign: 'center' }}>
             Instructions of why and how to upload a picture of {this.state.title}.
           </Text>
         </View>
         <View style={styles.bottomContainer}>
-          <View style={{flex: 1}} />
+          <View style={{ flex: 1 }} />
           <TouchableHighlight
             style={styles.upload}
             onPress={() => this.openModal()}>
-            <Text style={{fontSize: 18, color: 'white'}}>
+            <Text style={{ fontSize: 18, color: 'white' }}>
               Upload
             </Text>
           </TouchableHighlight>

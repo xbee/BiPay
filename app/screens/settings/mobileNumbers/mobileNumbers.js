@@ -5,6 +5,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import MobileNumber from './../../../components/mobileNumber'
 import SettingsService from './../../../services/settingsService'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class Settings extends Component {
   static navigationOptions = {
@@ -83,15 +84,15 @@ export default class Settings extends Component {
   verify = async (number) => {
     this.setState({
       loading: true,
-      loadingMessage: 'Sending Verification Code...',
+      loadingMessage: 'Sending verification code...',
     })
     const userData = await AsyncStorage.getItem('user')
 
     const user = JSON.parse(userData)
 
     const body = {
-      identifier: number,
-      company_id: user.company,
+      mobile: number,
+      company: user.company,
     }
 
     let responseJson = await SettingsService.resendMobileVerification(body)
@@ -128,6 +129,11 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Mobile numbers"
+        />
         <Spinner
           visible={this.state.loading}
           textContent={this.state.loadingMessage}

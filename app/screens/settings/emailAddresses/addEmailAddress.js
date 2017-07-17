@@ -4,6 +4,7 @@ import SettingsService from './../../../services/settingsService'
 import ResetNavigation from './../../../util/resetNavigation'
 import TextInput from './../../../components/textInput'
 import Colors from './../../../config/colors'
+import Header from './../../../components/header'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -37,23 +38,30 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
-        <View style={{ flex: 1 }}>
-          <TextInput
-            title="Enter email address"
-            placeholder="e.g. john@gmail.com"
-            autoCapitalize="none"
-            onChangeText={(email) => this.setState({ email })}
-          />
-        </View>
-        <TouchableHighlight
-          style={styles.submit}
-          onPress={this.add}>
-          <Text style={{ color: 'white', fontSize: 18 }}>
-            Save
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Add email address"
+        />
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'} >
+          <View style={{ flex: 1 }}>
+            <TextInput
+              title="Enter email address"
+              placeholder="e.g. john@gmail.com"
+              autoCapitalize="none"
+              onChangeText={(email) => this.setState({ email })}
+            />
+          </View>
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={this.add}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
+              Save
           </Text>
-        </TouchableHighlight>
-      </KeyboardAvoidingView>
+          </TouchableHighlight>
+        </KeyboardAvoidingView>
+      </View>
     )
   }
 }

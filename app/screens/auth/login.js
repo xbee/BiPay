@@ -6,6 +6,7 @@ import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
 import Colors from './../../config/colors'
 import Constants from './../../config/constants'
+import Header from './../../components/header'
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -53,49 +54,54 @@ export default class Login extends Component {
 
   render() {
     return (
-      <View style={styles.mainContainer}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
-          <ScrollView style={{width: '100%'}} keyboardDismissMode={'interactive'}>
-            <TextInput
-              title="Email"
-              autoCapitalize="none"
-              placeholder="e.g john@gmail.com"
-              keyboardType="email-address"
-              value={this.state.email}
-              onChangeText={(email) => this.setState({ email })}
-            />
-            <TextInput
-              title="Password"
-              autoCapitalize="none"
-              placeholder="Password"
-              secureTextEntry
-              value={this.state.password}
-              onChangeText={(password) => this.setState({ password })}
-            />
-          </ScrollView>
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          title="Login"
+        />
+        <View style={styles.mainContainer}>
+          <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+            <ScrollView style={{ width: '100%' }} keyboardDismissMode={'interactive'}>
+              <TextInput
+                title="Email"
+                autoCapitalize="none"
+                placeholder="e.g john@gmail.com"
+                keyboardType="email-address"
+                value={this.state.email}
+                onChangeText={(email) => this.setState({ email })}
+              />
+              <TextInput
+                title="Password"
+                autoCapitalize="none"
+                placeholder="Password"
+                secureTextEntry
+                value={this.state.password}
+                onChangeText={(password) => this.setState({ password })}
+              />
+            </ScrollView>
+            <TouchableHighlight
+              style={styles.login}
+              onPress={this.login}>
+              <Text style={{ color: 'white' }}>
+                Login
+            </Text>
+            </TouchableHighlight>
+          </KeyboardAvoidingView>
           <TouchableHighlight
-            style={styles.login}
-            onPress={this.login}>
-            <Text style={{ color: 'white' }}>
-              Login
+            style={styles.forgetPassword}
+            onPress={() => this.props.navigation.navigate("ForgetPassword")}>
+            <Text style={{ color: Colors.lightblue }}>
+              Forgot Password?
             </Text>
           </TouchableHighlight>
-        </KeyboardAvoidingView>
-        <TouchableHighlight
-          style={styles.forgetPassword}
-          onPress={() => this.props.navigation.navigate("ForgetPassword")}>
-          <Text style={{ color: Colors.lightblue }}>
-            Forgot Password?
+          <TouchableHighlight
+            style={styles.register}
+            onPress={() => this.props.navigation.navigate("Signup")}>
+            <Text style={{ color: Colors.lightblue }}>
+              Create New Account
             </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.register}
-          onPress={() => this.props.navigation.navigate("Signup")}>
-          <Text style={{ color: Colors.lightblue }}>
-            Create New Account
-            </Text>
-        </TouchableHighlight>
-
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }

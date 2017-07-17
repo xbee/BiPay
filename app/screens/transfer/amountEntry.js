@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { ScrollView, KeyboardAvoidingView, AsyncStorage, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, ScrollView, KeyboardAvoidingView, AsyncStorage, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import stellarService from './../../services/stellarService'
+import TransactionService from './../../services/transactionService'
 import ResetNavigation from './../../util/resetNavigation'
 import TextInput from './../../components/textInput'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class AmountEntry extends Component {
   static navigationOptions = {
@@ -21,7 +23,7 @@ export default class AmountEntry extends Component {
     }
   }
 
-  send = async() => {
+  send = async () => {
     if (this.state.amount <= 0) {
       Alert.alert(
         'Invalid',
@@ -74,6 +76,7 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
         <ScrollView keyboardDismissMode={'interactive'}>
           <TextInput
@@ -95,9 +98,39 @@ export default class AmountEntry extends Component {
           onPress={this.send}>
           <Text style={{ color: 'white', fontSize: 18 }}>
             Send
+=======
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Send money"
+        />
+        <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
+          <ScrollView keyboardDismissMode={'interactive'}>
+            <TextInput
+              title="Amount"
+              placeholder="Enter amount here"
+              autoCapitalize="none"
+              keyboardType="numeric"
+              onChangeText={this.amountChanged}
+            />
+            <TextInput
+              title="Note"
+              placeholder="Enter note here"
+              autoCapitalize="none"
+              onChangeText={(note) => this.setState({ note })}
+            />
+          </ScrollView>
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={this.send}>
+            <Text style={{ color: 'white', fontSize: 18 }}>
+              Send
+>>>>>>> master
           </Text>
-        </TouchableHighlight>
-      </KeyboardAvoidingView>
+          </TouchableHighlight>
+        </KeyboardAvoidingView>
+      </View>
     )
   }
 }

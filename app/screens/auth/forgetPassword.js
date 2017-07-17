@@ -3,6 +3,7 @@ import { View, Alert, StyleSheet, KeyboardAvoidingView, TouchableHighlight, Text
 import AuthService from './../../services/authService'
 import TextInput from './../../components/textInput'
 import Colors from './../../config/colors'
+import Header from './../../components/header'
 
 export default class ForgetPassword extends Component {
   static navigationOptions = {
@@ -41,29 +42,36 @@ export default class ForgetPassword extends Component {
 
   render() {
     return (
-      <View style={styles.mainContainer}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
-          <TextInput
-            title="Email"
-            placeholder="e.g john@gmail.com"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            onChangeText={(email) => this.setState({ email })}
-          />
-          <TextInput
-            title="Company"
-            placeholder="e.g rehive"
-            autoCapitalize="none"
-            onChangeText={(company) => this.setState({ company })}
-          />
-          <TouchableHighlight
-            style={styles.submit}
-            onPress={() => this.sendEmail()}>
-            <Text style={{ color: 'white' }}>
-              Send reset email
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Forget password"
+        />
+        <View style={styles.mainContainer}>
+          <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
+            <TextInput
+              title="Email"
+              placeholder="e.g john@gmail.com"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              onChangeText={(email) => this.setState({ email })}
+            />
+            <TextInput
+              title="Company"
+              placeholder="e.g rehive"
+              autoCapitalize="none"
+              onChangeText={(company) => this.setState({ company })}
+            />
+            <TouchableHighlight
+              style={styles.submit}
+              onPress={() => this.sendEmail()}>
+              <Text style={{ color: 'white' }}>
+                Send reset email
             </Text>
-          </TouchableHighlight>
-        </KeyboardAvoidingView>
+            </TouchableHighlight>
+          </KeyboardAvoidingView>
+        </View>
       </View>
     );
   }

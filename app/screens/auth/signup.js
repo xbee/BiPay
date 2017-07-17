@@ -5,6 +5,7 @@ import TextInput from './../../components/textInput'
 import MobileInput from './../../components/mobileNumberInput'
 import Colors from './../../config/colors'
 import Constants from './../../config/constants'
+import Header from './../../components/header'
 
 export default class Signup extends Component {
   static navigationOptions = {
@@ -25,14 +26,14 @@ export default class Signup extends Component {
   }
 
   changeCountryCode = (code) => {
-    this.setState({mobile: '+' + code})
+    this.setState({ mobile: '+' + code })
   }
 
   signup = async () => {
     let responseJson = await AuthService.signup(this.state)
     if (responseJson.status === "success") {
       const loginInfo = responseJson.data
-      this.props.navigation.navigate("AuthVerifyMobile", {loginInfo})
+      this.props.navigation.navigate("AuthVerifyMobile", { loginInfo })
     }
     else {
       Alert.alert('Error',
@@ -43,61 +44,68 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <View style={styles.mainContainer}>
-        <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
-          <ScrollView keyboardDismissMode={'interactive'}>
-            <TextInput
-              title="First name"
-              placeholder="e.g. John"
-              autoCapitalize="none"
-              onChangeText={(first_name) => this.setState({ first_name })}
-            />
-            <TextInput
-              title="Last name"
-              placeholder="e.g. Snow"
-              autoCapitalize="none"
-              onChangeText={(last_name) => this.setState({ last_name })}
-            />
-            <TextInput
-              style={styles.input}
-              title="Email"
-              placeholder="e.g john@gmail.com"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              onChangeText={(email) => this.setState({ email })}
-            />
-            <MobileInput
-              style={styles.input}
-              title="Mobile number"
-              autoCapitalize="none"
-              keyboardType="numeric"
-              value={this.state.mobile}
-              onChangeText={(mobile) => this.setState({ mobile })}
-              changeCountryCode={this.changeCountryCode}
-            />
-            <TextInput
-              title="Password"
-              placeholder="Password"
-              autoCapitalize="none"
-              secureTextEntry
-              onChangeText={(password1) => this.setState({ password1 })}
-            />
-            <TextInput
-              title="Confirm password"
-              placeholder="Confirm password"
-              autoCapitalize="none"
-              secureTextEntry
-              onChangeText={(password2) => this.setState({ password2 })}
-            />
-          </ScrollView>
-          <TouchableHighlight
-            style={styles.submit}
-            onPress={() => this.signup()}>
-            <Text style={{ color: 'white' }}>
-              Sign up
+      <View style={{ flex: 1 }}>
+        <Header
+          navigation={this.props.navigation}
+          back
+          title="Create new account"
+        />
+        <View style={styles.mainContainer}>
+          <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={85}>
+            <ScrollView keyboardDismissMode={'interactive'}>
+              <TextInput
+                title="First name"
+                placeholder="e.g. John"
+                autoCapitalize="none"
+                onChangeText={(first_name) => this.setState({ first_name })}
+              />
+              <TextInput
+                title="Last name"
+                placeholder="e.g. Snow"
+                autoCapitalize="none"
+                onChangeText={(last_name) => this.setState({ last_name })}
+              />
+              <TextInput
+                style={styles.input}
+                title="Email"
+                placeholder="e.g john@gmail.com"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                onChangeText={(email) => this.setState({ email })}
+              />
+              <MobileInput
+                style={styles.input}
+                title="Mobile number"
+                autoCapitalize="none"
+                keyboardType="numeric"
+                value={this.state.mobile}
+                onChangeText={(mobile) => this.setState({ mobile })}
+                changeCountryCode={this.changeCountryCode}
+              />
+              <TextInput
+                title="Password"
+                placeholder="Password"
+                autoCapitalize="none"
+                secureTextEntry
+                onChangeText={(password1) => this.setState({ password1 })}
+              />
+              <TextInput
+                title="Confirm password"
+                placeholder="Confirm password"
+                autoCapitalize="none"
+                secureTextEntry
+                onChangeText={(password2) => this.setState({ password2 })}
+              />
+            </ScrollView>
+            <TouchableHighlight
+              style={styles.submit}
+              onPress={() => this.signup()}>
+              <Text style={{ color: 'white' }}>
+                Sign up
             </Text>
-          </TouchableHighlight>
-        </KeyboardAvoidingView>
+            </TouchableHighlight>
+          </KeyboardAvoidingView>
+        </View>
       </View>
     );
   }
