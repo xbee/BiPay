@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert } from 'react-native'
 import SettingsService from './../../services/settingsService'
 import Auth from './../../util/auth'
 import TextInput from './../../components/textInput'
