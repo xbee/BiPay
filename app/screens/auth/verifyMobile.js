@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, KeyboardAvoidingView, AsyncStorage, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import SettingsService from './../../services/settingsService'
 import Auth from './../../util/auth'
 import TextInput from './../../components/textInput'
@@ -25,6 +25,7 @@ export default class AmountEntry extends Component {
   }
 
   verify = async () => {
+    await AsyncStorage.setItem("token", this.state.loginInfo.token)
     let responseJson = await SettingsService.verifyMobile(this.state)
 
     if (responseJson.status === "success") {

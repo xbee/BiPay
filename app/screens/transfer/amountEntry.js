@@ -38,7 +38,7 @@ export default class AmountEntry extends Component {
       for (let i = 0; i < currency.divisibility; i++) {
         amount = amount * 10
       }
-      amount = parseInt(amount,10)
+      amount = parseInt(amount, 10)
       Alert.alert(
         'Are you sure?',
         'Send ' + currency.symbol + this.state.amount + ' to ' + this.state.reference,
@@ -51,7 +51,7 @@ export default class AmountEntry extends Component {
   }
 
   transferConfirmed = async (amount) => {
-    let responseJson = await stellarService.sendMoney(amount,this.state.memo, this.state.reference, 'XLM', 'default')
+    let responseJson = await stellarService.sendMoney(amount, this.state.memo, this.state.reference, 'XLM', 'default')
     if (responseJson.status === "success") {
       Alert.alert('Success',
         "Transaction successful",
@@ -76,29 +76,6 @@ export default class AmountEntry extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
-        <ScrollView keyboardDismissMode={'interactive'}>
-          <TextInput
-            title="Amount"
-            placeholder="Enter amount here"
-            autoCapitalize="none"
-            keyboardType="numeric"
-            onChangeText={this.amountChanged}
-          />
-          <TextInput
-            title="Memo"
-            placeholder="Enter memo here"
-            autoCapitalize="none"
-            onChangeText={(memo) => this.setState({ memo })}
-          />
-        </ScrollView>
-        <TouchableHighlight
-          style={styles.submit}
-          onPress={this.send}>
-          <Text style={{ color: 'white', fontSize: 18 }}>
-            Send
-=======
       <View style={{ flex: 1 }}>
         <Header
           navigation={this.props.navigation}
@@ -115,10 +92,10 @@ export default class AmountEntry extends Component {
               onChangeText={this.amountChanged}
             />
             <TextInput
-              title="Note"
-              placeholder="Enter note here"
+              title="Memo"
+              placeholder="Enter memo here"
               autoCapitalize="none"
-              onChangeText={(note) => this.setState({ note })}
+              onChangeText={(memo) => this.setState({ memo })}
             />
           </ScrollView>
           <TouchableHighlight
@@ -126,7 +103,6 @@ export default class AmountEntry extends Component {
             onPress={this.send}>
             <Text style={{ color: 'white', fontSize: 18 }}>
               Send
->>>>>>> master
           </Text>
           </TouchableHighlight>
         </KeyboardAvoidingView>

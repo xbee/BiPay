@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, AsyncStorage } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import stellarService from './../../services/stellarService'
 import Colors from './../../config/colors'
 import Header from './../../components/header'
@@ -16,8 +16,8 @@ export default class Receive extends Component {
       cryptoAddress: {
         address: '',
         memo: '',
-        reference: ''
-      }
+        reference: '',
+      },
     }
   }
 
@@ -58,7 +58,7 @@ export default class Receive extends Component {
         </Text>
         <Text style={styles.boxed}>
           Memo: {this.state.cryptoAddress.memo}
-          {"\n"}{"\n"}
+          {"\n\n"}
           {this.state.cryptoAddress.address}
         </Text>
       </View>
@@ -85,5 +85,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 10,
     backgroundColor: Colors.lightgray,
-  }
+  },
 })

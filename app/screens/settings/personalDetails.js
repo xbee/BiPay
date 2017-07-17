@@ -5,7 +5,6 @@ import CountryPicker from 'react-native-country-picker-modal'
 import Modal from 'react-native-modal'
 import UserInfoService from './../../services/userInfoService'
 import stellarService from './../../services/stellarService'
-import ProfileImage from './profileImage/profileImage'
 import ResetNavigation from './../../util/resetNavigation'
 import Colors from './../../config/colors'
 import Header from './../../components/header'
@@ -37,14 +36,9 @@ export default class Settings extends Component {
     }
   }
 
-  componentDidMount() {
-    this.getUser()
-    this.getStellarUsername()
-  }
-
   getStellarUsername = async () => {
     let stellar_address = await stellarService.getAddress()
-    if(stellar_address && stellar_address.details && stellar_address.details.memo) {
+    if (stellar_address && stellar_address.details && stellar_address.details.memo) {
       this.setState({
         stellar_username: stellar_address.details.memo,
       })
@@ -52,6 +46,7 @@ export default class Settings extends Component {
   }
 
   async componentWillMount() {
+    this.getStellarUsername()
     const value = await AsyncStorage.getItem('user')
 
     const user = JSON.parse(value)
@@ -120,7 +115,7 @@ export default class Settings extends Component {
       language: this.state.language,
     })
     let stellarResponse = await stellarService.setUsername(this.state.stellar_username)
-    
+
     if (responseJson.status === "success") {
       await AsyncStorage.removeItem('user')
       await AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
@@ -152,7 +147,7 @@ export default class Settings extends Component {
                     key={this.state.profile}
                   /> :
                   <Image
-                    source={require('./../../../assets/icons/profile_1.png')}
+                    source={require('./../../../assets/icons/profile.png')}
                     style={styles.photo}
                   />
                 }
