@@ -43,6 +43,9 @@ export default class Settings extends Component {
         stellar_username: stellar_address.details.memo,
       })
     }
+    else if (stellar_address.status === 'error') {
+      ResetNavigation.dispatchToSingleRoute(this.props.navigation, "SetUsername")
+    }
   }
 
   async componentWillMount() {
@@ -114,7 +117,6 @@ export default class Settings extends Component {
       nationality: this.state.nationality,
       language: this.state.language,
     })
-    let stellarResponse = await stellarService.setUsername(this.state.stellar_username)
 
     if (responseJson.status === "success") {
       await AsyncStorage.removeItem('user')
@@ -160,6 +162,7 @@ export default class Settings extends Component {
               <TextInput
                 style={styles.input}
                 placeholder=""
+                editable={false}
                 autoCapitalize="none"
                 value={this.state.stellar_username}
                 onChangeText={(text) => this.setState({ stellar_username: text })}

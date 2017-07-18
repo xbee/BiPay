@@ -20,7 +20,7 @@ let getHeaders = async () => {
 
 let _apiCallWithData = async (url, method, data) => {
   try {
-    console.log(data)
+    //console.log(data)
     let headers = await getHeaders()
     let response = await fetch(url, {
       method,
@@ -28,13 +28,8 @@ let _apiCallWithData = async (url, method, data) => {
       body: JSON.stringify(data),
       credentials: 'omit',
     })
-    let status = await response.status
-    console.log(response.status)
-    if (status === 201) {
-      return {"status": "success"}  //hack
-    } else {
-      return {}
-    }
+    let responseJson = await response.json()
+    return responseJson
 
   } catch (error) {
     Alert.alert(
@@ -50,18 +45,13 @@ let _apiCallWithoutData = async (url, method) => {
     let headers = await getHeaders()
     let response = await fetch(url, {
       method,
-      headers: headers,
+      headers,
       credentials: 'omit',
     })
     let responseJson = await response.json()
     return responseJson
   } catch (error) {
-    Alert.alert(
-      "Error",
-      JSON.stringify(error),
-      [{ text: 'OK' }]
-    )
-    return {}
+    return { "status": "error" }
   }
 }
 

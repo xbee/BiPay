@@ -3,7 +3,9 @@ import { View, StyleSheet, AsyncStorage, TouchableHighlight, Text } from 'react-
 import UserInfoService from './../../services/userInfoService'
 import Transactions from './transactions'
 import Auth from './../../util/auth'
+import ResetNavigation from './../../util/resetNavigation'
 import Colors from './../../config/colors'
+import StellarService from './../../services/stellarService'
 import Header from './../../components/header'
 
 export default class Home extends Component {
@@ -25,10 +27,10 @@ export default class Home extends Component {
       if (token === null) {
         this.logout()
       }
-      return token
     }
     catch (error) {
     }
+
   }
 
   componentDidMount() {
@@ -49,6 +51,11 @@ export default class Home extends Component {
     if (responseJson.status === "success") {
       AsyncStorage.removeItem('user')
       AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
+      let stellar_address = await StellarService.getAddress()
+      //console.log(stellar_address)
+      if (stellar_address.status === 'error') {
+        ResetNavigation.dispatchToSingleRoute(this.props.navigation, "SetUsername")
+      }
     }
     else {
       this.logout()
@@ -56,7 +63,7 @@ export default class Home extends Component {
   }
 
   getBalanceInfo = async () => {
-    console.log("dhukse")
+    //console.log("dhukse")
     let responseJson = await UserInfoService.getActiveAccount()
     if (responseJson.status === "success") {
       const account = responseJson.data.results[0].currencies[0]

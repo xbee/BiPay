@@ -4,6 +4,7 @@ import Home from './drawerNavigator'
 import Login from './../screens/auth/login'
 import Signup from './../screens/auth/signup'
 import AuthVerifyMobile from './../screens/auth/verifyMobile'
+import SetUsername from './../screens/auth/setUsername'
 import ForgetPassword from './../screens/auth/forgetPassword'
 import BankAccounts from './../screens/withdraw/bankAccounts'
 import BitcoinAddresses from './../screens/withdraw/bitcoinAddresses'
@@ -49,6 +50,9 @@ const Stack = {
   },
   AuthVerifyMobile: {
     screen: AuthVerifyMobile,
+  },
+  SetUsername: {
+    screen: SetUsername,
   },
   ForgetPassword: {
     screen: ForgetPassword,
