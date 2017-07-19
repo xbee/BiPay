@@ -9,6 +9,7 @@ export default class Options extends Component {
     return (
       <TouchableHighlight
         style={styles.options}
+        underlayColor={'white'}
         onPress={() => this.props.goTo(this.props.gotoAddress)}>
         <View style={styles.optionsElement}>
           <Text style={styles.optionsText}>

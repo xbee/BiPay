@@ -25,6 +25,7 @@ export default class DrawerHeader extends Component {
     return (
       <View style={styles.row}>
         <TouchableHighlight
+          underlayColor={Colors.darkblue}
           style={styles.button}
           onPress={() => ResetNavigation.dispatchUnderDrawer(this.props.navigation, "Settings", 'SettingsPersonalDetails')}>
           {this.state.userInfo.profile ?

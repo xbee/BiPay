@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Clipboard, TouchableHighlight } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import stellarService from './../../services/stellarService'
 import Colors from './../../config/colors'
 import Header from './../../components/header'
@@ -56,11 +57,39 @@ export default class Receive extends Component {
         <Text style={styles.text}>
           {this.state.cryptoAddress.reference}
         </Text>
-        <Text style={styles.boxed}>
-          Memo: {this.state.cryptoAddress.memo}
-          {"\n\n"}
-          {this.state.cryptoAddress.address}
-        </Text>
+        <View style={styles.boxed}>
+          <View style={styles.memoIcon}>
+            <Text style={styles.memoText}>
+              Memo: {this.state.cryptoAddress.memo}
+            </Text>
+            <TouchableHighlight
+              underlayColor={'white'}
+              onPress={() => Clipboard.setString(this.state.cryptoAddress.memo)}>
+              <Icon
+                name="content-copy"
+                size={30}
+                color={Colors.black}
+              />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.memoIcon}>
+            <Text style={[styles.memoText, {fontSize: 10}]}>
+              {this.state.cryptoAddress.address}
+            </Text>
+            <TouchableHighlight
+              underlayColor={'white'}
+              onPress={() => {
+                Clipboard.setString(this.state.cryptoAddress.address)
+                
+              }}>
+              <Icon
+                name="content-copy"
+                size={30}
+                color={Colors.black}
+              />
+            </TouchableHighlight>
+          </View>
+        </View>
       </View>
     )
   }
@@ -80,10 +109,22 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   boxed: {
+    flexDirection: 'column',
+    padding: 5,
+    backgroundColor: Colors.lightgray,
+  },
+  memoText: {
+    flex: 1,
+    padding: 2,
     fontSize: 14,
     fontWeight: "bold",
-    textAlign: 'center',
-    padding: 10,
-    backgroundColor: Colors.lightgray,
+    color: Colors.black,
+  },
+  memoIcon: {
+    padding: 5,
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

@@ -52,14 +52,14 @@ export default class AmountEntry extends Component {
 
   transferConfirmed = async (amount) => {
     let responseJson = await stellarService.sendMoney(amount, this.state.memo, this.state.reference, 'XLM', 'default')
-    if (responseJson.status === "success") {
+    if (responseJson.status === 201) {
       Alert.alert('Success',
         "Transaction successful",
         [{ text: 'OK', onPress: () => ResetNavigation.dispatchToSingleRoute(this.props.navigation, "Home") }])
     }
     else {
       Alert.alert('Error',
-        responseJson.message,
+        "Transaction failed",
         [{ text: 'OK' }])
     }
   }

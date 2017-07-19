@@ -1,5 +1,4 @@
 import { AsyncStorage, Alert } from 'react-native'
-import Auth from './../util/auth'
 
 const baseUrl = 'https://rehive.com/services/crypto/'
 
@@ -28,8 +27,7 @@ let _apiCallWithData = async (url, method, data) => {
       body: JSON.stringify(data),
       credentials: 'omit',
     })
-    let responseJson = await response.json()
-    return responseJson
+    return response
 
   } catch (error) {
     Alert.alert(
