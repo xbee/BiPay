@@ -96,7 +96,7 @@ export default class SendTo extends Component {
       this.setState({ reference: this.state.searchText })
     }
 
-    this.props.navigation.navigate("SendMoney", { reference: this.state.searchText })
+    this.props.navigation.navigate("SendMoney", { reference: this.state.searchText, memo: "" })
   }
 
   goToBarcodeScanner = () => {

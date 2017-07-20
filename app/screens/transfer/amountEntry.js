@@ -19,7 +19,7 @@ export default class AmountEntry extends Component {
     this.state = {
       reference: params.reference,
       amount: 0,
-      memo: '',
+      memo: params.memo,
     }
   }
 
@@ -95,6 +95,7 @@ export default class AmountEntry extends Component {
               title="Memo"
               placeholder="Enter memo here"
               autoCapitalize="none"
+              value={this.state.memo}
               onChangeText={(memo) => this.setState({ memo })}
             />
           </ScrollView>
