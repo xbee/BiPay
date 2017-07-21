@@ -11,17 +11,17 @@ export default class DrawerHeader extends Component {
       userInfo: {},
     }
 
-    this.getUserInfo()
+    //this.getUserInfo()
   }
 
-  getUserInfo = () => {
+  componentWillMount() {
     AsyncStorage.getItem('user').then((value) => {
       this.setState({ 'userInfo': JSON.parse(value) || {} });
     })
   }
 
   render() {
-    this.getUserInfo()
+    //this.getUserInfo()
     return (
       <View style={styles.row}>
         <TouchableHighlight

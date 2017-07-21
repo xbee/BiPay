@@ -124,7 +124,7 @@ export default class SendTo extends Component {
               <View style={styles.spinner}>
                 <Text>
                   Loading Contacts
-              </Text>
+                </Text>
                 <ActivityIndicator
                   animating
                   style={{ height: 80 }}

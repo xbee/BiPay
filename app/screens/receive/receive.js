@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, Clipboard, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Image, Clipboard, TouchableHighlight, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import stellarService from './../../services/stellarService'
 import Colors from './../../config/colors'
@@ -15,6 +15,7 @@ export default class Receive extends Component {
 
     this.state = {
       cryptoAddress: {
+        qrCode: '',
         address: '',
         memo: '',
         reference: '',
@@ -29,7 +30,7 @@ export default class Receive extends Component {
   getCryptoAddress = async () => {
     const cryptoAddressResponse = await stellarService.getAddress()
     //console.log(cryptoAddressResponse)
-    const cryptoAddress = this.state
+    const {cryptoAddress} = this.state
     cryptoAddress.qrCode = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + cryptoAddressResponse.reference + '&choe=UTF-8'
     cryptoAddress.address = cryptoAddressResponse.details.address
     cryptoAddress.memo = cryptoAddressResponse.details.memo
@@ -64,7 +65,13 @@ export default class Receive extends Component {
             </Text>
             <TouchableHighlight
               underlayColor={'white'}
-              onPress={() => Clipboard.setString(this.state.cryptoAddress.memo)}>
+              onPress={() => {
+                Clipboard.setString(this.state.cryptoAddress.memo)
+                Alert.alert(
+                  null,
+                  'Copied',
+                )
+              }}>
               <Icon
                 name="content-copy"
                 size={30}
@@ -80,7 +87,10 @@ export default class Receive extends Component {
               underlayColor={'white'}
               onPress={() => {
                 Clipboard.setString(this.state.cryptoAddress.address)
-                
+                Alert.alert(
+                  null,
+                  'Copied',
+                )
               }}>
               <Icon
                 name="content-copy"
