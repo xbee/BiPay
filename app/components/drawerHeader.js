@@ -10,11 +10,9 @@ export default class DrawerHeader extends Component {
     this.state = {
       userInfo: {},
     }
-
-    this.getUserInfo()
   }
 
-  getUserInfo = () => {
+  componentWillMount() {
     AsyncStorage.getItem('user').then((value) => {
       this.setState({ 'userInfo': JSON.parse(value) || {} });
     })
@@ -25,6 +23,7 @@ export default class DrawerHeader extends Component {
     return (
       <View style={styles.row}>
         <TouchableHighlight
+          underlayColor={'white'}
           style={styles.button}
           onPress={() => ResetNavigation.dispatchUnderDrawer(this.props.navigation, "Settings", 'SettingsPersonalDetails')}>
           {this.state.userInfo.profile ?

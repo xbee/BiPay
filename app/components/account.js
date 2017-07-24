@@ -8,6 +8,7 @@ export default class Account extends Component {
     return (
       <TouchableHighlight
         style={styles.options}
+        underlayColor={'white'}
         onPress={() => this.props.getCurrencies(this.props.reference)}>
         <View style={styles.optionsElement}>
           <View style={styles.icon}>

@@ -8,6 +8,7 @@ export default class Contact extends Component {
     return (
       <TouchableHighlight
         style={styles.contact}
+        underlayColor={'white'}
         onPress={() => this.props.selected(this.props.rowData.contact)} >
         <View style={styles.container}>
           <View style={styles.profile}>
