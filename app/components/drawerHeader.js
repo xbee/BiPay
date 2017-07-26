@@ -31,7 +31,7 @@ export default class DrawerHeader extends Component {
           {this.state.userInfo.profile ?
             <Image
               style={styles.stretch}
-              source={{ uri: this.state.userInfo.profile }}
+              source={{ uri: this.state.userInfo.profile, cache: 'only-if-cached' }}
             /> :
             <Image
               source={require('./../../assets/icons/profile_1.png')}
