@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, KeyboardAvoidingView, StyleSheet, AsyncStorage, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
+import { View, KeyboardAvoidingView, StyleSheet, AsyncStorage, RefreshControl, TouchableHighlight, Text, Alert, ListView, ActivityIndicator } from 'react-native'
 import Contact from './../../components/contact'
 import TextInput from './../../components/textInput'
 import ContactService from './../../services/contactService'
@@ -10,16 +10,16 @@ import Header from './../../components/header'
 
 export default class SendTo extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'To',
+    title: 'Send',
   })
 
   constructor(props) {
     super(props)
-    const params = this.props.navigation.state.params
     this.state = {
       ready: false,
-      reference: params.reference,
-      searchText: params.reference,
+      refreshing:false,
+      reference: "",
+      searchText: "",
       data: [],
       contacts: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
     }
@@ -38,14 +38,37 @@ export default class SendTo extends Component {
   }
 
   showContactsAsync = async () => {
-    // Ask for permission to query contacts.
-    let data = await ContactService.getAllContacts()
+    if (this.state.ready === false) {
+      let contacts = await AsyncStorage.getItem('contacts')
+      if (contacts) {
+        let data = JSON.parse(contacts)
+        this.setState({
+          ready: true,
+          data,
+          contacts: this.state.contacts.cloneWithRows(data),
+        })
+      }
+      else {
+        this.refreshContactsAsync()
+      }
+    }
+    else {
+      this.setState({refreshing:true})
+      this.refreshContactsAsync()
+    }
+  }
 
+  refreshContactsAsync = async () => {
+    let data = await ContactService.getAllContacts()
     this.setState({
+      refreshing: false,
       ready: true,
       data,
       contacts: this.state.contacts.cloneWithRows(data),
     })
+
+    await AsyncStorage.removeItem('contacts')
+    await AsyncStorage.setItem("contacts", JSON.stringify(data))
   }
 
   selectAContact = (contact) => {
@@ -68,6 +91,9 @@ export default class SendTo extends Component {
         return false
       }
       let name = node.name.toLowerCase()
+      if (typeof node.contact == 'undefined') {
+        return false
+      }
       if (name.indexOf(searchText) !== -1) {
         return true
       }
@@ -96,7 +122,7 @@ export default class SendTo extends Component {
       this.setState({ reference: this.state.searchText })
     }
 
-    this.props.navigation.navigate("SendMoney", { reference: this.state.searchText })
+    this.props.navigation.navigate("SendMoney", { reference: this.state.searchText, memo: "" })
   }
 
   goToBarcodeScanner = () => {
@@ -116,7 +142,8 @@ export default class SendTo extends Component {
           <KeyboardAvoidingView style={styles.container} behavior={'padding'} keyboardVerticalOffset={75}>
             <View style={{ flex: 1 }}>
               <TextInput
-                title="Enter name/email/mobile"
+                title="Recipient"
+                placeholder="Enter email, stellar address or mobile"
                 autoCapitalize="none"
                 value={this.state.searchText}
                 onChange={this.searchTextChanged.bind(this)}
@@ -124,7 +151,7 @@ export default class SendTo extends Component {
               <View style={styles.spinner}>
                 <Text>
                   Loading Contacts
-              </Text>
+                </Text>
                 <ActivityIndicator
                   animating
                   style={{ height: 80 }}
@@ -149,13 +176,14 @@ export default class SendTo extends Component {
             <View style={{ flex: 1 }}>
               <TextInput
                 title="Recipient"
-                placeholder="Enter name/email/mobile"
+                placeholder="Enter email, stellar address or mobile"
                 autoCapitalize="none"
                 value={this.state.searchText}
                 onChange={this.searchTextChanged.bind(this)}
               />
               <View style={{ flex: 1 }}>
                 <ListView
+                  refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.showContactsAsync.bind(this)} />}
                   dataSource={this.state.contacts}
                   enableEmptySections
                   renderRow={(rowData) => <Contact selected={this.selectAContact} rowData={rowData} />}
