@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, AsyncStorage, TouchableHighlight, Text } from 'react-native'
+import { View, StyleSheet, AsyncStorage, TouchableHighlight, Text, Image } from 'react-native'
+import moment from 'moment'
+import PopupDialog from 'react-native-popup-dialog'
 import UserInfoService from './../../services/userInfoService'
 import Transactions from './transactions'
 import Auth from './../../util/auth'
@@ -16,6 +18,9 @@ export default class Home extends Component {
     this.state = {
       balance: 0,
       symbol: '',
+      dataToShow: {
+        currency: {}
+      },
     }
   }
 
@@ -73,6 +78,19 @@ export default class Home extends Component {
     Auth.logout(this.props.navigation)
   }
 
+  showDialog = (item) => {
+    this.setState({dataToShow:item});
+    this.popupDialog.show()
+  }
+
+  getAmount = (amount = 0, divisibility) => {
+    for (let i = 0; i < divisibility; i++) {
+      amount = amount / 10
+    }
+
+    return amount.toFixed(8).replace(/\.?0+$/, "")
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -91,7 +109,7 @@ export default class Home extends Component {
           </View>
         </View>
         <View style={styles.transaction}>
-          <Transactions updateBalance={this.getBalanceInfo} logout={this.logout} />
+          <Transactions updateBalance={this.getBalanceInfo} showDialog={this.showDialog} logout={this.logout} />
         </View>
         <View style={styles.buttonbar} >
           <TouchableHighlight
@@ -99,7 +117,7 @@ export default class Home extends Component {
             onPress={() => this.props.navigation.navigate("Receive")}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               Receive
-              </Text>
+            </Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.submit}
@@ -109,6 +127,34 @@ export default class Home extends Component {
             </Text>
           </TouchableHighlight>
         </View>
+        <PopupDialog
+          ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+          width="90%"
+          height={250}>
+          <View style={{flex:1}}>
+            <View style={{flex:3, justifyContent: 'center', alignItems: 'center', padding: 20}}>
+              <Image
+                source={require('./../../../assets/icons/placeholder.png')}
+                style={{height:80, width:80, margin:10}}
+              />
+              <Text style={{fontSize:20, color:Colors.black}}>
+                {this.state.dataToShow.label + ": " + this.state.dataToShow.currency.symbol + this.getAmount(this.state.dataToShow.amount, this.state.dataToShow.currency.divisibility)}
+              </Text>
+            </View>
+            <View style={{flex:1, flexDirection: 'row', borderTopColor: Colors.lightgray, borderTopWidth:1, paddingLeft: 20, paddingRight:20}}>
+              <View style={{flex:2, justifyContent: 'center'}}>
+                <Text style={{fontSize:15, alignSelf: "flex-start", color:Colors.black}}>
+                  {moment(this.state.dataToShow.created).format('lll')}
+                </Text>
+              </View>
+              <View style={{flex:1, justifyContent: 'center'}}>
+                <Text style={{fontSize:15, alignSelf: "flex-end", color:Colors.black}}>
+                  {this.state.dataToShow.status}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </PopupDialog>
       </View>
     )
   }

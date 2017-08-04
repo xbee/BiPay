@@ -52,7 +52,7 @@ export default class Transactions extends Component {
       let responseEmails = await SettingsService.getAllEmails()
       if (responseJson.status === "success" && responseEmails.status === "success") {
         let emails = responseEmails.data
-        let verified = emails.filter(function(node) {
+        let verified = emails.filter(function (node) {
           return node.verified === true
         })
         if (verified.length !== 0) {
@@ -151,6 +151,9 @@ export default class Transactions extends Component {
                 rightTitleStyle={{ 'color': '#bdc6cf' }}
                 hideChevron
                 roundAvatar
+                onPress={() => {
+                  this.props.showDialog(item)
+                }}
               //containerStyle={{'backgroundColor':'#FAFBFC'}}
               />
             )}
