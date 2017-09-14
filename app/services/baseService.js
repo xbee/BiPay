@@ -43,10 +43,14 @@ let _apiCallWithoutData = async (url, method) => {
     let headers = await getHeaders()
     let response = await fetch(url, {
       method,
-      headers: headers,
+      headers,
       credentials: 'omit',
     })
     let responseJson = await response.json()
+    if (response.status === 403) {
+      await AsyncStorage.removeItem("token")
+      return { status: "error" }
+    }
     return responseJson
   } catch (error) {
     Alert.alert(

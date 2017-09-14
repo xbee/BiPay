@@ -19,7 +19,7 @@ export default class Home extends Component {
       balance: 0,
       symbol: '',
       dataToShow: {
-        currency: {}
+        currency: {},
       },
     }
   }
@@ -54,6 +54,10 @@ export default class Home extends Component {
     if (responseJson.status === "success") {
       AsyncStorage.removeItem('user')
       AsyncStorage.setItem('user', JSON.stringify(responseJson.data))
+      const token = await AsyncStorage.getItem('token')
+      if (token === null) {
+        await this.logout()
+      }
     }
     else {
       this.logout()
