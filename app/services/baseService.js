@@ -27,6 +27,10 @@ let _apiCallWithData = async (url, method, data) => {
       body: JSON.stringify(data),
       credentials: 'omit',
     })
+    if (response.status === 403 || response.status === 401) {
+      await AsyncStorage.removeItem("token")
+      return { status: "error" }
+    }
     let responseJson = await response.json()
     return responseJson
   } catch (error) {
@@ -47,7 +51,7 @@ let _apiCallWithoutData = async (url, method) => {
       credentials: 'omit',
     })
     let responseJson = await response.json()
-    if (response.status === 403) {
+    if (response.status === 403 || response.status === 401) {
       await AsyncStorage.removeItem("token")
       return { status: "error" }
     }
